@@ -2,6 +2,7 @@
 define('RSS2', 1);
 define('JSON', 2);
 define('JSONP', 3);
+define('ATOM', 4);
 
  /**
  * Univarsel Feed Writer class
@@ -241,7 +242,7 @@ define('JSONP', 3);
 			$out  = '<?xml version="1.0" encoding="utf-8"?>'."\n";
 			if ($this->xsl) $out .= '<?xml-stylesheet type="text/xsl" href="'.htmlspecialchars($this->xsl).'"?>' . PHP_EOL;
 			$out .= '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">' . PHP_EOL;
-            file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- HEAD ".dump_str($out)." \n", FILE_APPEND); 
+            file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- HEAD ".$this->dump_str($out)." \n", FILE_APPEND); 
 			echo $out;
 		}
 		elseif ($this->version == JSON || $this->version == JSONP)
@@ -372,7 +373,7 @@ define('JSONP', 3);
                 echo $node;
 			}
             
-              file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- HEAD ".dump_str($out)." \n", 
+              file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- HEAD ".$this->dump_str($out)." \n", 
                FILE_APPEND); 
            // echo $out;
         } elseif ($this->version == JSON || $this->version == JSONP) {
@@ -416,7 +417,7 @@ define('JSONP', 3);
 				}
 			}
 		}
-          file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- BEFORE PRINT ITEMS ".dump_str($out)." \n", FILE_APPEND); 
+          file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- BEFORE PRINT ITEMS ".$this->dump_str($out)." \n", FILE_APPEND); 
         echo $out;
 	}
 	
@@ -450,7 +451,7 @@ define('JSONP', 3);
 		// nothing for JSON
 	}
     
-    function dump_str($obj)
+    private function dump_str($obj)
     {
         return var_export($obj,true);
     }

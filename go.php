@@ -78,6 +78,7 @@ if (in_array($getkey, $accesskey) or (($_GET['rewrite'] == 'original') and ($num
 
 $prefix = mt_rand(100,1000);
 $myFile = 'tempfiles/' .$prefix ."_generatedfile.txt";
+
 if(file_exists("$myFile")) unlink("$myFile");
 
  //echo "Before curl ...<br/>";

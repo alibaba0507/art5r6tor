@@ -853,7 +853,7 @@ if (!$debug_mode) {
         //file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE END ".dump_str($output)." \n", FILE_APPEND); 
 		echo $output;
 	} else {
-		file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED yahoo news -------------  \n", FILE_APPEND); 
+		//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED yahoo news -------------  \n", FILE_APPEND); 
         $output->genarateFeed();
         
 	}

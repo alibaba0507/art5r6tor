@@ -1,17 +1,44 @@
 <?php 
+require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 require_once ('utils.php');
 // use this for debuging only 
 //ini_set('display_errors', 'On');
 //error_reporting(E_ALL);
+
+
+//************************* Cleaning **********************************//
+// remove all links
+$source = preg_replace("/<a[^>]+>/i", "", $source);
+// replace with selected keywords
+//include 'unik.php';
+$search = $_GET['keyword']; // search fields are also keywords
+$search_array  = explode("+",$search);
+foreach ($search_array as $val)
+{
+    $search .= "|".$val;
+}
+$search = implode(" ",explode("+",$search));
+//error_log("// ************ SEARCH FOR KEYWORDS IS **[$search]****************");
+$keywords = $_GET['keywords']."|".$search;
+//error_log("// ************ SEARCH FOR KEYWORDS IS **[$keywords]****************");
+$urllink = $_GET['urllink'];
+//$urlinternal = $_GET['urlinternal'];
+$arr_keyword = explode("|",$keywords);
+// sort keywords array longest to shortest 
+// usort($arr_keyword, function($a, $b) {
+//		return strlen($b) - strlen($a);
+//});
+usort($arr_keyword,'sortByLength');
+$keywords = implode("|", $arr_keyword);
+$tagkeywords = implode(",",explode("|",$keywords));
+//error_log("*************** REPLACE SOURCE**********************");
+//error_log($artarray);
+//error_log("******************************");
+//debug(" >>>>>>>>>>>>>> KEYWORDS [" . $keywords ."]>>>>>>>>>>>>>>>>>");
 $article=$source;
 $rawarticle = $source;
 include 'letter_index.php';
 $artarray=$article;
-
-//error_log("*************** REPLACE SOURCE**********************");
-//error_log($artarray);
-//error_log("******************************");
-
 
 // strip html tags
 $words_count = strip_tags($artarray);
@@ -29,6 +56,7 @@ if (sizeof($words_artarray)>0)
 	  
 	    
 	  $replace=$words_artarray[$i];
+      
 	  //error_log( "word process ... [".$replace."]");   
 	  $replace=str_replace(" ","",$replace);
 	  //if ($i == 44)
@@ -130,9 +158,22 @@ if (sizeof($words_artarray)>0)
 						}// end if
 						
 						$replacewith = "{".$replacewith."}"; // this is all synonyms 
-					}
+					}else
+                    { // it is a keyword we must replace with links if any
+                       /* if (strlen( trim($urllink)) > 0)
+                        {
+                          $replacewith = '<a href="'.$urllink.'">'.$replace.'</a>';
+                            
+                        }else{
+                          $replacewith =  " <strong>".$replace."</strong> ";
+                           
+                        }
+                        */
+                       // $replacewith =  "<strong>".$replace."</strong>";
+                    }
 						//error_log( "word Replace ... [".$replace."][".$replacewith."]");
 						//$replacewith = ("{".$replacewith."}"); // this is all synonyms 
+                       // debug(" >>>>>>>>>>>>>>>>>>>>> TO BE REPLACED [" .$repace."]<<<<<<<<<<<<<<<<");
 						$rawarticle = str_replace(" ".$replace." "," ".$replacewith." ",$rawarticle);
 						$rawarticle = str_replace(",".$replace." ",",".$replacewith." ",$rawarticle);
 						$rawarticle = str_replace(" ".$replace.","," ".$replacewith.",",$rawarticle);
@@ -280,10 +321,22 @@ if (sizeof($words_artarray)>0)
 							//if ($i <= 150)
 							 // error_log( "After Before loop ...$replace"); 
 							$replacewith = " {".$replacewith."} "; // this is all synonyms 
-						}
+						}else
+                        {
+                             if (strlen( trim($urllink)) > 0)
+                                {
+                                  $replacewith = '<a href="'.$urllink.'">'.$replace.'</a>';
+                                    
+                                }else{
+                                  $replacewith =  "<strong>".$replace."</strong>";
+                                   
+                                }
+                              //  debug(">>>>>>>> REPLACE [" .$replace . "] >>>> WITH [".$replacewith ." <<<<<<<<<");
+                        }
 						//htmlspecialchars("<font color=\"#008000\">{".$replacewith."}</font>");
 						//$replacewith = htmlspecialchars(" <font color=\"red\"><b>{".$replacewith."}</b> </font>"); // this is all synonyms 
 						//$rawarticle = str_replace($replace,$replacewith,$rawarticle);
+                        
 						$rawarticle = str_replace(" ".$replace." "," ".$replacewith." ",$rawarticle);
 						$rawarticle = str_replace(",".$replace." ",",".$replacewith." ",$rawarticle);
 						$rawarticle = str_replace(" ".$replace.","," ".$replacewith.",",$rawarticle);
@@ -305,6 +358,24 @@ if (sizeof($words_artarray)>0)
 	}// end for($i)
 }// end if (sizeof($words_artarray)>0)
 
+// Now we must check for keywords and replace with urldecode
+for ($i=0;$i < sizeof($arr_keyword);$i++)
+{
+    $replace = $arr_keyword[$i];
+    if (strlen( trim($urllink)) > 0)
+    {
+      $replacewith = '<a href="'.$urllink.'">'.$replace.'</a>';
+        
+    }else{
+      $replacewith =  "<strong>".$replace."</strong> ";
+       
+    }
+    $article = str_replace(" ".$replace." "," ".$replacewith." ",$article);
+    $article = str_replace(",".$replace." ",",".$replacewith." ",$article);
+    $article = str_replace(" ".$replace.","," ".$replacewith.",",$article);
+    $article = str_replace(".".$replace." ",".".$replacewith." ",$article);
+    $article = str_replace(" ".$replace."."," ".$replacewith.".",$article);
+}
 $article=str_replace("\'","'",$article);
 $article=str_replace('\"','"',$article);
 $article=str_replace("\n\r","</p><p>",$article);

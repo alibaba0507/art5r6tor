@@ -827,7 +827,7 @@ if (!$debug_mode) {
 		echo $output;
 	} else {
         if ($debug_mode)
-        debug( "---------------- END OF FEED google news -------------  \n","\n");
+       // debug( "---------------- END OF FEED google news -------------  \n","\n");
 		$output->genarateFeed();
 	}
 	if ($callback) echo ');';

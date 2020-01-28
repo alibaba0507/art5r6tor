@@ -4,7 +4,7 @@
 			<label class="control-label" for="keyword">Enter your keyword</label>
 	  <div class="controls" data-tip='Use plus sign "+" if your keyword more than one word. 
 	                Example: forex, diabetes, online+trading, real+estate.'>
-	  <input type="text"  id="url" name="keyword" style="width: 250px;" title="KEYWORD" data-content='Enter your keyword here. Use plus sign "+" if your keyword more than one word. Example: forex, diabetes, online+trading, real+estate.' required />
+	  <input type="text"  id="keyword" name="keyword" style="width: 250px;" title="KEYWORD" data-content='Enter your keyword here. Use plus sign "+" if your keyword more than one word. Example: forex, diabetes, online+trading, real+estate.' required />
 	  <div style=font-size:80%;>
 		<font color="grey">(TIP)Search specific site for keywords Example:web+profit+site:about.com</font></div>
 	  </div>

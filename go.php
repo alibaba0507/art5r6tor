@@ -72,7 +72,9 @@ include ('accesskey.php');
 $getkey= filter_var($_GET['accesskey'], FILTER_SANITIZE_SPECIAL_CHARS); 
 $numbers = filter_var($_GET['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-if (in_array($getkey, $accesskey) or (($_GET['rewrite'] == 'original') and ($numbers == 3)) ) {
+//if (in_array($getkey, $accesskey) or (($_GET['rewrite'] == 'original') and ($numbers == 3)) ) {
+if ((validatetoken($getkey) == 1 or (($_GET['rewrite'] == 'original') and ($numbers == 3)) )) 
+{
 	$gettitle = $keyword ." :: Article Creator";
 	echo("<title>$gettitle</title>");
 
@@ -153,24 +155,68 @@ if(file_exists("$myFile")) unlink("$myFile");
             </div>
            </div>
            <div id="menu2<?php echo $count;?>" class="tab-pane">
+           <div style="overflow-y: scroll; height:400px;">
             <?php
-               // this tab is original content
-               // echo "<h3>" .$subject ."</h3>";
-              //  echo $body;
+               if ($_GET['rewrite'] == 'unique') 
+			{
+				echo 'REWRITE UNIQUES .....<br>';
+				$source = $body;
+				//include 'unik.php';
+				//include 'unike.php';
+				include 'unike.php';
+				
+				$newbody = $article;
+			    //include 'links.php';
+				$newsubject = $subject;
+				}
+				
+				else{
+					$newbody = $body;
+					$newsubject = $subject;
+					}
+				
+
+				echo "<h3>" .$newsubject ."</h3>";
+				echo $newbody;
             ?>
+            </div>
           
            </div>
            <div id="menu3<?php echo $count;?>" class="tab-pane">
+            <div style="overflow-y: scroll; height:400px;">
             <?php
-               // this tab is original content
-               // echo "<h3>" .$subject ."</h3>";
-              //  echo $body;
+              if ($_GET['rewrite'] == 'unique') 
+				{
+					// we must add hidden div with
+					// edit plugin where we select or highligh the words and will
+					// display replacement for selected word
+					// also provide option to email this to blogger email account
+					echo "<div> ";
+					echo "<textarea name=\"area\" id=\"area".$count."\" style=\"width:90%;height:100px;\">";
+					echo $newbody; 
+					echo "</textarea></div>";
+				}
             ?>
+            </div>
             
            </div>
         </div><!-- div id="content" -->
           <?php
                     $count++;
+                
+                
+                /*		
+				$newbody = preg_replace ('/<[^>]*>/', ' ', $newbody);
+   
+				// save the txt to file
+				$filecontent = $newsubject ."\n" ."\n" .$newbody ."\n" ."\n" ."\n";
+				$fh = fopen($myFile, 'a');
+				fwrite($fh, "\xEF\xBB\xBF".$filecontent);
+                  */      
+                
+                
+                fclose($fh);
+			    //break;
                 } // end if ($count < $maxitems) 
 			}// end foreach ($feed->channel->item as $item) 
           

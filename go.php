@@ -155,7 +155,9 @@ if(file_exists("$myFile")) unlink("$myFile");
             </div>
            </div>
            <div id="menu2<?php echo $count;?>" class="tab-pane">
-           <div style="overflow-y: scroll; height:400px;">
+           <div style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,'That\'s right!')" onclick="document.getElementById('PopUp').style.display = 'none'">
+           <!--
+           <textarea id="spin_id" class="spin_txt" name="formNameLabelTextAfter" itemid="formNameLabelTextAfter" style="border-color: black; height: 650px; width: 328px;" ondblclick="showPosAjax(event,'That\'s right!')" onclick="document.getElementById('PopUp').style.display = 'none'" -->
             <?php
                if ($_GET['rewrite'] == 'unique') 
 			{
@@ -179,6 +181,7 @@ if(file_exists("$myFile")) unlink("$myFile");
 				echo "<h3>" .$newsubject ."</h3>";
 				echo $newbody;
             ?>
+            <!--/textarea -->
             </div>
           
            </div>

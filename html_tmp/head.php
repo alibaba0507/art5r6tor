@@ -16,7 +16,7 @@
 		
 		
 		//------------------------------------------
-    /*
+    
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
@@ -41,7 +41,7 @@
 		// tooltips
 		//$('a[rel=tooltip]').tooltip();
 		$('[data-toggle="tooltip"]').tooltip();
-	  */
+	  
     });
 	
 	

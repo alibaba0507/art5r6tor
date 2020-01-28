@@ -11,9 +11,10 @@ require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($ms
 <html>
   <head>
 
-	<?php include('./html_tmp/go_head.php');?>
+	<?php include('./html_tmp/head.php');?>
   </head>
   <body>
+  <!--
 	<div class="container" style="width: 600px; border: 2px;
  border-radius: 0px; background-color: #FFFFFF; padding: 30px; margin-top: 30px; margin-bottom: 50px;">
 	
@@ -21,7 +22,14 @@ require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($ms
 	  <div align="center" style="margin-bottom:10px;"><a href="index.php" title="FREE Unique Article Creator Online"><img src="images/ArticleCreatorLogo.png"></a></div>
 	  <div style="font-size:14px; color:grey;">Automatic generate high quality seo friendly articles from your keyword</div><br /><br />
 	</center>
-  
+  -->
+  <div class="container" style="width: 600px; border: 2px; border-radius: 0px; background-color: #FFFFFF; padding: 30px; margin-top: 30px; margin-bottom: 50px;">
+
+	<center>
+	  <div align="center" style="margin-bottom:10px;"><a href="index.php" title="FREE Unique Article Creator Online"><img src="images/ArticleCreatorLogo.png"></a></div>
+	  <div style="font-size:14px; color:grey;">Automatic generate high quality seo friendly articles from your keyword</div><br /><br />
+	</center>
+
   
   <?php
 
@@ -112,12 +120,13 @@ if(file_exists("$myFile")) unlink("$myFile");
 			$maxitems = $numbers;
 			
 			//******************* LOOP FOR ARTICLES **********************//
-			foreach ($feed->channel->item as $item) 
-			{
-
-			if ($count < $maxitems) 
+            //debug("############################## CAHNELS ITEMS  ##########################\n",$feed->channel);
+            foreach ($feed->channel->item as $item) 
+            {
+                //debug("############################## CAHNELS ITEMS  ##########################\n",$item);
+                if ($count < $maxitems) 
 				{
-                    $title = $item->title;
+                     $title = $item->title;
                     $title = str_replace("<b>", "", $title);
                     $subject = str_replace("</b>", "", $title);
                     $link = $item->link;
@@ -125,99 +134,55 @@ if(file_exists("$myFile")) unlink("$myFile");
                     $description = $item->description;
                     $description = str_replace("<b>", "", $description);
                     $body = str_replace("</b>", "", $description);
-                   if (strlen(trim($subject)) > 0 && strlen(trim($body)) > 0)
-                    {
-
-                        $headers = "MIME-Version: 1.0" . "\r\n";
-                        $headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
-		?>
-		 <ul class="nav nav-tabs">
-          
-             <li class="active"><a href="#menu1<?php echo $count;?>">Original</a></li>
-			<li><a href="#menu2<?php echo $count;?>">Unique</a></li>
-			<li><a href="#menu3<?php echo $count;?>">Edit</a></li>
+                   // debug("############################## CAHNEL ITEM TITLE  ##########################\n",$subject);
+                  ?>
+        <ul class="nav nav-tabs">
+            <li class="active " ><a href="#menu1<?php echo $count;?>">Original</a></li>
+            <li ><a href="#menu2<?php echo $count;?>">Unique</a></li>
+            <li ><a href="#menu3<?php echo $count;?>">Edit</a></li>
 		</ul>
 		<div class="tab-content">
-	   <div id="menu1<?php echo $count;?>" class="tab-pane fade">
-		<?php
-		   // this tab is original content
-		    echo "<h3>" .$subject ."</h3>";
-			echo $body;
-		?>
-	   </div>
-		<div id="menu2<?php echo $count;?>" class="tab-pane fade">
-		<?php
-			// rewrite article if the option is selected
-			if ($_GET['rewrite'] == 'unique') 
-			{
-				echo 'REWRITE UNIQUES .....<br>';
-				$source = $body;
-				//include 'unik.php';
-				include 'unike.php';
-				
-				$newbody = $article;
-				
-				$source = $subject;
-				//include 'unik.php';
-				include 'unike.php';
-				$newsubject = $article;
-				
-				
-				}
-				
-				else{
-					$newbody = $body;
-					$newsubject = $subject;
-					}
-				
-
-				echo "<h3>" .$newsubject ."</h3>";
-				echo $newbody;
-		?>
-		  </div>
-		 <div id="menu3<?php echo $count;?>" class="tab-pane fade">
-		<?php
-				if ($_GET['rewrite'] == 'unique') 
-				{
-					// we must add hidden div with
-					// edit plugin where we select or highligh the words and will
-					// display replacement for selected word
-					// also provide option to email this to blogger email account
-					echo "<div> ";
-					echo "<textarea name=\"area\" id=\"area".$count."\" style=\"width:90%;height:100px;\">";
-					echo $newbody; 
-					echo "</textarea></div>";
-				}
-		?>
-		</div>
-		</div><!-- div id="content" -->
-		
-		<?php
-				echo "<br>";
-						
-				$newbody = preg_replace ('/<[^>]*>/', ' ', $newbody);
-   
-				// save the txt to file
-				$filecontent = $newsubject ."\n" ."\n" .$newbody ."\n" ."\n" ."\n";
-				$fh = fopen($myFile, 'a');
-				fwrite($fh, "\xEF\xBB\xBF".$filecontent);
-                        $count++;
-                    }// end if (strlen(trim($subject)) > 0 && strlen(trim($body)) > 0)
-				}//end if ($count < $maxitems) 
-			//$item++;
-			//$count++;
-                        fclose($fh);
-						break;
-             //   }
-            //}
-            }// end foreach
-			
+            <div id="menu1<?php echo $count;?>" class="tab-pane active">
+            <div style="overflow-y: scroll; height:400px;">
+                <?php
+                   // this tab is original content
+                    echo "<h3>" .$subject ."</h3>";
+                    echo $body;
+                ?>
+            </div>
+           </div>
+           <div id="menu2<?php echo $count;?>" class="tab-pane">
+            <?php
+               // this tab is original content
+               // echo "<h3>" .$subject ."</h3>";
+              //  echo $body;
+            ?>
+          
+           </div>
+           <div id="menu3<?php echo $count;?>" class="tab-pane">
+            <?php
+               // this tab is original content
+               // echo "<h3>" .$subject ."</h3>";
+              //  echo $body;
+            ?>
+            
+           </div>
+        </div><!-- div id="content" -->
+          <?php
+                    $count++;
+                } // end if ($count < $maxitems) 
+			}// end foreach ($feed->channel->item as $item) 
+          
             if ($_GET['rewrite'] == 'unique') 
 		   { // we must close the file
 	         fclose($fdat);
 		   }
-	echo "<br /><div align='center'><a href='$myFile' target='_blank'><div align='center' class='btn btn-primary'>Click here to download  article in TXT file </div></a> " ." <a href='$baseurl'><div align='center' class='btn btn-secondary'>Click here to generate new articles</div></a></div><br />";
-	}
+        if ($count > 0)
+        {
+            // this is sounload buttons
+            echo "<br /><div align='center'><a href='$myFile' target='_blank'><div align='center' class='btn btn-primary'>Click here to download  article in TXT file </div></a> " ." <a href='$baseurl'><div align='center' class='btn btn-secondary'>Click here to generate new articles</div></a></div><br />";
+        }
+    }
 	else
 	{
 	$page_title = "Invalid Access Key!";
@@ -227,49 +192,15 @@ if(file_exists("$myFile")) unlink("$myFile");
 	
 ?>
 
-	<br /><?php include ("footer.php"); ?>
+	<br />
+    <?php include ("./html_tmp/footer.php"); ?>
 
 
 
 	</div>
 	
 	<!------------------ All Scripts goes here ---->
-	<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
-	<script type="text/javascript" src="js/bootstrap-popover.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	
-	var baseUrl = 'http://'+window.location.host+window.location.pathname.replace(/(\/index\.php|\/)$/, '');
-	
-	$(document).ready(function() {
-		
-		// remove http scheme from urls before submitting
-		$('#form').submit(function() {
-			$('#url').val($('#url').val().replace(/^http:\/\//i, ''));
-			return true;
-		});
-		// popovers
-		$('#url').popover({offset: 10, placement: 'left', trigger: 'focus', html: true});
-		$('#key').popover({offset: 10, placement: 'left', trigger: 'focus', html: true});
-		$('#max').popover({offset: 10, placement: 'left', trigger: 'focus', html: true});
-		$('#links').popover({offset: 10, placement: 'left', trigger: 'focus', html: true});
-		$('#exc').popover({offset: 10, placement: 'left', trigger: 'focus', html: true});
-		// tooltips
-		$('a[rel=tooltip]').tooltip();
-	});
-	</script>
-	<script type="text/javascript" src="js/nicEdit-latest.js"></script>
-     <script type="text/javascript">
-		//<![CDATA[
-		  bkLib.onDomLoaded(function() {
-			   nicEditors.allTextAreas(); // convert all text areas to rich text editor on that page
-				//new nicEditor({maxHeight : 200}).panelInstance('area');// convert text area with id area1 to rich text editor.
-				//new nicEditor({fullPanel : true,maxHeight : 200}).panelInstance('area1'); // convert text area with id area2 to rich text editor with full panel.
-		  });
-		  
-		  //]]>
-	</script>
+  
 	<!------------------------- End Scripts ---------------->
   </body>
 </html>

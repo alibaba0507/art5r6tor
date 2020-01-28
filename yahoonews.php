@@ -141,7 +141,7 @@ $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
 
 
 $url = filter_var($url, FILTER_SANITIZE_URL);
-$test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
+/*$test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
 // deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
 if ($test === false) {
 	$test = filter_var(strtr($url, '-', '_'), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
@@ -153,7 +153,7 @@ if ($test !== false && $test !== null && preg_match('!^https?://!', $url)) {
 	die('Invalid URL supplied');
 }
 debug("Supplied URL: $url");
-
+*/
 /////////////////////////////////
 // Redirect to hide API key
 /////////////////////////////////
@@ -393,7 +393,7 @@ $extractor->allowedParsers = $options->allowed_parsers;
 // Get RSS/Atom feed
 ////////////////////////////////
 //echo "================= > " .$html_only."<br>";
-file_put_contents('./log_'.date("j.n.Y").'.log', "Before $hrml_only = ".dump_str($html_only)."\n", FILE_APPEND);
+//file_put_contents('./log_'.date("j.n.Y").'.log', "Before $hrml_only = ".dump_str($html_only)."\n", FILE_APPEND);
 if (!$html_only) {
 	debug('--------');
 	debug("Attempting to process URL as feed");
@@ -504,7 +504,7 @@ $items = $feed->get_items(0, $max);
 // Request all feed items in parallel (if supported)
 $urls_sanitized = array();
 $urls = array();
-file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE ITEM LOOP ".count($items)." \n", FILE_APPEND); 
+//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE ITEM LOOP ".count($items)." \n", //FILE_APPEND); 
 
 foreach ($items as $key => $item) {
 	$permalink = htmlspecialchars_decode($item->get_permalink());
@@ -816,7 +816,7 @@ if ($debug_mode) {
 	var_dump($_apc_data); exit;
 }
 */
- file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- DEBUG MODE ".dump_str($debug_mode)." \n", FILE_APPEND); 
+// file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- DEBUG MODE ".dump_str($debug_mode)." \n", FILE_APPEND); 
 if (!$debug_mode) {
 	if ($callback) echo "$callback("; // if $callback is set, $format also == 'json'
 	if ($format == 'json') $output->setFormat(($callback === null) ? JSON : JSONP);
@@ -838,7 +838,7 @@ if (!$debug_mode) {
 			}
 		}
 	}
-     file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- CACHE MODE ".dump_str($add_to_cache)." \n", FILE_APPEND); 
+     //file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- CACHE MODE ".dump_str($add_to_cache)." \n", FILE_APPEND); 
 	if ($add_to_cache) {
 		ob_start();
 		$output->genarateFeed();
@@ -850,12 +850,12 @@ if (!$debug_mode) {
 			$cache = get_cache();
 			if ($add_to_cache) $cache->save($output, $cache_id);
 		}
-		}
-        file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE END ".dump_str($output)." \n", FILE_APPEND); 
+        //file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE END ".dump_str($output)." \n", FILE_APPEND); 
 		echo $output;
 	} else {
-		$output->genarateFeed();
-        file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED -------------  \n", FILE_APPEND); 
+		file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED yahoo news -------------  \n", FILE_APPEND); 
+        $output->genarateFeed();
+        
 	}
 	if ($callback) echo ');';
 }

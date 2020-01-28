@@ -6,12 +6,41 @@
 // Script URL: http://articlecreator.fullcontentrss.com
 
 require_once(dirname(__FILE__).'/config.php');
-require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 ?><!DOCTYPE html>
 <html>
   <head>
 
-	<?php include('./html_tmp/go_head.php');?>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
+	<style>
+	html, body { background-color: #cad2d7;}
+	body {
+	margin: 0;
+	line-height: 1.4em;
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+}
+	label, input, select, textarea { font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+	li { color: #404040; }
+	li.active a { font-weight: bold; color: #666 !important; }
+	form .controls { margin-left: 220px !important; }
+	label { width: 200px !important; }
+	fieldset legend {
+	padding-left: 220px;
+	line-height: 20px !important;
+	margin-bottom: 0px !important;
+}
+	.form-actions { padding-left: 220px !important; }
+	.popover-inner { width: 205px; }
+	h1 {
+	margin-bottom: 4px;
+}
+	body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+    .style1 {font-family: "Times New Roman", Times, serif}
+    </style>
   </head>
   <body>
 	<div class="container" style="width: 600px; border: 2px;
@@ -30,7 +59,7 @@ error_reporting(1);
 // return error on direct access
 if ($_GET['feedsource'] == '') {
 	echo "<center><h1>You don't have permission to access this page!</h1></center><br><br><br>";
-        include ("./html_tmp/footer.php");
+        include ("footer.php");
         exit;
 	}
 
@@ -79,24 +108,15 @@ if(file_exists("$myFile")) unlink("$myFile");
 			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 			$returned = curl_exec($ch);
 			curl_close($ch);
-            
+			
 			// Clean the document for parsing
 			$indx = stripos($returned,"<rss version=\"2.0\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:media=\"http://search.yahoo.com/mrss/\">");
 			$returned  = substr($returned,$indx);
 			
 			$feed = simplexml_load_string($returned);
-            // Remove empty items
-            /*
-            while (($node_list = $feed->query('//*[not(*) and not(@*) and not(text()[normalize-space()])]')) && $node_list->length) {
-                foreach ($node_list as $node) {
-                    $node->parentNode->removeChild($node);
-                }
-            }// end while
-            */
-           // debug("----------------- AFTER call [".$urlsource."]\n",$feed);
             //echo var_dump($returned);
            // Here before the feeds we must open this files for the 
 		   // dictionary only if rewrite is true
@@ -117,27 +137,29 @@ if(file_exists("$myFile")) unlink("$myFile");
 
 			if ($count < $maxitems) 
 				{
-                    $title = $item->title;
-                    $title = str_replace("<b>", "", $title);
-                    $subject = str_replace("</b>", "", $title);
-                    $link = $item->link;
-
-                    $description = $item->description;
-                    $description = str_replace("<b>", "", $description);
-                    $body = str_replace("</b>", "", $description);
-                   if (strlen(trim($subject)) > 0 && strlen(trim($body)) > 0)
-                    {
-
-                        $headers = "MIME-Version: 1.0" . "\r\n";
-                        $headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
 		?>
-		 <ul class="nav nav-tabs">
+		<ul class="nav nav-tabs">
           
              <li class="active"><a href="#menu1<?php echo $count;?>">Original</a></li>
 			<li><a href="#menu2<?php echo $count;?>">Unique</a></li>
 			<li><a href="#menu3<?php echo $count;?>">Edit</a></li>
 		</ul>
 		<div class="tab-content">
+       <?php
+			$title = $item->title;
+			$title = str_replace("<b>", "", $title);
+			$subject = str_replace("</b>", "", $title);
+			$link = $item->link;
+
+			$description = $item->description;
+			$description = str_replace("<b>", "", $description);
+			$body = str_replace("</b>", "", $description);
+
+
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
+		?>
+		 
 	   <div id="menu1<?php echo $count;?>" class="tab-pane fade">
 		<?php
 		   // this tab is original content
@@ -201,15 +223,13 @@ if(file_exists("$myFile")) unlink("$myFile");
 				$filecontent = $newsubject ."\n" ."\n" .$newbody ."\n" ."\n" ."\n";
 				$fh = fopen($myFile, 'a');
 				fwrite($fh, "\xEF\xBB\xBF".$filecontent);
-                        $count++;
-                    }// end if (strlen(trim($subject)) > 0 && strlen(trim($body)) > 0)
-				}//end if ($count < $maxitems) 
-			//$item++;
-			//$count++;
+                        
+
+				}
+			$item++;
+			$count++;
                         fclose($fh);
 						break;
-             //   }
-            //}
             }// end foreach
 			
             if ($_GET['rewrite'] == 'unique') 

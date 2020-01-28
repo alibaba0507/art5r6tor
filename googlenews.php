@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // * URL points to HTML (not feed): html=true (optional, by default it's automatically detected)
 // * API key: key=[api key] (optional, refer to config.php)
 // * Max entries to process: max=[max number of items] (optional)
+require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 
 error_reporting(E_ALL ^ E_NOTICE);
 ini_set("display_errors", 1);
@@ -57,6 +58,7 @@ function autoload($class_name) {
 		'htmLawed' => 'htmLawed/htmLawed.php'
 	);
 	if (isset($mapping[$class_name])) {
+        if ($debug_mode)
 		debug("** Loading class $class_name ({$mapping[$class_name]})");
 		require $dir.$mapping[$class_name];
 		return true;
@@ -119,9 +121,9 @@ if (isset($_GET['debug'])) {
 // Check for APC
 ////////////////////////////////
 $options->apc = $options->apc && function_exists('apc_add');
-if ($options->apc) {
+if ($options->apc && $debug_mode) {
 	debug('APC is enabled and available on server');
-} else {
+} else if ($debug_mode){
 	debug('APC is disabled or not available on server');
 }
 
@@ -141,6 +143,7 @@ $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
 	
 
 $url = filter_var($url, FILTER_SANITIZE_URL);
+/*
 $test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
 // deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
 if ($test === false) {
@@ -152,6 +155,8 @@ if ($test !== false && $test !== null && preg_match('!^https?://!', $url)) {
 } else {
 	die('Invalid URL supplied');
 }
+*/
+if ($debug_mode)
 debug("Supplied URL: $url");
 
 /////////////////////////////////
@@ -309,6 +314,7 @@ if ($format =='json' && isset($_GET['callback'])) {
 			die('Invalid JSONP callback');
 		}
 	}
+    if ($debug_mode)
 	debug("JSONP callback: $callback");
 }
 
@@ -321,6 +327,7 @@ if ($options->cors) header('Access-Control-Allow-Origin: *');
 // Check for cached copy
 //////////////////////////////////
 if ($options->caching) {
+    if ($debug_mode)
 	debug('Caching is enabled...');
 	$cache_id = md5($max.$url.$valid_key.$links.$xss_filter.$exclude_on_fail.$format.(int)isset($_GET['l']).(int)isset($_GET['pubsub']));
 	$check_cache = true;
@@ -329,9 +336,9 @@ if ($options->caching) {
 		$apc_cache_hits = (int)apc_fetch("cache.$cache_id");
 		$check_cache = ($apc_cache_hits >= 2);
 		apc_inc("cache.$cache_id");
-		if ($check_cache) {
+		if ($check_cache && $debug_mode) {
 			debug('Cache key found in APC, we\'ll try to load cache file from disk');
-		} else {
+		} else if ($debug_mode){
 			debug('Cache key not found in APC');
 		}
 	}
@@ -393,8 +400,6 @@ $extractor->allowedParsers = $options->allowed_parsers;
 // Get RSS/Atom feed
 ////////////////////////////////
 if (!$html_only) {
-	debug('--------');
-	debug("Attempting to process URL as feed");
 	// Send user agent header showing PHP (prevents a HTML response from feedburner)
 	$http->userAgentDefault = HumbleHttpAgent::UA_PHP;
 	// configure SimplePie HTTP extension class to use our HumbleHttpAgent instance
@@ -430,8 +435,6 @@ if (!$html_only) {
 ////////////////////////////////////////////////////////////////////////////////
 $isDummyFeed = false;
 if ($html_only || !$result) {
-	debug('--------');
-	debug("Constructing a single-item feed from URL");
 	$isDummyFeed = true;
 	unset($feed, $result);
 	// create single item dummy feed object
@@ -496,8 +499,7 @@ foreach ($items as $key => $item) {
 	}
 	$urls[$key] = $permalink;
 }
-debug('--------');
-debug('Fetching feed items');
+
 $http->fetchAll($urls_sanitized);
 //$http->cacheAll();
 
@@ -505,12 +507,12 @@ $http->fetchAll($urls_sanitized);
 $item_count = 0;
 
 foreach ($items as $key => $item) {
-	debug('--------');
-	debug('Processing feed item '.($item_count+1));
+	
 	$do_content_extraction = true;
 	$extract_result = false;
 	$text_sample = null;
 	$permalink = $urls[$key];
+    if ($debug_mode)
 	debug("Item URL: $permalink");
 	$newitem = $output->createNewItem();
 	$newitem->setTitle(htmlspecialchars_decode($item->get_title()));
@@ -562,11 +564,11 @@ foreach ($items as $key => $item) {
 				$html = str_replace('</[>', '', $html);	
 				$html = convert_to_utf8($html, $single_page_response['headers']);
 				$effective_url = $single_page_response['effective_url'];
+                if ($debug_mode)
 				debug("Retrieved single-page view from $effective_url");
 				unset($single_page_response);
 			}
-			debug('--------');
-			debug('Attempting to extract content');
+			
 			$extract_result = $extractor->process($html, $effective_url);
 			$readability = $extractor->readability;
 			$content_block = ($extract_result) ? $extractor->getContent() : null;			
@@ -575,13 +577,11 @@ foreach ($items as $key => $item) {
 			//die('Next: '.$extractor->getNextPageUrl());
 			$is_multi_page = (!$is_single_page && $extract_result && $extractor->getNextPageUrl());
 			if ($options->multipage && $is_multi_page) {
-				debug('--------');
-				debug('Attempting to process multi-page article');
+				
 				$multi_page_urls = array();
 				$multi_page_content = array();
 				while ($next_page_url = $extractor->getNextPageUrl()) {
-					debug('--------');
-					debug('Processing next page: '.$next_page_url);
+					
 					// If we've got URL, resolve against $url
 					if ($next_page_url = makeAbsoluteStr($effective_url, $next_page_url)) {
 						// check it's not what we have already!
@@ -784,6 +784,7 @@ foreach ($items as $key => $item) {
 }
 
 // output feed
+if ($debug_mode)
 debug('Done!');
 /*
 if ($debug_mode) {
@@ -825,6 +826,8 @@ if (!$debug_mode) {
 		}
 		echo $output;
 	} else {
+        if ($debug_mode)
+        debug( "---------------- END OF FEED google news -------------  \n","\n");
 		$output->genarateFeed();
 	}
 	if ($callback) echo ');';
@@ -929,8 +932,10 @@ function convert_to_utf8($html, $header=null)
 			debug('No character encoding found, so treating as UTF-8');
 			$encoding = 'utf-8';
 		} else {
+            if ($debug_mode)
 			debug('Character encoding: '.$encoding);
 			if (strtolower($encoding) != 'utf-8') {
+                if ($debug_mode)
 				debug('Converting to UTF-8');
 				$html = SimplePie_Misc::change_encoding($html, $encoding, 'utf-8');
 				/*
@@ -992,6 +997,7 @@ function makeAbsoluteStr($base, $url) {
 // returns single page response, or false if not found
 function getSinglePage($item, $html, $url) {
 	global $http, $extractor;
+    if ($debug_mode)
 	debug('Looking for site config files to see if single page link exists');
 	$site_config = $extractor->buildSiteConfig($url, $html);
 	$splink = null;
@@ -1112,7 +1118,7 @@ function get_cache() {
 	}
 	return $cache;
 }
-
+/*
 function debug($msg) {
 	global $debug_mode;
 	if ($debug_mode) {
@@ -1121,3 +1127,4 @@ function debug($msg) {
 		flush();
 	}
 }
+*/

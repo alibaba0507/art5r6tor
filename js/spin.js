@@ -175,7 +175,29 @@ function replaceSelectedText(replacementText) {
              // myApp.hidePleaseWait();
           });
    }
-   
+
+function showPosAjaxBuysy(event)
+{
+    var el, x, y;
+    document.getElementById('dialog').style.display = 'none'
+    el = document.getElementById('dialog');
+    var w = $(window).width();
+    var h = $(window).height();
+    var d = document.getElementById('my-div');
+    var divW = $(d).width();
+    var divH = $(d).height();
+
+    el.style.position="absolute";
+    el.style.top = (h/2)-(divH/2)+"px";
+    el.style.left = (w/2)-(divW/2)+"px";
+    el.style.display = "block";
+        
+    
+}    
+function hidePosAjaxBuysy()
+{
+      document.getElementById('dialog').style.display = 'none'
+}
 var rewriteArticle = function(id){
    
     var fromClass = '.needs-rewrite' + id;
@@ -195,6 +217,7 @@ var rewriteArticle = function(id){
         // Update the css and center the modal on screen
          alert("Before Send ajax ---- ");
         //myApp.showPleaseWait();
+        showPosAjaxBuysy();
       }
     }).done(function(result){
        // alert("AJax Done " + result);
@@ -207,6 +230,7 @@ var rewriteArticle = function(id){
     }).always(function (a, textStatus, b) {
       alert("Final status: " + textStatus);
      // myApp.hidePleaseWait();
+     hidePosAjaxBuysy();
   });
 };
         

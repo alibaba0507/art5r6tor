@@ -278,7 +278,7 @@ if(file_exists("$myFile")) unlink("$myFile");
     
     <!--div class="modal" width="50%" -->
     <!-- div id="myModal" class="modal fade" role="dialog" -->
-    <div id="dialog" cstyle="border: 1px solid black; padding: 10px; display: none; position: absolute; left: 100px; top: 50px; background-color: rgb(200, 100, 100); text-align: justify; font-size: 12px; width: 256px; height: 256px;"  >
+    <div id="dialog" style="border: 1px solid black; padding: 10px; display: none; position: absolute; left: 100px; top: 50px; background-color: rgb(200, 100, 100); text-align: justify; font-size: 12px; width: 256px; height: 256px;"  >
  
         <div class="center"> <img alt="" src="loader.gif"> </div>
     </div>

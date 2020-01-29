@@ -8,6 +8,8 @@ require_once ('utils.php');
 //ini_set('display_errors', 'On');
 //error_reporting(E_ALL);
 
+
+
 //*********************** Open Syntax Dict Files *************************//
 $myIndxFile = "th_en_US_new.idx";
 $lines = file($myIndxFile);//file in to an array
@@ -370,9 +372,29 @@ if (sizeof($words_artarray)>0)
 fclose($fdat);
 //debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 // Now we must check for keywords and replace with urldecode
+
 for ($i=0;$i < sizeof($arr_keyword);$i++)
 {
     $replace = $arr_keyword[$i];
+    if ($i == sizeof($arr_keyword) - 1)
+    { // will pl
+        $pos = strrpos(strtolower($article), strtolower(" ".$replace." "));
+        if($pos !== false)
+        {
+            //error_log("//**************** str_lastreplace [$search] with[$replace]");
+            $article = substr_replace($article,  ' <a href="https://en.wikipedia.org/w/index.php?search='.$replace.'&title=Special%3ASearch&go=Go" target="_blank">'.$replace.'</a> ', $pos, strlen(" ".$replace." "));
+        }else if (strrpos(strtolower($article), strtolower(",".$replace." ")) !== false)
+        {
+             $pos = strrpos(strtolower($article), strtolower(",".$replace." "));
+              $article = substr_replace($article,  ',<a href="https://en.wikipedia.org/w/index.php?search='.$replace.'&title=Special%3ASearch&go=Go" target="_blank">'.$replace.'</a> ', $pos, strlen(" ".$replace." "));
+        }else if (strrpos(strtolower($article), strtolower(" ".$replace.",")) !== false)
+        {
+             $pos = strrpos(strtolower($article), strtolower(" ".$replace.","));
+              $article = substr_replace($article,  ' <a href="https://en.wikipedia.org/w/index.php?search='.$replace.'&title=Special%3ASearch&go=Go" target="_blank">'.$replace.'</a>,', $pos, strlen(" ".$replace." "));
+        }
+        
+        break;
+    }
     if (strlen( trim($urllink)) > 0 && strlen(trim($replace)) > 0)
     {
       $replacewith = '<a href="'.$urllink.'">'.$replace.'</a>';

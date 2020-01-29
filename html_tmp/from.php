@@ -20,12 +20,26 @@
 		<option value="yahoo">Yahoo News Search</option>
 		
 		<option value="yahooanswers">Yahoo Answers Search</option>
+        <option value="user_urls">Custom URLs</option>
 		
 	</select>
 	</div>
 	</div>
 	</fieldset>
-
+    <div id="showurls" style="display:none">
+     <div class="control-group">
+         <label class="control-label" for="accesskey">Enter Custom URLs</label>
+         <div class="controls" >
+            <textarea id="custom_urls" style=" width: 388px; height:180px" ></textarea>
+         
+             <br />
+            <div style=font-size:80%;>
+            <font color="grey">Enter Articles urls <code>One per line</code> to be extracted , spin modified <br>
+                        If this option slelected <code>Number of Articles</code> will be ignored
+                        <br> Use this option if search engines blocking this ip</font></div>
+          </div>
+     </div>
+    </div>
 		<fieldset>
 		<div class="control-group">
 	<label class="control-label" for="rewrite">Rewrite articles</label>
@@ -66,8 +80,11 @@
 					title="Enter KeyWords" data-content='Enter KeyWords and long tail keywords separated by "|".Program will try to replace most relevant words and phrases with this keywords ' />
 		<br />
 		<div style=font-size:80%;>
-		<font color="grey">(Optional)When Article Creator if find this keywords and phrase will not <br/>
-		                  replace them. Or will try to find best suitable keyword to replace original word with</font></div>
+		<font color="grey">(Optional)If Article Creator find this keywords (When spin the article) will not <br/>
+		                  replace them , instead will encapsulate then in <code>&lt;strong&gt;&lt;/strong&gt; </code><br>
+                          if not <code>Anchor URL link</code> has been selected. Or will try to find best suitable <br>keyword to replace original word with
+                           <br/>
+                            Also will place one <code>outbound link</code> to authority site like <code>wikipedia</code> with keywords research</font></div>
 		</div></div>
 		<!-- Link to be with this keywords -->
         <div class="control-group">
@@ -78,8 +95,8 @@
 		<div style=font-size:80%;>
 		<font color="grey">(Optional) This url link will be associated with one of the above keywords
 		<br/> According to best SEO practice one anchor links is good enough.If this is your<br/>
-    		blog good idea will be to place internal link to one of your precious post.<br/>
-			Also will place one outbound link to authority site like wikipedia with keywords research</font></div>
+    		blog good idea will be to place internal link to one of your precious post.
+            </font></div>
 		</div>
 		</div>
 		
@@ -98,6 +115,11 @@
 		</div>
 		
 	<script type="text/javascript">
+    document.getElementById('feedsource').addEventListener('change', function () {
+        var style = this.value == 'user_urls' ? 'block' : 'none';
+        document.getElementById('showurls').style.display = style;
+	});
+    
 		document.getElementById('rewrite').addEventListener('change', function () {
 	var style = this.value == 'unique' ? 'block' : 'none';
     document.getElementById('showaccesskey').style.display = style;

@@ -85,5 +85,5 @@ function str_lastreplace($search, $replace, $subject)
         
     }
     $newbody = $newrowbody;
-    debug(">>>>>>>>>>>>>>>>>>>>>>> AFTER LINK >>>>>>>>>>>>>>>>>>>\n",$newbody);            
+   // debug(">>>>>>>>>>>>>>>>>>>>>>> AFTER LINK >>>>>>>>>>>>>>>>>>>\n",$newbody);            
 ?>

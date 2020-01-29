@@ -75,7 +75,7 @@ require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($ms
                     //$json = array('words' => explode('|',$syn));
                     $syn = str_replace('\n', '', $syn); //json_encode($json);
                     //$syn = str_replace(' ', '', $syn);
-                    debug('>>>>>>>>>>>>>>>>>>>>>> DICT.php >>>>>>>>>>>>>>>>> ',$syn);
+                    //debug('>>>>>>>>>>>>>>>>>>>>>> DICT.php >>>>>>>>>>>>>>>>> ',$syn);
 					echo $syn;
 					//echo $synonyms;
 					  

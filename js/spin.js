@@ -40,6 +40,21 @@ function getSelectionText() {
    return text;
 }
 
+function updateTextAea()
+{
+ var list = document.getElementById('selectWord');
+ var s = list[list.selectedIndex].value;
+ 
+ //var textArea = document.getElementById("spin_id");
+ if (/*finish &&*/ s.trim().length > 0)
+ {
+   replaceSelectedText(s);
+   //textArea.value = spliceString(textArea.value, start, finish, s + " ");
+   //start= 0;
+   //finish = 0;
+ }
+}
+    
 function replaceSelectedText(replacementText) {
     var sel, range;
     if (window.getSelection) {
@@ -127,7 +142,7 @@ function replaceSelectedText(replacementText) {
         // obtain the selected text
         var sel = getSelectionText();//txtarea.value.substring(start, finish);
         // $(".modal").show();
-        alert("showPosAjax Selected Word [" + sel + "]");
+       // alert("showPosAjax Selected Word [" + sel + "]");
          $.ajax({
                 url: "./dict.php",
                 data: { 'word': '"' + sel + '"' },
@@ -139,7 +154,7 @@ function replaceSelectedText(replacementText) {
                 //$(".modal").show();
               }
             }).done(function(result){
-                alert(" showPosAjax  Done ...");
+              //  alert(" showPosAjax  Done ...");
                 if (result /*&& result.words*/ && result.trim().length > 0)
                 {
           //           $(".modal").hide();
@@ -156,7 +171,7 @@ function replaceSelectedText(replacementText) {
               }).fail(function (jqXHR, textStatus, errorThrown) {
               alert("showPosAjax Failed: " + errorThrown);
             }).always(function (a, textStatus, b) {
-              alert("showPosAjax Final status: " + textStatus);
+              //alert("showPosAjax Final status: " + textStatus);
              // myApp.hidePleaseWait();
           });
    }

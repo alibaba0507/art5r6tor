@@ -285,7 +285,7 @@ if(file_exists("$myFile")) unlink("$myFile");
     
     <!--------------- Popup drop-down box with syntax words ------>
     
-    <div id="PopUp" style="border: 1px solid black; padding: 10px; display: none; position: absolute; left: 100px; top: 50px; background-color: rgb(200, 100, 100); text-align: justify; font-size: 12px; width: 135px;">
+    <div id="PopUp" style="border: 1px solid black; padding: 10px; display: none; position: absolute; left: 100px; top: 50px; background-color: rgb(200, 100, 100); text-align: justify; font-size: 12px; width: 185px;">
     <!--SPAN id='PopUpText'>TEXT</SPAN -->
     <select id="selectWord" onclick="updateTextAea();">
     <option></option>

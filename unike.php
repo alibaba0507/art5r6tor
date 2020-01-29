@@ -56,7 +56,7 @@ $words_artarray = explode(" ",$words_count);
 
 $time = microtime(true); // time in Microseconds
 //error_log( "Time Start .... ");
-debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 if (sizeof($words_artarray)>0)
 {
 	 for($i=0;$i<sizeof($words_artarray);$i++)
@@ -368,7 +368,7 @@ if (sizeof($words_artarray)>0)
 }// end if (sizeof($words_artarray)>0)
 // Close Syndax Dict File 
 fclose($fdat);
-debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 // Now we must check for keywords and replace with urldecode
 for ($i=0;$i < sizeof($arr_keyword);$i++)
 {
@@ -401,7 +401,7 @@ $rawarticle=str_replace("\n\r","</p><p>",$rawarticle);
 $rawarticle=str_replace("\r\n","</p><p>",$rawarticle);
 
 $time_diff = number_format (((microtime(true) - $time)/1000),5);
-debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE (END) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE (END) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 //error_log("DONE ...... $time_diff in sec ");
 /*if ($_POST["article"])
 {

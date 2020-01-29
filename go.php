@@ -47,8 +47,20 @@ if ($_GET['feedsource'] == '') {
 
 // set base url
 $baseurl = "http://localhost/dev/articlecreator/";
+//global $keyword,$keywords,$urllink;
 $keyword= filter_var($_GET['keyword'], FILTER_SANITIZE_SPECIAL_CHARS); 
-
+$keywords= $_GET['keywords'];
+$urllink = $_GET['urllink'];
+?>
+<input type="hidden" id="keyword" value="<?php echo $keyword;?>">
+<input type="hidden" id="keywords" value="<?php echo $keywords;?>">
+<input type="hidden" id="urllink" value="<?php echo $urllink;?>">
+<?php
+/*
+$GLOBALS['keyword'] = $keyword;
+$GLOBALS['keywords'] = $keywords;
+$GLOBALS['urllink'] = $urllink;
+*/
 // get the content source
 if ($_GET['feedsource'] == 'google') {
 	$urlsource = $baseurl ."googlenews.php?keyword=" .urlencode($keyword);
@@ -156,6 +168,7 @@ if(file_exists("$myFile")) unlink("$myFile");
                     echo "<h3>" .$subject ."</h3>";
                     echo $body;
                 ?>
+                <input type="hidden" id="headline<?php echo $count; ?>" value="<?php echo $subject;?>">
             </div>
            </div>
            <div id="menu2<?php echo $count;?>" class="tab-pane">
@@ -177,14 +190,14 @@ if(file_exists("$myFile")) unlink("$myFile");
 				$source = $body;
 				//include 'unik.php';
 				//include 'unike.php';
-                debug(">>>>>>>>>>>>>> REWRITE (BEFORE) >>>>>>>>>>>>>\n");
+                //debug(">>>>>>>>>>>>>> REWRITE (BEFORE) >>>>>>>>>>>>>\n");
 				include 'unike.php';
 				
 				$newbody = $article;
 			    //include 'links.php';
 				$newsubject = $subject;
-                debug(">>>>>>>>>>>>>> REWRITE (ORIGIN) [AFTER]>>>>>>>>\n");
-                debug(">>>>>>>>>>>>>> REWRITE (NEW) [AFTER]>>>>>>>>\n");
+                //debug(">>>>>>>>>>>>>> REWRITE (ORIGIN) [AFTER]>>>>>>>>\n");
+                //debug(">>>>>>>>>>>>>> REWRITE (NEW) [AFTER]>>>>>>>>\n");
 				}
 				else{
 					$newbody = $body;

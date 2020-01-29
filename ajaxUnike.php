@@ -8,9 +8,16 @@ if ($_POST["article"])
 {
     $article1 = $_POST["article"];
     $article = urldecode($article1);
-     debug(">>>>>>>> CALL FORM AJAX [" .$article . "] <<<<<<<<<");
+    // debug(">>>>>>>> CALL FORM AJAX [" .$article . "] <<<<<<<<<");
      $source = $article;
+     $keyword = $_POST['keyword'];
+     $keywords = $_POST['keywords'];
+     $urllink = $_POST['urllink'];
      include 'unike.php';
+     $data = array('raw' => $rawarticle 
+               ,'spin' =>  $article);
+   //  debug(">>>>>>>> CALL FORM AJAX AFTER <<<<<<<<<",$data);
+     //echo json_encode($data);
      echo $article;
 }else
 {

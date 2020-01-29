@@ -18,7 +18,7 @@ $tmp_dic_arr = array(); // buffer array for used words
 $source = preg_replace("/<a[^>]+>/i", "", $source);
 // replace with selected keywords
 //include 'unik.php';
-$search = $_GET['keyword']; // search fields are also keywords
+$search = $keyword;//$GLOBALS['keyword']; // search fields are also keywords
 $search_array  = explode("+",$search);
 foreach ($search_array as $val)
 {
@@ -26,9 +26,11 @@ foreach ($search_array as $val)
 }
 $search = implode(" ",explode("+",$search));
 
-$keywords = $_GET['keywords']."|".$search;
+//$keywords = /*$GLOBALS['keywords']*/."|".$search;
+if (strlen(trim($search)) > 0 && !strpos($keywords, "|".$search))
+    $keywords .= "|".$search;
 
-$urllink = $_GET['urllink'];
+//$urllink = $GLOBALS['urllink'];
 //$urlinternal = $_GET['urlinternal'];
 $arr_keyword = explode("|",$keywords);
 // sort keywords array longest to shortest 
@@ -370,19 +372,22 @@ debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 for ($i=0;$i < sizeof($arr_keyword);$i++)
 {
     $replace = $arr_keyword[$i];
-    if (strlen( trim($urllink)) > 0)
+    if (strlen( trim($urllink)) > 0 && strlen(trim($replace)) > 0)
     {
       $replacewith = '<a href="'.$urllink.'">'.$replace.'</a>';
         
-    }else{
+    }else if (strlen(trim($replace)) > 0){
       $replacewith =  "<strong>".$replace."</strong> ";
        
     }
-    $article = str_replace(" ".$replace." "," ".$replacewith." ",$article);
-    $article = str_replace(",".$replace." ",",".$replacewith." ",$article);
-    $article = str_replace(" ".$replace.","," ".$replacewith.",",$article);
-    $article = str_replace(".".$replace." ",".".$replacewith." ",$article);
-    $article = str_replace(" ".$replace."."," ".$replacewith.".",$article);
+    if (strlen(trim($replace)) > 0 && strlen(trim($replacewith)) > 0)
+    {
+        $article = str_replace(" ".$replace." "," ".$replacewith." ",$article);
+        $article = str_replace(",".$replace." ",",".$replacewith." ",$article);
+        $article = str_replace(" ".$replace.","," ".$replacewith.",",$article);
+        $article = str_replace(".".$replace." ",".".$replacewith." ",$article);
+        $article = str_replace(" ".$replace."."," ".$replacewith.".",$article);
+    }
 }
 $article=str_replace("\'","'",$article);
 $article=str_replace('\"','"',$article);

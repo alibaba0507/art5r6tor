@@ -196,6 +196,7 @@ if (sizeof($words_artarray)>0)
 				} // end if(($replace!="")&&($replace!=" ")&&($replacewith!=""))  
 			}else if (isset($letters))
 			{
+                //debug(">>>>>>>>>>>>>>>> LETTERS >>>>>>>>>>>>",$letters);
 				$searchIndex = strtoupper (substr($replace,0,1));	
 				$leter_index = "";
                 if (!preg_match('/[^A-Za-z]/', $searchIndex)) // '/[^a-z\d]/i' should also work.				

@@ -180,7 +180,7 @@ if(file_exists("$myFile")) unlink("$myFile");
                     <button ng-disabled="siteFunctionalityDisabled"  style="border: medium groove ; height: 40px; width: 135px; font-size: x-large;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin ...</button>
                  </div>
                 <?php } ?>
-           <div class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,'That\'s right!')" onclick="document.getElementById('PopUp').style.display = 'none'">
+           <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,this.class)" onclick="document.getElementById('PopUp').style.display = 'none'">
            <!--
            <textarea id="spin_id" class="spin_txt" name="formNameLabelTextAfter" itemid="formNameLabelTextAfter" style="border-color: black; height: 650px; width: 328px;" ondblclick="showPosAjax(event,'That\'s right!')" onclick="document.getElementById('PopUp').style.display = 'none'" -->
             <?php
@@ -275,11 +275,22 @@ if(file_exists("$myFile")) unlink("$myFile");
 	</div>
 	
 	<!------------------ MODAL BOX  ---->
-    <!--
-    <div class="modal" width="50%">
+    
+    <!--div class="modal" width="50%" -->
+    <!-- div id="myModal" class="modal fade" role="dialog" -->
+    <div id="dialog" class="modal fade"  >
+ 
         <div class="center"> <img alt="" src="loader.gif"> </div>
     </div>
-    -->
+    
+    <!--------------- Popup drop-down box with syntax words ------>
+    
+    <div id="PopUp" style="border: 1px solid black; padding: 10px; display: none; position: absolute; left: 100px; top: 50px; background-color: rgb(200, 100, 100); text-align: justify; font-size: 12px; width: 135px;">
+    <!--SPAN id='PopUpText'>TEXT</SPAN -->
+    <select id="selectWord" onclick="updateTextAea();">
+    <option></option>
+    </select>
+    </div>
 	<!------------------------- End Scripts ---------------->
   </body>
 </html>

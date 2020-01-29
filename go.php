@@ -4,7 +4,9 @@
 // This script can grab articles from any keyword and rewrite them to unique articles
 // Author: FullContentRSS.com
 // Script URL: http://articlecreator.fullcontentrss.com
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once(dirname(__FILE__).'/config.php');
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 ?><!DOCTYPE html>
@@ -111,7 +113,7 @@ if(file_exists("$myFile")) unlink("$myFile");
             //echo var_dump($returned);
            // Here before the feeds we must open this files for the 
 		   // dictionary only if rewrite is true
-		   if ($_GET['rewrite'] == 'unique') 
+		 /*  if ($_GET['rewrite'] == 'unique') 
 		   {
 			    $myIndxFile = "th_en_US_new.idx";
 				$lines = file($myIndxFile);//file in to an array
@@ -119,7 +121,8 @@ if(file_exists("$myFile")) unlink("$myFile");
 				$tmp_dic_arr = array(); // buffer array for used words
 				
 		   }// end unique check
-			$count = 0;
+	    	*/
+            $count = 0;
 			$maxitems = $numbers;
 			
 			//******************* LOOP FOR ARTICLES **********************//
@@ -146,16 +149,25 @@ if(file_exists("$myFile")) unlink("$myFile");
 		</ul>
 		<div class="tab-content">
             <div id="menu1<?php echo $count;?>" class="tab-pane active">
-            <div style="overflow-y: scroll; height:400px;">
+            <div class="needs-rewrite<?php echo $count;?>" style="overflow-y: scroll; height:400px;">
                 <?php
                    // this tab is original content
+                    debug(">>>>>>>>>>>>>> SUBJECT [" .$subject ."]>>>>>>>>\n");
                     echo "<h3>" .$subject ."</h3>";
                     echo $body;
                 ?>
             </div>
            </div>
            <div id="menu2<?php echo $count;?>" class="tab-pane">
-           <div style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,'That\'s right!')" onclick="document.getElementById('PopUp').style.display = 'none'">
+             <?php
+               if ($_GET['rewrite'] == 'unique') 
+                { ?>
+                <div style="text-align: center;"> 
+                    <!-- This is spin button -->
+                    <button ng-disabled="siteFunctionalityDisabled"  style="border: medium groove ; height: 40px; width: 135px; font-size: x-large;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin ...</button>
+                 </div>
+                <?php } ?>
+           <div class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,'That\'s right!')" onclick="document.getElementById('PopUp').style.display = 'none'">
            <!--
            <textarea id="spin_id" class="spin_txt" name="formNameLabelTextAfter" itemid="formNameLabelTextAfter" style="border-color: black; height: 650px; width: 328px;" ondblclick="showPosAjax(event,'That\'s right!')" onclick="document.getElementById('PopUp').style.display = 'none'" -->
             <?php
@@ -165,13 +177,15 @@ if(file_exists("$myFile")) unlink("$myFile");
 				$source = $body;
 				//include 'unik.php';
 				//include 'unike.php';
+                debug(">>>>>>>>>>>>>> REWRITE (BEFORE) >>>>>>>>>>>>>\n");
 				include 'unike.php';
 				
 				$newbody = $article;
 			    //include 'links.php';
 				$newsubject = $subject;
+                debug(">>>>>>>>>>>>>> REWRITE (ORIGIN) [AFTER]>>>>>>>>\n");
+                debug(">>>>>>>>>>>>>> REWRITE (NEW) [AFTER]>>>>>>>>\n");
 				}
-				
 				else{
 					$newbody = $body;
 					$newsubject = $subject;
@@ -216,17 +230,15 @@ if(file_exists("$myFile")) unlink("$myFile");
 				$fh = fopen($myFile, 'a');
 				fwrite($fh, "\xEF\xBB\xBF".$filecontent);
                   */      
-                
-                
-                fclose($fh);
+                //fclose($fh);
 			    //break;
                 } // end if ($count < $maxitems) 
 			}// end foreach ($feed->channel->item as $item) 
           
-            if ($_GET['rewrite'] == 'unique') 
+           /* if ($_GET['rewrite'] == 'unique') 
 		   { // we must close the file
 	         fclose($fdat);
-		   }
+		   }*/
         if ($count > 0)
         {
             // this is sounload buttons
@@ -249,8 +261,12 @@ if(file_exists("$myFile")) unlink("$myFile");
 
 	</div>
 	
-	<!------------------ All Scripts goes here ---->
-  
+	<!------------------ MODAL BOX  ---->
+    <!--
+    <div class="modal" width="50%">
+        <div class="center"> <img alt="" src="loader.gif"> </div>
+    </div>
+    -->
 	<!------------------------- End Scripts ---------------->
   </body>
 </html>

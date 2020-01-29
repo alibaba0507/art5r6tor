@@ -2,14 +2,24 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="robots" content="INDEX" />
 	<meta name="description" content="SEO Optimized Article Creator. This is a article rewriting tool, that search the web search engines based on input keywords and generate unique articles.">
-<meta name="keywords" content="SEO,seo optimized article,article rewriter,article spinner,free article spinner">
-	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
+    <meta name="keywords" content="SEO,seo optimized article,article rewriter,article spinner,free article spinner">
+	 <!--
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
 	<script type="text/javascript" src="js/bootstrap-popover.js"></script>
-	<!-- script type="text/javascript" src="js/bootstrap-tab.js"></script -->
+    <!--
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    -->
+    <!--
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/spin.js"></script>
+	<script type="text/javascript" src="js/bootstrap-tab.js"></script>
 	<script type="text/javascript">
 	var baseUrl = 'http://'+window.location.host+window.location.pathname.replace(/(\/index\.php|\/)$/, '');
 	$(document).ready(function() {

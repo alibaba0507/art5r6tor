@@ -1,11 +1,18 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 require_once ('utils.php');
 // use this for debuging only 
 //ini_set('display_errors', 'On');
 //error_reporting(E_ALL);
 
-
+//*********************** Open Syntax Dict Files *************************//
+$myIndxFile = "th_en_US_new.idx";
+$lines = file($myIndxFile);//file in to an array
+$fdat = fopen('th_en_US_new.dat', 'r');
+$tmp_dic_arr = array(); // buffer array for used words
 //************************* Cleaning **********************************//
 // remove all links
 $source = preg_replace("/<a[^>]+>/i", "", $source);
@@ -18,26 +25,24 @@ foreach ($search_array as $val)
     $search .= "|".$val;
 }
 $search = implode(" ",explode("+",$search));
-//error_log("// ************ SEARCH FOR KEYWORDS IS **[$search]****************");
+
 $keywords = $_GET['keywords']."|".$search;
-//error_log("// ************ SEARCH FOR KEYWORDS IS **[$keywords]****************");
+
 $urllink = $_GET['urllink'];
 //$urlinternal = $_GET['urlinternal'];
 $arr_keyword = explode("|",$keywords);
 // sort keywords array longest to shortest 
-// usort($arr_keyword, function($a, $b) {
-//		return strlen($b) - strlen($a);
-//});
-usort($arr_keyword,'sortByLength');
+ usort($arr_keyword, function($a, $b) {
+		return strlen($b) - strlen($a);
+});
+//usort($arr_keyword,'sortByLength');
 $keywords = implode("|", $arr_keyword);
 $tagkeywords = implode(",",explode("|",$keywords));
-//error_log("*************** REPLACE SOURCE**********************");
-//error_log($artarray);
-//error_log("******************************");
-//debug(" >>>>>>>>>>>>>> KEYWORDS [" . $keywords ."]>>>>>>>>>>>>>>>>>");
+
 $article=$source;
 $rawarticle = $source;
 include 'letter_index.php';
+
 $artarray=$article;
 
 // strip html tags
@@ -49,6 +54,7 @@ $words_artarray = explode(" ",$words_count);
 
 $time = microtime(true); // time in Microseconds
 //error_log( "Time Start .... ");
+debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 if (sizeof($words_artarray)>0)
 {
 	 for($i=0;$i<sizeof($words_artarray);$i++)
@@ -357,7 +363,9 @@ if (sizeof($words_artarray)>0)
 		} // end if(($replace!="")&&(strlen(trim($replace))>=4))
 	}// end for($i)
 }// end if (sizeof($words_artarray)>0)
-
+// Close Syndax Dict File 
+fclose($fdat);
+debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 // Now we must check for keywords and replace with urldecode
 for ($i=0;$i < sizeof($arr_keyword);$i++)
 {
@@ -387,7 +395,11 @@ $rawarticle=str_replace("\n\r","</p><p>",$rawarticle);
 $rawarticle=str_replace("\r\n","</p><p>",$rawarticle);
 
 $time_diff = number_format (((microtime(true) - $time)/1000),5);
+debug(">>>>>>>>>>>>>>>>>>>>>>>> UNIKE (END) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 //error_log("DONE ...... $time_diff in sec ");
-
+/*if ($_POST["article"])
+{
+     echo $article;
+}*/
 
 ?>

@@ -107,10 +107,11 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
             $description = str_replace("<b>", "", $description);
             $body = str_replace("</b>", "", $description);
         ?>
+        <div class="tab-wrapper">
         <ul class="nav nav-tabs">
             <li class="active " ><a href="#menu1<?php echo $count;?>">Original</a></li>
             <li ><a href="#menu2<?php echo $count;?>">Unique</a></li>
-            <!-- li ><a href="#menu3<?php echo $count;?>">Edit</a></li -->
+            <!-- li ><a href="#menu3<?php //echo $count;?>">Edit</a></li -->
 		</ul>
         <div class="tab-content">
           <div id="menu1<?php echo $count;?>" class="tab-pane active">
@@ -131,7 +132,7 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
                 { ?>
                 <div style="text-align: center;"> 
                     <!-- This is spin button -->
-                    <button ng-disabled="siteFunctionalityDisabled"  style="border: medium groove ; height: 40px; width: 135px; font-size: large;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin ...</button>
+                    <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin ...</button>  <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 345px; font-size: medium;" id="btn<?php echo $count;?>" onclick="downloadArticle(this.id);">Click here to download  article in TXT file</button>
                  </div>
                   <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,this.class)" onclick="document.getElementById('PopUp').style.display = 'none'">
                 <?php 
@@ -163,10 +164,14 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
            </div> <!----- END div id="menu2 ------->
            
         </div><!------- END div class="tab-content" ----->
+        
+       
+        </div><!----- END  div class="tab-wrapper" ------>
+        
      <?php  
             $count++;
         }// end for foreach ($feed->channel->item as $item) 
-        if ($count > 0)
+        /*if ($count > 0)
         {
             $prefix = mt_rand(100,1000);
             $myFile = 'tempfiles/' .$prefix ."_generatedfile.txt";
@@ -175,7 +180,8 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
 
             // this is sounload buttons
             echo "<br /><div align='center'><a href='$myFile' target='_blank'><div align='center' class='btn btn-primary'>Click here to download  article in TXT file </div></a> " ." <a href='$baseurl'><div align='center' class='btn btn-secondary'>Click here to generate new articles</div></a></div><br />";
-        }
+        }*/
+        echo "<br /><div align='center'><a href='$baseurl'><div align='center' class='btn btn-secondary'>Click here to generate new articles</div></a></div><br />";
     }// end if ((validatetoken($getkey) == 1 or (($_POST['rewrite'] == 'original') and ($numbers == 3)) )) 
     else
 	{

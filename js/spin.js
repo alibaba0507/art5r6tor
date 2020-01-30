@@ -203,7 +203,7 @@ var rewriteArticle = function(id){
     var fromClass = '.needs-rewrite' + id;
     var toClass = '.spin_txt' + id;
     var headLine = '#headline' + id;
- alert("Before Call ajax ---- "  +  $(fromClass).text());   
+ //alert("Before Call ajax ---- "  +  $(fromClass).text());   
    $.ajax({
         url: "./ajaxUnike.php",
         data: { 'article': $(fromClass).html(),

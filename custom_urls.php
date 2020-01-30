@@ -6,7 +6,7 @@ ini_set("display_errors", 1);
 
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
-require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
+//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
 function autoload($class_name) {
@@ -993,7 +993,7 @@ function dump_str($obj)
 {
  return var_export($obj,true);
 }
-/*
+
 function debug($msg) {
 	global $debug_mode;
 	if ($debug_mode) {
@@ -1002,4 +1002,4 @@ function debug($msg) {
 		flush();
 	}
 }
-*/
+

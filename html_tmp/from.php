@@ -1,4 +1,4 @@
- <form method="get" action="go.php" id="form" class="form-horizontal">
+ <form method="post" action="go.php" id="form" class="form-horizontal">
 	<fieldset>
 			<div class="control-group">
 			<label class="control-label" for="keyword">Enter your keyword</label>
@@ -21,6 +21,7 @@
 		
 		<option value="yahooanswers">Yahoo Answers Search</option>
         <option value="user_urls">Custom URLs</option>
+        <option value="only_spin">Only Spin</option>
 		
 	</select>
 	</div>
@@ -37,6 +38,18 @@
             <font color="grey">Enter Articles urls <code>One per line</code> to be extracted , spin modified <br>
                         If this option slelected <code>Number of Articles</code> will be ignored
                         <br> Use this option if search engines blocking this ip</font></div>
+          </div>
+     </div>
+    </div>
+    <div id="only_spin" style="display:none">
+     <div class="control-group">
+         <label class="control-label" for="only_spin">Entert Text(or HTML) To Spin</label>
+         <div class="controls" >
+            <textarea name="only_spin_txt" id="only_spin_txt" style=" width: 388px; height:480px" ></textarea>
+         
+             <br />
+            <div style=font-size:80%;>
+            <font color="grey">Enter or Copy and Paste any text including HTML.</font></div>
           </div>
      </div>
     </div>
@@ -117,7 +130,20 @@
 	<script type="text/javascript">
     document.getElementById('feedsource').addEventListener('change', function () {
         var style = this.value == 'user_urls' ? 'block' : 'none';
-        document.getElementById('showurls').style.display = style;
+        //only_spin
+        if (this.value == 'user_urls')
+        {
+            document.getElementById('showurls').style.display = 'block';
+            document.getElementById('only_spin').style.display = 'none';
+        }else if (this.value == 'only_spin')
+        {
+             document.getElementById('showurls').style.display = 'none';
+            document.getElementById('only_spin').style.display = 'block';
+        }else
+        {
+             document.getElementById('showurls').style.display = 'none';
+            document.getElementById('only_spin').style.display = 'none';
+        }
 	});
     
 		document.getElementById('rewrite').addEventListener('change', function () {

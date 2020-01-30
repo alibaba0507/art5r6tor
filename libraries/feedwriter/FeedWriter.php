@@ -3,7 +3,11 @@ define('RSS2', 1);
 define('JSON', 2);
 define('JSONP', 3);
 define('ATOM', 4);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
  /**
  * Univarsel Feed Writer class
  *
@@ -37,14 +41,17 @@ define('ATOM', 4);
 	*/ 
 	function __construct($version = RSS2)
 	{	
+       // debug(" #################### FeedWriter 1 ########################");
 		$this->version = $version;
-			
+	  //    debug(" #################### FeedWriter 1 ########################");
 		// Setting default value for assential channel elements
 		$this->channels['title']        = $version . ' Feed';
 		$this->channels['link']         = 'http://www.ajaxray.com/blog';
+       //   debug(" #################### FeedWriter 1 ########################");
 				
 		//Tag names to encode in CDATA
 		$this->CDATAEncoding = array('description', 'content:encoded', 'content', 'subtitle', 'summary');
+       //   debug(" #################### FeedWriter 1 ########################");
 	}
 	
 	public function setFormat($format) {
@@ -88,7 +95,7 @@ define('ATOM', 4);
 	* @access   public
 	* @return   void
 	*/ 
-	public function genarateFeed()
+	public function genarateFeed($forceDescription = null)
 	{
 		if ($this->version == RSS2) {
 			header('Content-type: text/xml; charset=UTF-8');
@@ -105,7 +112,7 @@ define('ATOM', 4);
        // file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- BEFORE PRINT HEAD \n", FILE_APPEND); 
 		$this->printHead();
 		$this->printChannels();
-		$this->printItems();
+		$this->printItems($forceDescription);
 		$this->printTale();
 		if ($this->version == JSON || $this->version == JSONP) {
 			echo json_encode($this->json);
@@ -386,15 +393,15 @@ define('ATOM', 4);
 	* @access   private
 	* @return   void
 	*/
-	private function printItems()
+	private function printItems($forceDescription = null)
 	{    
         $out = "";
-       
+      //  debug("------------- item >>> ");
 		foreach ($this->items as $item) 
 		{
             $item_id = "";
 			$thisItems = $item->getElements();
-			
+		//	 debug("------------- item >>> ", $thisItems);
 			//$out .= $this->startItem();
 			
 			if ($this->version == JSON || $this->version == JSONP) {
@@ -412,9 +419,16 @@ define('ATOM', 4);
             if (strlen(trim($item_id)) > 0)
             {
               //  debug("------------- item >>> ", $item_id);
-                $out .= ($this->startItem() . $item_id .$this->endItem());
+              // if ($forceDescription)
+              //  $out .= ($this->startItem() . $item_id.$forceDescription .$this->endItem());
+             // else
+                  $out .= ($this->startItem() . $item_id .$this->endItem());
                //debug("------------- item >>> -------------------------- \n", ($this->startItem() . $item_id .$this->endItem()));
 			}
+            /*else if ($forceDescription)
+            {
+                  $out .= ($this->startItem() .$forceDescription .$this->endItem());
+            }*/
             if ($this->version == JSON || $this->version == JSONP) {
 				if (count($this->items) > 1) {
 					$this->json->rss['channel']->item[] = $json_item;

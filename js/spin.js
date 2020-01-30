@@ -215,7 +215,7 @@ var rewriteArticle = function(id){
         cache: false,
         beforeSend: function () {
         // Update the css and center the modal on screen
-         alert("Before Send ajax ---- ");
+        // alert("Before Send ajax ---- ");
         //myApp.showPleaseWait();
         showPosAjaxBuysy();
       }
@@ -228,7 +228,7 @@ var rewriteArticle = function(id){
     }).fail(function (jqXHR, textStatus, errorThrown) {
       alert("Failed: " + errorThrown);
     }).always(function (a, textStatus, b) {
-      alert("Final status: " + textStatus);
+     // alert("Final status: " + textStatus);
      // myApp.hidePleaseWait();
      hidePosAjaxBuysy();
   });

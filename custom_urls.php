@@ -1,35 +1,12 @@
 <?php
 
-/*
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-// Usage
-// -----
-// Request this file passing it your feed in the querystring: searchresults.php?keyword=your+keyword
-// The following options can be passed in the querystring:
-// * URL: url=[feed or website url] (required, should be URL-encoded - in php: urlencode($url))
-// * URL points to HTML (not feed): html=true (optional, by default it's automatically detected)
-// * API key: key=[api key] (optional, refer to config.php)
-// * Max entries to process: max=[max number of items] (optional)
-
 error_reporting(E_ALL ^ E_NOTICE);
 ini_set("display_errors", 1);
 @set_time_limit(120);
 
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
+require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
 function autoload($class_name) {
@@ -85,6 +62,7 @@ require dirname(__FILE__).'/config.php';
 ////////////////////////////////
 header('X-Robots-Tag: noindex, nofollow');
 
+
 ////////////////////////////////
 // Check if service is enabled
 ////////////////////////////////
@@ -129,31 +107,9 @@ if ($options->apc) {
 // Check for smart cache
 ////////////////////////////////
 $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
-
-////////////////////////////////
-// Check for feed URL
-////////////////////////////////
-
-
-	$end = "";
-    //$url = "http://news.search.yahoo.com/news/rss?p=" .$_GET['keyword'] .$end;
-    $url = "https://news.yahoo.com/rss/?p=" .$_GET['keyword'] .$end;
-
-
-$url = filter_var($url, FILTER_SANITIZE_URL);
-/*$test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
-// deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
-if ($test === false) {
-	$test = filter_var(strtr($url, '-', '_'), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
-}
-if ($test !== false && $test !== null && preg_match('!^https?://!', $url)) {
-	// all okay
-	unset($test);
-} else {
-	die('Invalid URL supplied');
-}
-debug("Supplied URL: $url");
-*/
+//debug(">>>>>>>>>>>>>>>> CUSTOMERS URL BEFORE >>>>>>>>>>>>>>>",$_GET['keyword']);
+$list_urls = explode("\n",$_GET['keyword']);//$_GET['keyword'].split("\n");
+//debug(">>>>>>>>>>>>>>>> CUSTOMERS URL AFTER >>>>>>>>>>>>>>>",$list_urls);
 /////////////////////////////////
 // Redirect to hide API key
 /////////////////////////////////
@@ -188,11 +144,6 @@ if (!ini_get('date.timezone') || !@date_default_timezone_set(ini_get('date.timez
 }
 
 ///////////////////////////////////////////////
-// Check if the request is explicitly for an HTML page
-///////////////////////////////////////////////
-$html_only = (isset($_GET['html']) && ($_GET['html'] == '1' || $_GET['html'] == 'true'));
-
-///////////////////////////////////////////////
 // Check if valid key supplied
 ///////////////////////////////////////////////
 $valid_key = false;
@@ -209,71 +160,6 @@ if (!$valid_key && isset($_GET['key']) && $_GET['key'] != '') {
 
 if (file_exists('custom_init.php')) require 'custom_init.php';
 
-///////////////////////////////////////////////
-// Check URL against list of blacklisted URLs
-///////////////////////////////////////////////
-if (!url_allowed($url)) die('URL blocked');
-
-///////////////////////////////////////////////
-// Max entries
-// see config.php to find these values
-///////////////////////////////////////////////
-if (isset($_GET['max'])) {
-	$max = (int)$_GET['max'];
-	if ($valid_key) {
-		$max = min($max, $options->max_entries_with_key);
-	} else {
-		$max = min($max, $options->max_entries);
-	}
-} else {
-	if ($valid_key) {
-		$max = $options->default_entries_with_key;
-	} else {
-		$max = $options->default_entries;
-	}
-}
-
-///////////////////////////////////////////////
-// Link handling
-///////////////////////////////////////////////
-if (isset($_GET['links']) && in_array($_GET['links'], array('preserve', 'footnotes', 'remove'))) {
-	$links = $_GET['links'];
-} else {
-	$links = 'preserve';
-}
-
-///////////////////////////////////////////////
-// Exclude items if extraction fails
-///////////////////////////////////////////////
-if ($options->exclude_items_on_fail === 'user') {
-	$exclude_on_fail = (isset($_GET['exc']) && ($_GET['exc'] == '1'));
-} else {
-	$exclude_on_fail = $options->exclude_items_on_fail;
-}
-
-///////////////////////////////////////////////
-// Detect language
-///////////////////////////////////////////////
-if ($options->detect_language === 'user') {
-	if (isset($_GET['l'])) {
-		$detect_language = (int)$_GET['l'];
-	} else {
-		$detect_language = 1;
-	}
-} else {
-	$detect_language = $options->detect_language;
-}
-
-if ($detect_language >= 2) {
-	$language_codes = array('albanian' => 'sq','arabic' => 'ar','azeri' => 'az','bengali' => 'bn','bulgarian' => 'bg',
-	'cebuano' => 'ceb', // ISO 639-2
-	'croatian' => 'hr','czech' => 'cs','danish' => 'da','dutch' => 'nl','english' => 'en','estonian' => 'et','farsi' => 'fa','finnish' => 'fi','french' => 'fr','german' => 'de','hausa' => 'ha',
-	'hawaiian' => 'haw', // ISO 639-2 
-	'hindi' => 'hi','hungarian' => 'hu','icelandic' => 'is','indonesian' => 'id','italian' => 'it','kazakh' => 'kk','kyrgyz' => 'ky','latin' => 'la','latvian' => 'lv','lithuanian' => 'lt','macedonian' => 'mk','mongolian' => 'mn','nepali' => 'ne','norwegian' => 'no','pashto' => 'ps',
-	'pidgin' => 'cpe', // ISO 639-2  
-	'polish' => 'pl','portuguese' => 'pt','romanian' => 'ro','russian' => 'ru','serbian' => 'sr','slovak' => 'sk','slovene' => 'sl','somali' => 'so','spanish' => 'es','swahili' => 'sw','swedish' => 'sv','tagalog' => 'tl','turkish' => 'tr','ukrainian' => 'uk','urdu' => 'ur','uzbek' => 'uz','vietnamese' => 'vi','welsh' => 'cy');
-}
-$use_cld = extension_loaded('cld') && (version_compare(PHP_VERSION, '5.3.0') >= 0);
 
 /////////////////////////////////////
 // Check for valid format
@@ -311,7 +197,6 @@ if ($format =='json' && isset($_GET['callback'])) {
 	}
 	debug("JSONP callback: $callback");
 }
-
 //////////////////////////////////
 // Enable Cross-Origin Resource Sharing (CORS)
 //////////////////////////////////
@@ -379,6 +264,7 @@ $http->userAgentMap = $options->user_agents;
 $http->headerOnlyTypes = array_keys($options->content_type_exc);
 $http->rewriteUrls = $options->rewrite_url;
 
+
 //////////////////////////////////
 // Set up Content Extractor
 //////////////////////////////////
@@ -389,82 +275,22 @@ SiteConfig::use_apc($options->apc);
 $extractor->fingerprints = $options->fingerprints;
 $extractor->allowedParsers = $options->allowed_parsers;
 
-////////////////////////////////
-// Get RSS/Atom feed
-////////////////////////////////
-//echo "================= > " .$html_only."<br>";
-//file_put_contents('./log_'.date("j.n.Y").'.log', "Before $hrml_only = ".dump_str($html_only)."\n", FILE_APPEND);
-if (!$html_only) {
-	debug('--------');
-	debug("Attempting to process URL as feed");
-    
-    
-	// Send user agent header showing PHP (prevents a HTML response from feedburner)
-	$http->userAgentDefault = HumbleHttpAgent::UA_PHP;
-	// configure SimplePie HTTP extension class to use our HumbleHttpAgent instance
-	SimplePie_HumbleHttpAgent::set_agent($http);
-	$feed = new SimplePie();
-	// some feeds use the text/html content type - force_feed tells SimplePie to process anyway
-	$feed->force_feed(true);
-	$feed->set_file_class('SimplePie_HumbleHttpAgent');
-	//$feed->set_feed_url($url); // colons appearing in the URL's path get encoded
-	$feed->feed_url = $url;
-	$feed->set_autodiscovery_level(SIMPLEPIE_LOCATOR_NONE);
-	$feed->set_timeout(20);
-	$feed->enable_cache(false);
-	$feed->set_stupidly_fast(true);
-	$feed->enable_order_by_date(false); // we don't want to do anything to the feed
-	$feed->set_url_replacements(array());
-    $user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36";
-    // set URL and other appropriate options
-    $curl_options = array(CURLOPT_URL => 'http://www.example.com/',
-                 CURLOPT_HEADER => false,
-                 CURLOPT_USERAGENT => $user_agent,
-                 CURLOPT_HEADER => false,
-                 CURLOPT_TIMEOUT => 20,
-                 CURLOPT_ENCODING => '',
-                 CURLOPT_RETURNTRANSFER => true,
-                );
-    if (!ini_get('open_basedir')) {
-         $curl_options[CURLOPT_FOLLOWLOCATION] = true; // sometime is useful :)
-    }
-    $feed->set_curl_options($curl_options);
-	// initialise the feed
-	// the @ suppresses notices which on some servers causes a 500 internal server error
-	$result = @$feed->init();
-	
-    //$feed->handle_content_type();
-	//$feed->get_title();
-	if ($result && (!is_array($feed->data) || count($feed->data) == 0)) {
-		die('Sorry, no feed items found');
-	}
-	// from now on, we'll identify ourselves as a browser
-	$http->userAgentDefault = HumbleHttpAgent::UA_BROWSER;
+
+///////////////////////////////////////////
+/// Create Dummy Feed 
+////////////////////////////////////////////
+class DummySingleItemFeed {
+    public $item = array();
+    function __construct(/*$url*/) { /*$this->item = new DummySingleItem($url);*/ }
+    public function get_title() { return ''; }
+    public function get_description() { return 'Content extracted from '.$this->item->url; }
+    public function get_link() { return $this->item->url; }
+    public function get_language() { return false; }
+    public function get_image_url() { return false; }
+    public function add_item($item){$this->item[sizeof($this->item)] = $item;}
+    public function get_items($start=0, $max=1) { return array_slice($this->item,0,sizeof($this->item));/*array(0=>$this->item);*/ }
 }
-//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- AFTER FEED RAW  ".dump_str($feed)."\n", //FILE_APPEND);
-////////////////////////////////////////////////////////////////////////////////
-// Our given URL is not a feed, so let's create our own feed with a single item:
-// the given URL. This basically treats all non-feed URLs as if they were
-// single-item feeds.
-////////////////////////////////////////////////////////////////////////////////
-$isDummyFeed = false;
-if ($html_only || !$result) {
-	debug('--------');
-	debug("Constructing a single-item feed from URL");
-	$isDummyFeed = true;
-	unset($feed, $result);
-	// create single item dummy feed object
-	class DummySingleItemFeed {
-		public $item;
-		function __construct($url) { $this->item = new DummySingleItem($url); }
-		public function get_title() { return ''; }
-		public function get_description() { return 'Content extracted from '.$this->item->url; }
-		public function get_link() { return $this->item->url; }
-		public function get_language() { return false; }
-		public function get_image_url() { return false; }
-		public function get_items($start=0, $max=1) { return array(0=>$this->item); }
-	}
-	class DummySingleItem {
+class DummySingleItem {
 		public $url;
 		function __construct($url) { $this->url = $url; }
 		public function get_permalink() { return $this->url; }
@@ -476,8 +302,16 @@ if ($html_only || !$result) {
 		public function get_enclosure($key=0, $prefer=null) { return null; }
 		public function get_enclosures() { return null; }
 	}
-	$feed = new DummySingleItemFeed($url);
+$feed = new DummySingleItemFeed();
+////////////////////////////////////////////////////////////////
+/// Add DummyItem with passed url link , need it for extracton
+///////////////////////////////////////////////////////////////
+$list_urls = explode("\n",$_GET['keyword']);//$_GET['keyword'].split("\n");
+for ($i = 0;$i < sizeof($list_urls);$i++)
+{
+    $feed->add_item(new DummySingleItem($list_urls[$i]));
 }
+
 
 ////////////////////////////////////////////
 // Create full-text feed
@@ -528,6 +362,7 @@ $http->fetchAll($urls_sanitized);
 
 // count number of items added to full feed
 $item_count = 0;
+
 
 foreach ($items as $key => $item) {
 	//debug('--------');
@@ -771,7 +606,7 @@ foreach ($items as $key => $item) {
 		// add effective URL (URL after redirects)
 		if (isset($effective_url)) {
 			//TODO: ensure $effective_url is valid witout - sometimes it causes problems, e.g.
-			//http://www.siasat.pk/forum/showthread.php?108883-Pakistan-Chowk-by-Rana-Mubashir-–-25th-March-2012-Special-Program-from-Liari-(Karachi)
+			//http://www.siasat.pk/forum/showthread.php?108883-Pakistan-Chowk-by-Rana-Mubashir-â€“-25th-March-2012-Special-Program-from-Liari-(Karachi)
 			//temporary measure: use utf8_encode()
 			$newitem->addElement('dc:identifier', remove_url_cruft(utf8_encode($effective_url)));
 		} else {
@@ -808,14 +643,7 @@ foreach ($items as $key => $item) {
 	$item_count++;
 }
 
-// output feed
-debug('Done!');
-/*
-if ($debug_mode) {
-	$_apc_data = apc_cache_info('user');
-	var_dump($_apc_data); exit;
-}
-*/
+
 // file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- DEBUG MODE ".dump_str($debug_mode)." \n", FILE_APPEND); 
 if (!$debug_mode) {
 	if ($callback) echo "$callback("; // if $callback is set, $format also == 'json'

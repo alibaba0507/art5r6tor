@@ -30,7 +30,7 @@
      <div class="control-group">
          <label class="control-label" for="accesskey">Enter Custom URLs</label>
          <div class="controls" >
-            <textarea id="custom_urls" style=" width: 388px; height:180px" ></textarea>
+            <textarea name="custom_urls" id="custom_urls" style=" width: 388px; height:180px" ></textarea>
          
              <br />
             <div style=font-size:80%;>

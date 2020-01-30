@@ -62,6 +62,7 @@ $GLOBALS['keywords'] = $keywords;
 $GLOBALS['urllink'] = $urllink;
 */
 // get the content source
+debug(">>>>>>>>>>>>>>>>>>  GOTO [" + $_GET['feedsource'] + "] >>>>>>>>>>>>>>>>>>");
 if ($_GET['feedsource'] == 'google') {
 	$urlsource = $baseurl ."googlenews.php?keyword=" .urlencode($keyword);
 	}
@@ -74,6 +75,10 @@ if ($_GET['feedsource'] == 'bing') {
 if ($_GET['feedsource'] == 'yahooanswers')
 	{
 	  $urlsource = $baseurl ."yahooanswers.php?keyword=" .urlencode($keyword);
+	}
+if ($_GET['feedsource'] == 'user_urls')
+	{
+	  $urlsource = $baseurl ."custom_urls.php?keyword=" .urlencode($_GET['custom_urls']);
 	}
 // this in future need to be change
 // we will introduce file based token generator and will be associated 
@@ -278,7 +283,7 @@ if(file_exists("$myFile")) unlink("$myFile");
     
     <!--div class="modal" width="50%" -->
     <!-- div id="myModal" class="modal fade" role="dialog" -->
-    <div id="dialog" style="border: 1px solid black; padding: 10px; display: none; position: absolute; left: 100px; top: 50px; text-align: justify; font-size: 12px; width: 256px; height: 256px;"  >
+    <div id="dialog" style="display: none; position: absolute; left: 100px; top: 50px; text-align: justify; font-size: 12px; width: 256px; height: 256px;"  >
  
         <div class="center"> <img alt="" src="loader.gif"> </div>
     </div>

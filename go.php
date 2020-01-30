@@ -129,10 +129,16 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
            <div id="menu2<?php echo $count;?>" class="tab-pane">
            <?php
                if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
-                { ?>
+                { 
+                    $prefix = mt_rand(100,1000);
+                    $myFile = "article_".$prefix.".txt";
+
+                    if(file_exists("$myFile")) unlink("$myFile");
+
+                ?>
                 <div style="text-align: center;"> 
                     <!-- This is spin button -->
-                    <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin ...</button>  <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 345px; font-size: medium;" id="btn<?php echo $count;?>" onclick="downloadArticle(this.id);">Click here to download  article in TXT file</button>
+                    <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin ...</button>  <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 345px; font-size: medium;" id="<?php echo $count;?>" onclick="downloadArticle(this.id,'text/html',<?php echo $myFile; ?>);">Click here to download  article in TXT file</button>
                  </div>
                   <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,this.class)" onclick="document.getElementById('PopUp').style.display = 'none'">
                 <?php 

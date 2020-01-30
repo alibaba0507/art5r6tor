@@ -1,16 +1,62 @@
 0 
+>>>>>>>>>>>>>>> URL SOURSE [http://localhost/dev/articlecreator/custom_urls.php?keyword=https%3A%2F%2Foptinmonster.com%2Fseo-ranking-factors%2F%0D%0Ahttps%3A%2F%2Fwww.woorank.com%2F%0D%0Ahttps%3A%2F%2Fneilpatel.com%2Fseo-analyzer%2F]>>>>>>>>>>>>>>>>>>>>> 
 APC is disabled or not available on server 
->>>>>>>>>>>>>>>> CUSTOMERS URL >>>>>>>>>>>>>>>'https://optinmonster.com/seo-ranking-factors/
-https://www.woorank.com/
-https://neilpatel.com/seo-analyzer/' 
+** Loading class HumbleHttpAgent (humble-http-agent/HumbleHttpAgent.php) 
+** Loading class CookieJar (humble-http-agent/CookieJar.php) 
+** Loading class ContentExtractor (content-extractor/ContentExtractor.php) 
+** Loading class SiteConfig (content-extractor/SiteConfig.php) 
+** Loading class FeedWriter (feedwriter/FeedWriter.php) 
+Item URL: https://optinmonster.com/seo-ranking-factors/ 
+** Loading class FeedItem (feedwriter/FeedItem.php) 
+Character encoding: UTF-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
+** Loading class Readability (readability/Readability.php) 
+Item URL: https://www.woorank.com/ 
+Character encoding: UTF-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
+Item URL: https://neilpatel.com/seo-analyzer/ 
+Character encoding: UTF-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
+>>>>>>>>>>>>>> SUBJECT [Custom URL Ectraction 0]>>>>>>>>
+ 
+>>>>>>>>>>>>>> SUBJECT [Custom URL Ectraction 1]>>>>>>>>
+ 
+>>>>>>>>>>>>>> SUBJECT [Custom URL Ectraction 2]>>>>>>>>
+ 
 0 
+>>>>>>>>>>>>>>> URL SOURSE [http://localhost/dev/articlecreator/custom_urls.php?keyword=https%3A%2F%2Foptinmonster.com%2Fseo-ranking-factors%2F%0D%0Ahttps%3A%2F%2Fwww.woorank.com%2F%0D%0Ahttps%3A%2F%2Fneilpatel.com%2Fseo-analyzer%2F]>>>>>>>>>>>>>>>>>>>>> 
 APC is disabled or not available on server 
->>>>>>>>>>>>>>>> CUSTOMERS URL BEFORE >>>>>>>>>>>>>>>'https://www.woorank.com/
-https://optinmonster.com/seo-ranking-factors/
-https://neilpatel.com/seo-analyzer/' 
->>>>>>>>>>>>>>>> CUSTOMERS URL AFTER >>>>>>>>>>>>>>>array (
-  0 => 'https://www.woorank.com/',
-  1 => 'https://optinmonster.com/seo-ranking-factors/',
-  2 => 'https://neilpatel.com/seo-analyzer/',
-) 
-0 
+** Loading class HumbleHttpAgent (humble-http-agent/HumbleHttpAgent.php) 
+** Loading class CookieJar (humble-http-agent/CookieJar.php) 
+** Loading class ContentExtractor (content-extractor/ContentExtractor.php) 
+** Loading class SiteConfig (content-extractor/SiteConfig.php) 
+** Loading class FeedWriter (feedwriter/FeedWriter.php) 
+Item URL: https://optinmonster.com/seo-ranking-factors/ 
+** Loading class FeedItem (feedwriter/FeedItem.php) 
+Character encoding: UTF-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
+** Loading class Readability (readability/Readability.php) 
+Item URL: https://www.woorank.com/ 
+Character encoding: UTF-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
+Item URL: https://neilpatel.com/seo-analyzer/ 
+Character encoding: UTF-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
+>>>>>>>>>>>>>> SUBJECT [Custom URL Ectraction <a href="https://optinmonster.com/seo-ranking-factors/">/seo-ranking-factors/</a>]>>>>>>>>
+ 
+>>>>>>>>>>>>>> SUBJECT [Custom URL Ectraction <a href="https://www.woorank.com/">/</a>]>>>>>>>>
+ 
+>>>>>>>>>>>>>> SUBJECT [Custom URL Ectraction <a href="https://neilpatel.com/seo-analyzer/">/seo-analyzer/</a>]>>>>>>>>
+ 

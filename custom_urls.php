@@ -281,10 +281,16 @@ $extractor->allowedParsers = $options->allowed_parsers;
 ////////////////////////////////////////////
 class DummySingleItemFeed {
     public $item = array();
-    function __construct(/*$url*/) { /*$this->item = new DummySingleItem($url);*/ }
-    public function get_title() { return ''; }
-    public function get_description() { return 'Content extracted from '.$this->item->url; }
-    public function get_link() { return $this->item->url; }
+    public $title = "";
+   // public $curl_options = array();
+    function __construct(/*$title*/) { /*$this->title = $title;*/ }
+   // public function set_curl_options(){$options}{$this->curl_options = $options;}
+    public function get_title() { return 'Content extracted from user items'; }
+    public function get_description() { return 'Content extracted from user items'; }
+    //Return url path of current page
+    public function get_link() { return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] 
+                === 'on' ? "https" : "http") . "://" . 
+          $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']; }
     public function get_language() { return false; }
     public function get_image_url() { return false; }
     public function add_item($item){$this->item[sizeof($this->item)] = $item;}
@@ -292,13 +298,19 @@ class DummySingleItemFeed {
 }
 class DummySingleItem {
 		public $url;
+        public $title;
+       // public $item_date =  date("D M d, Y G:i");
+        public $descr;
 		function __construct($url) { $this->url = $url; }
 		public function get_permalink() { return $this->url; }
-		public function get_title() { return ''; }
-		public function get_date($format='') { return false; }
+		public function get_title() { return $this->title; }
+        public function set_title($title){$this->title = $title;}
+		public function get_date($format='') { return date("D M d, Y G:i"); }
+        //public function set_date($date){$this->item_date = $date};
 		public function get_author($key=0) { return null; }
 		public function get_authors() { return null; }
-		public function get_description() { return ''; }
+		public function get_description() { return $this->descr; }
+        public function set_description($descr) { $this->descr = $descr; }
 		public function get_enclosure($key=0, $prefer=null) { return null; }
 		public function get_enclosures() { return null; }
 	}
@@ -309,10 +321,14 @@ $feed = new DummySingleItemFeed();
 $list_urls = explode("\n",$_GET['keyword']);//$_GET['keyword'].split("\n");
 for ($i = 0;$i < sizeof($list_urls);$i++)
 {
-    $feed->add_item(new DummySingleItem($list_urls[$i]));
+    $list_urls[$i] = trim(preg_replace('/\s+/', '', $list_urls[$i]));
+    $item = new DummySingleItem($list_urls[$i]);
+    $item->set_title("Custom URL Ectraction <a href=\"".$list_urls[$i]."\">".parse_url($list_urls[$i] , PHP_URL_PATH) . "</a>");
+    $item->set_description(" USER Define URL ".$i);
+    $feed->add_item($item);
 }
 
-
+//debug(">>>>>>>>>>>>>>>> DummySingleItemFeed >>>>>>>>>>>> \n",$feed);
 ////////////////////////////////////////////
 // Create full-text feed
 ////////////////////////////////////////////
@@ -339,7 +355,7 @@ $items = $feed->get_items(0, $max);
 $urls_sanitized = array();
 $urls = array();
 //file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE ITEM LOOP ".count($items)." \n", //FILE_APPEND); 
-
+//debug(">>>>>>>>>>>>>>>>>>>>> GET ITEMS >>>>>>>>>>>>>> \n",$items);
 foreach ($items as $key => $item) {
 	$permalink = htmlspecialchars_decode($item->get_permalink());
 	// Colons in URL path segments get encoded by SimplePie, yet some sites expect them unencoded
@@ -351,6 +367,7 @@ foreach ($items as $key => $item) {
 		$urls_sanitized[] = $permalink;
 	}
 	$urls[$key] = $permalink;
+    //$http->get($permalink);
 }
 //debug('--------');
 //debug('Fetching feed items');
@@ -363,7 +380,7 @@ $http->fetchAll($urls_sanitized);
 // count number of items added to full feed
 $item_count = 0;
 
-
+//debug(">>>>>>>>>>>>>>>> DummySingleItemFeed afet FETCH >>>>>>>>>>>> \n",$feed);
 foreach ($items as $key => $item) {
 	//debug('--------');
 	//debug('Processing feed item '.($item_count+1));
@@ -391,6 +408,7 @@ foreach ($items as $key => $item) {
 	// e.g. prospectmagazine.co.uk returns 403
 	//if ($permalink && ($response = $http->get($permalink, true)) && $response['status_code'] < 300) {
 	if ($permalink && ($response = $http->get($permalink, true)) && ($response['status_code'] < 300 || $response['status_code'] > 400)) {
+        //debug(">>>>>>>>>>>>>>>>>> RESPONCE FOR [" .$permalink ."]>>>>>>>>>>>>>>>",$response);
 		$effective_url = $response['effective_url'];
 		if (!url_allowed($effective_url)) continue;
 		// check if action defined for returned Content-Type
@@ -975,6 +993,7 @@ function dump_str($obj)
 {
  return var_export($obj,true);
 }
+/*
 function debug($msg) {
 	global $debug_mode;
 	if ($debug_mode) {
@@ -983,3 +1002,4 @@ function debug($msg) {
 		flush();
 	}
 }
+*/

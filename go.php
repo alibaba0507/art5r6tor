@@ -80,6 +80,7 @@ if ($_GET['feedsource'] == 'user_urls')
 	{
 	  $urlsource = $baseurl ."custom_urls.php?keyword=" .urlencode($_GET['custom_urls']);
 	}
+ debug(">>>>>>>>>>>>>>> URL SOURSE [" .$urlsource ."]>>>>>>>>>>>>>>>>>>>>>");
 // this in future need to be change
 // we will introduce file based token generator and will be associated 
 // with email , there will be two type of tokens 

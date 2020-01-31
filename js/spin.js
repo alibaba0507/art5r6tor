@@ -203,9 +203,15 @@ var downloadArticle = function(id,mimeType,filename){
     //alert("CALL DOWNLOAD");
     var elHtml = "";
     if (mimeType == 'text/plain')
+    {
         elHtml = document.getElementById('divId'+id).textContent;
+        filename += ".txt";
+    }
     else
+    {
         elHtml = document.getElementById('divId'+id).innerHTML;
+        filename += ".html";
+    }
     var link = document.createElement('a');
     mimeType = mimeType || 'text/plain';
 

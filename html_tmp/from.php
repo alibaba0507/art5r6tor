@@ -135,14 +135,17 @@
         {
             document.getElementById('showurls').style.display = 'block';
             document.getElementById('only_spin').style.display = 'none';
+            document.getElementById("keyword").required = false;
         }else if (this.value == 'only_spin')
         {
              document.getElementById('showurls').style.display = 'none';
             document.getElementById('only_spin').style.display = 'block';
+             document.getElementById("keyword").required = false;
         }else
         {
              document.getElementById('showurls').style.display = 'none';
             document.getElementById('only_spin').style.display = 'none';
+             document.getElementById("keyword").required = true;
         }
 	});
     

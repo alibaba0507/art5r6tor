@@ -43,7 +43,7 @@ if ($_POST['feedsource'] == 'only_spin')
 {
   $urlsource = $baseurl ."/only_spin.php";
   $fields = "spin=".($_POST['only_spin_txt']);
-  debug(">>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
+ // debug(">>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
 }
  // this in future need to be change
 // we will introduce file based token generator and will be associated 
@@ -131,14 +131,14 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
                if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
                 { 
                     $prefix = mt_rand(100,1000);
-                    $myFile = "article_".$prefix.".txt";
+                    $myFile = "article_".$prefix;//.".txt";
 
                     if(file_exists("$myFile")) unlink("$myFile");
 
                 ?>
                 <div style="text-align: center;"> 
                     <!-- This is spin button -->
-                    <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin ...</button>  
+                    <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin</button>  
                     <?php
                    // echo '<br>';
                     echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/plain\",\"".$myFile."\");'>Download  article as TXT</button>";

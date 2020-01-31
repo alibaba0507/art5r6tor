@@ -1,0 +1,24 @@
+<html>
+  <head>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js.map"></script>
+ 
+ <script>
+ if (window.requestIdleCallback) {
+    requestIdleCallback(function () {
+        Fingerprint2.get(function (components) {
+          console.log(components) // an array of components: {key: ..., value: ...}
+        })
+    })
+} else {
+    setTimeout(function () {
+        Fingerprint2.get(function (components) {
+          console.log(components) // an array of components: {key: ..., value: ...}
+        })  
+    }, 500)
+}
+ </script>
+ </head>
+ <body>
+ </body>
+ </html>

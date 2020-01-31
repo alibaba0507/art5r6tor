@@ -201,7 +201,11 @@ function hidePosAjaxBuysy()
 
 var downloadArticle = function(id,mimeType,filename){
     //alert("CALL DOWNLOAD");
-   var elHtml = document.getElementById('divId'+id).innerHTML;
+    var elHtml = "";
+    if (mimeType == 'text/plain')
+        elHtml = document.getElementById('divId'+id).textContent;
+    else
+        elHtml = document.getElementById('divId'+id).innerHTML;
     var link = document.createElement('a');
     mimeType = mimeType || 'text/plain';
 

@@ -14,7 +14,7 @@ require_once(dirname(__FILE__).'/config.php');
   <body>
 	<?php include('./html_tmp/body_top.php');?>
 	<!--form method="get" action="gotabs.php" id="form" class="form-horizontal" -->
-    <?php include('./html_tmp/from.php');?>   
+    <?php include('./html_tmp/contactForm.php');?>   
     
  	<!-- ?php include ("./html_tmp/tabs.php"); ? -->
 	<br /><?php include ("./html_tmp/footer.php"); ?>

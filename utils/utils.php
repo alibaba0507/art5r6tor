@@ -33,7 +33,7 @@ function processFeed($urlsource,$type = null,$fields = null)
     // Clean the document for parsing
     $indx = stripos($returned,"<rss version=\"2.0\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:media=\"http://search.yahoo.com/mrss/\">");
     $returned  = substr($returned,$indx);
-    
+    debug(">>>>>>>>>>>> PROCESS FILES CURL >>>>>>>>>>>>>>>>>",$returned);
     $feed = simplexml_load_string($returned);
     return $feed;
 }

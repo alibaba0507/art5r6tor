@@ -578,8 +578,11 @@ class HumbleHttpAgent
 	
 	public function handleCurlResponse($response, $info, $request) {
 		$this->debug("* Responce ".$response);
-		$this->debug("* Info ".$info);
-		$orig = $request->url_original;
+        if ($info){
+            $out = var_export($info,true);
+            $this->debug("* Info ".$out);
+        }
+        $orig = $request->url_original;
 		$this->requests[$orig]['headers'] = substr($response, 0, $info['header_size']);
 		$this->requests[$orig]['body'] = substr($response, $info['header_size']);
 		$this->requests[$orig]['method'] = $request->method;

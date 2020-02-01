@@ -6,6 +6,7 @@ ini_set("display_errors", 1);
 
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
+// IF Enable this , please Dissable debug method at the end of this file
 //require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
@@ -108,7 +109,7 @@ if ($options->apc) {
 ////////////////////////////////
 $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
 //debug(">>>>>>>>>>>>>>>> CUSTOMERS URL BEFORE >>>>>>>>>>>>>>>",$_GET['keyword']);
-$list_urls = explode("\n",$_GET['keyword']);//$_GET['keyword'].split("\n");
+
 //debug(">>>>>>>>>>>>>>>> CUSTOMERS URL AFTER >>>>>>>>>>>>>>>",$list_urls);
 /////////////////////////////////
 // Redirect to hide API key
@@ -318,7 +319,8 @@ $feed = new DummySingleItemFeed();
 ////////////////////////////////////////////////////////////////
 /// Add DummyItem with passed url link , need it for extracton
 ///////////////////////////////////////////////////////////////
-$list_urls = explode("\n",$_GET['keyword']);//$_GET['keyword'].split("\n");
+$list_urls = explode("\n",$_POST['keyword']);//$_GET['keyword'].split("\n");
+debug(">>>>>>>>>>>>>>>>>>> CUSTOM >>>>>>>>>>>>",$list_urls);
 for ($i = 0;$i < sizeof($list_urls);$i++)
 {
     $list_urls[$i] = trim(preg_replace('/\s+/', '', $list_urls[$i]));

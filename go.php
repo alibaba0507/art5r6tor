@@ -65,12 +65,7 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
 	<?php include('./html_tmp/head.php');?>
   </head>
   <body>
-  <div class="container" style="width: 600px; border: 2px; border-radius: 0px; background-color: #FFFFFF; padding: 30px; margin-top: 30px; margin-bottom: 50px;">
-
-	<center>
-	  <div align="center" style="margin-bottom:10px;"><a href="index.php" title="FREE Unique Article Creator Online"><img src="images/ArticleCreatorLogo.png"></a></div>
-	  <div style="font-size:14px; color:grey;">Automatic generate high quality seo friendly articles from your keyword</div><br /><br />
-	</center>
+   <?php include('./html_tmp/body_top.php');?>
     <input type="hidden" id="keyword" value="<?php echo $keyword;?>">
     <input type="hidden" id="keywords" value="<?php echo $keywords;?>">
     <input type="hidden" id="urllink" value="<?php echo $urllink;?>">
@@ -91,7 +86,7 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
         $count = 0;
 	    $maxitems = ($_POST['feedsource'] == 'user_urls')?sizeof($feed->channel->item): $numbers;
         //debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED URL [" .$urlsource ."]>>>>",$feed);
-       // debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED MAX CNT [" .$maxitems ."]>>>>");
+        debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED MAX CNT [" .$maxitems ."]>>>>" , $feed->channel);
         
         //******************* LOOP FOR ARTICLES **********************//
        // debug("############################## CAHNELS ITEMS  ##########################\n",$feed);

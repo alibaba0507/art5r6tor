@@ -31,6 +31,8 @@ ini_set("display_errors", 1);
 
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
+// IF Enable this , please Dissable debug method at the end of this file
+require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
 function autoload($class_name) {
@@ -57,9 +59,10 @@ function autoload($class_name) {
 		// htmLawed - used if XSS filter is enabled (xss_filter)
 		'htmLawed' => 'htmLawed/htmLawed.php'
 	);
+    
 	if (isset($mapping[$class_name])) {
-        if ($debug_mode)
-		debug("** Loading class $class_name ({$mapping[$class_name]})");
+       // if ($debug_mode)
+		//debug("** Loading class $class_name ({$mapping[$class_name]})");
 		require $dir.$mapping[$class_name];
 		return true;
 	} else {
@@ -93,12 +96,12 @@ header('X-Robots-Tag: noindex, nofollow');
 if (!$options->enabled) { 
 	die('The full-text RSS service is currently disabled'); 
 }
-
 ////////////////////////////////
 // Debug mode?
 // See the config file for debug options.
 ////////////////////////////////
 $debug_mode = false;
+
 if (isset($_GET['debug'])) {
 	if ($options->debug === true || $options->debug == 'user') {
 		$debug_mode = true;
@@ -136,10 +139,10 @@ $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
 // Check for feed URL
 ////////////////////////////////
 
-
+    $keywords = $_POST['keyword'];
 
     $end = "&output=rss";
-    $url = "http://news.google.com/news?q=" .$_GET['keyword'] .$end; 
+    $url = "http://news.google.com/news?q=" .$keywords .$end; 
 	
 
 $url = filter_var($url, FILTER_SANITIZE_URL);
@@ -165,8 +168,8 @@ debug("Supplied URL: $url");
 if (isset($_GET['key']) && ($key_index = array_search($_GET['key'], $options->api_keys)) !== false) {
 	$host = $_SERVER['HTTP_HOST'];
 	$path = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-	$_qs_url = (strtolower(substr($_GET['keyword'], 0, 7)) == 'http://') ? substr($_GET['keyword'], 7) : $_GET['keyword'];
-	$redirect = 'http://'.htmlspecialchars($host.$path).'/googlenews.php?keyword='.urlencode($_GET['keyword']).$end;
+	$_qs_url = (strtolower(substr($keyword, 0, 7)) == 'http://') ? substr($keyword, 7) : $keyword;
+	$redirect = 'http://'.htmlspecialchars($host.$path).'/googlenews.php?keyword='.urlencode($keyword).$end;
 	$redirect .= '&key='.$key_index;
 	$redirect .= '&hash='.urlencode(sha1($_GET['key'].$url));
 	if (isset($_GET['html'])) $redirect .= '&html='.urlencode($_GET['html']);
@@ -792,6 +795,7 @@ if ($debug_mode) {
 	var_dump($_apc_data); exit;
 }
 */
+
 if (!$debug_mode) {
 	if ($callback) echo "$callback("; // if $callback is set, $format also == 'json'
 	if ($format == 'json') $output->setFormat(($callback === null) ? JSON : JSONP);
@@ -829,6 +833,7 @@ if (!$debug_mode) {
         if ($debug_mode)
        // debug( "---------------- END OF FEED google news -------------  \n","\n");
 		$output->genarateFeed();
+        //debug(">>>>>>>>>>>>>> GOOGLE OUTPUT >>>>>>>>>>>>>>>>>>>",$output);
 	}
 	if ($callback) echo ');';
 }

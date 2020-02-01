@@ -1,4 +1,5 @@
     <title>FREE Unique Article Creator Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="robots" content="INDEX" />
 	<meta name="description" content="SEO Optimized Article Creator. This is a article rewriting tool, that search the web search engines based on input keywords and generate unique articles.">
@@ -17,7 +18,7 @@
     <!--
     <script type="text/javascript" src="js/jquery.min.js"></script>
     -->
-  
+    <?php include('./html_tmp/nav_bar_js.php');?>
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/spin.js"></script>

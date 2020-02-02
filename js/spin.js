@@ -219,6 +219,32 @@ var downloadArticle = function(id,mimeType,filename){
     link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
     link.click(); 
 }
+
+function downloadToSite(articleHTML)
+{
+     $.ajax({
+        url: "./addPost.php",
+        data: { 'article':articleHTML },
+       /* dataType: 'JSON',*/
+        type: 'POST',
+        cache: false,
+        beforeSend: function () {
+        // Update the css and center the modal on screen
+        // alert("Before Send ajax ---- ");
+        //myApp.showPleaseWait();
+        showPosAjaxBuysy();
+      }
+    }).done(function(result){
+        alert("Article hs been saved ");
+       
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+      alert("Failed: " + errorThrown);
+    }).always(function (a, textStatus, b) {
+     // alert("Final status: " + textStatus);
+     // myApp.hidePleaseWait();
+     hidePosAjaxBuysy();
+  });
+}
 var rewriteArticle = function(id){
    
     var fromClass = '.needs-rewrite' + id;

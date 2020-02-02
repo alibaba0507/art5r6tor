@@ -1,5 +1,4 @@
 <?php
-
 /*
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -30,6 +29,8 @@ ini_set("display_errors", 1);
 
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
+// IF Enable this , please Dissable debug method at the end of this file
+//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
 function autoload($class_name) {
@@ -135,25 +136,44 @@ $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
 ////////////////////////////////
 
 
-	$end = "";
-    //$url = "http://news.search.yahoo.com/news/rss?p=" .$_GET['keyword'] .$end;
-    $url = "https://news.yahoo.com/rss/?p=" .$_GET['keyword'] .$end;
-
-
-$url = filter_var($url, FILTER_SANITIZE_URL);
-/*$test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
-// deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
-if ($test === false) {
-	$test = filter_var(strtr($url, '-', '_'), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
-}
-if ($test !== false && $test !== null && preg_match('!^https?://!', $url)) {
-	// all okay
-	unset($test);
-} else {
-	die('Invalid URL supplied');
-}
-debug("Supplied URL: $url");
+	$end = "&format=RSS";
+    //$url = "http://www.bing.com/news/search?q=" .$_POST['keyword'] .$end;
+    // all POST must be urlencode
+    $url = ($_POST['url'])?($_POST['url']).rawurlencode($_POST['keyword']).$_POST['end']:($_GET['url']).rawurlencode($_GET['keyword']).$_GET['end'];
+    $url = filter_var($url, FILTER_SANITIZE_URL);
+    debug(">>>>>>>>>>>>>>>>>>>>>>> URL>>>>>>>>>>>>[".$url."]>>>\n");
+    $test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
+    // deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
+    if ($test === false) {
+        $test = filter_var(strtr($url, '-', '_'), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
+    }
+    if ($test !== false && $test !== null && preg_match('!^https?://!', $url)) {
+        // all okay
+        unset($test);
+    } else {
+        die('Invalid URL supplied');
+    }    
+    /*
+    if ($_POST['url'])
+    {
+       // debug(">>>>>>>>>>>>>>>>>>>>>>> KEYWORD POST >>>>>>>>>>>>[".$_POST['keyword']."]>>>\n");
+       // debug(">>>>>>>>>>>>>>>>>>>>>>> KEYWORD DECODED POST >>>>>>>>>>>>[".urldecode($_POST['keyword'])."]>>>\n");
+        $keyword = urldecode($_POST['keyword']);//preg_replace('/\s+/', '&amp;', urldecode($_POST['keyword']));
+    //    $url = filter_var(urldecode($_POST['url']), FILTER_SANITIZE_URL);
+        $url .=  $keyword .urldecode($_POST['end']); //$end;
+    }else if ($_GET['url'])
+    {
+       //  $url = filter_var(urldecode($_POST['url']), FILTER_SANITIZE_URL);
+         $keyword = urldecode($_POST['keyword']);//preg_replace('/\s+/', '&amp;', urldecode($_POST['keyword']));
+         $url .= $keyword .urldecode($_GET['end']); //$end;
+    }
 */
+ //$url = urldecode($url);
+
+
+
+debug("Supplied URL: $url");
+
 /////////////////////////////////
 // Redirect to hide API key
 /////////////////////////////////
@@ -161,7 +181,9 @@ if (isset($_GET['key']) && ($key_index = array_search($_GET['key'], $options->ap
 	$host = $_SERVER['HTTP_HOST'];
 	$path = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
 	$_qs_url = (strtolower(substr($_GET['keyword'], 0, 7)) == 'http://') ? substr($_GET['keyword'], 7) : $_GET['keyword'];
-	$redirect = 'http://'.htmlspecialchars($host.$path).'/yahoonews.php?keyword='.urlencode($_GET['keyword']).$end;
+	//$redirect = 'http://'.htmlspecialchars($host.$path).'/bingnews.php?keyword='.urlencode($_GET['keyword']).$end;
+    $redirect = 'http://'.htmlspecialchars($host.$path).'/rssnews.php?keyword='.($_POST['keyword'])
+                                        .'&end='.$_POST['end'].'&url='.($_POST['url']);//.$end;
 	$redirect .= '&key='.$key_index;
 	$redirect .= '&hash='.urlencode(sha1($_GET['key'].$url));
 	if (isset($_GET['html'])) $redirect .= '&html='.urlencode($_GET['html']);
@@ -392,13 +414,9 @@ $extractor->allowedParsers = $options->allowed_parsers;
 ////////////////////////////////
 // Get RSS/Atom feed
 ////////////////////////////////
-//echo "================= > " .$html_only."<br>";
-//file_put_contents('./log_'.date("j.n.Y").'.log', "Before $hrml_only = ".dump_str($html_only)."\n", FILE_APPEND);
 if (!$html_only) {
 	debug('--------');
 	debug("Attempting to process URL as feed");
-    
-    
 	// Send user agent header showing PHP (prevents a HTML response from feedburner)
 	$http->userAgentDefault = HumbleHttpAgent::UA_PHP;
 	// configure SimplePie HTTP extension class to use our HumbleHttpAgent instance
@@ -415,25 +433,10 @@ if (!$html_only) {
 	$feed->set_stupidly_fast(true);
 	$feed->enable_order_by_date(false); // we don't want to do anything to the feed
 	$feed->set_url_replacements(array());
-    $user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36";
-    // set URL and other appropriate options
-    $curl_options = array(CURLOPT_URL => 'http://www.example.com/',
-                 CURLOPT_HEADER => false,
-                 CURLOPT_USERAGENT => $user_agent,
-                 CURLOPT_HEADER => false,
-                 CURLOPT_TIMEOUT => 20,
-                 CURLOPT_ENCODING => '',
-                 CURLOPT_RETURNTRANSFER => true,
-                );
-    if (!ini_get('open_basedir')) {
-         $curl_options[CURLOPT_FOLLOWLOCATION] = true; // sometime is useful :)
-    }
-    $feed->set_curl_options($curl_options);
 	// initialise the feed
 	// the @ suppresses notices which on some servers causes a 500 internal server error
 	$result = @$feed->init();
-	
-    //$feed->handle_content_type();
+	//$feed->handle_content_type();
 	//$feed->get_title();
 	if ($result && (!is_array($feed->data) || count($feed->data) == 0)) {
 		die('Sorry, no feed items found');
@@ -441,7 +444,7 @@ if (!$html_only) {
 	// from now on, we'll identify ourselves as a browser
 	$http->userAgentDefault = HumbleHttpAgent::UA_BROWSER;
 }
-//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- AFTER FEED RAW  ".dump_str($feed)."\n", //FILE_APPEND);
+
 ////////////////////////////////////////////////////////////////////////////////
 // Our given URL is not a feed, so let's create our own feed with a single item:
 // the given URL. This basically treats all non-feed URLs as if they were
@@ -482,7 +485,6 @@ if ($html_only || !$result) {
 ////////////////////////////////////////////
 // Create full-text feed
 ////////////////////////////////////////////
- 
 $output = new FeedWriter();
 $output->setTitle($feed->get_title());
 $output->setDescription($feed->get_description());
@@ -504,8 +506,6 @@ $items = $feed->get_items(0, $max);
 // Request all feed items in parallel (if supported)
 $urls_sanitized = array();
 $urls = array();
-//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE ITEM LOOP ".count($items)." \n", //FILE_APPEND); 
-
 foreach ($items as $key => $item) {
 	$permalink = htmlspecialchars_decode($item->get_permalink());
 	// Colons in URL path segments get encoded by SimplePie, yet some sites expect them unencoded
@@ -518,20 +518,17 @@ foreach ($items as $key => $item) {
 	}
 	$urls[$key] = $permalink;
 }
-//debug('--------');
-//debug('Fetching feed items');
-//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE FETCH //".dump_str($urls_sanitized)." \n", FILE_APPEND); 
-
+debug('--------');
+debug('Fetching feed items');
 $http->fetchAll($urls_sanitized);
 //$http->cacheAll();
-
 
 // count number of items added to full feed
 $item_count = 0;
 
 foreach ($items as $key => $item) {
-	//debug('--------');
-	//debug('Processing feed item '.($item_count+1));
+	debug('--------');
+	debug('Processing feed item '.($item_count+1));
 	$do_content_extraction = true;
 	$extract_result = false;
 	$text_sample = null;
@@ -771,7 +768,7 @@ foreach ($items as $key => $item) {
 		// add effective URL (URL after redirects)
 		if (isset($effective_url)) {
 			//TODO: ensure $effective_url is valid witout - sometimes it causes problems, e.g.
-			//http://www.siasat.pk/forum/showthread.php?108883-Pakistan-Chowk-by-Rana-Mubashir-–-25th-March-2012-Special-Program-from-Liari-(Karachi)
+			//http://www.siasat.pk/forum/showthread.php?108883-Pakistan-Chowk-by-Rana-Mubashir-â€“-25th-March-2012-Special-Program-from-Liari-(Karachi)
 			//temporary measure: use utf8_encode()
 			$newitem->addElement('dc:identifier', remove_url_cruft(utf8_encode($effective_url)));
 		} else {
@@ -816,7 +813,6 @@ if ($debug_mode) {
 	var_dump($_apc_data); exit;
 }
 */
-// file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- DEBUG MODE ".dump_str($debug_mode)." \n", FILE_APPEND); 
 if (!$debug_mode) {
 	if ($callback) echo "$callback("; // if $callback is set, $format also == 'json'
 	if ($format == 'json') $output->setFormat(($callback === null) ? JSON : JSONP);
@@ -838,7 +834,6 @@ if (!$debug_mode) {
 			}
 		}
 	}
-     //file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- CACHE MODE ".dump_str($add_to_cache)." \n", FILE_APPEND); 
 	if ($add_to_cache) {
 		ob_start();
 		$output->genarateFeed();
@@ -850,12 +845,9 @@ if (!$debug_mode) {
 			$cache = get_cache();
 			if ($add_to_cache) $cache->save($output, $cache_id);
 		}
-        //file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- FEED BEFORE END ".dump_str($output)." \n", FILE_APPEND); 
 		echo $output;
 	} else {
-		//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED yahoo news -------------  \n", FILE_APPEND); 
-        $output->genarateFeed();
-        
+		$output->genarateFeed();
 	}
 	if ($callback) echo ');';
 }
@@ -1143,10 +1135,6 @@ function get_cache() {
 	return $cache;
 }
 
-function dump_str($obj)
-{
- return var_export($obj,true);
-}
 function debug($msg) {
 	global $debug_mode;
 	if ($debug_mode) {

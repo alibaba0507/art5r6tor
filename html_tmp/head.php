@@ -3,7 +3,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="robots" content="INDEX" />
 	<meta name="description" content="SEO Optimized Article Creator. This is a article rewriting tool, that search the web search engines based on input keywords and generate unique articles.">
-    <meta name="keywords" content="SEO,seo optimized article,article rewriter,article spinner,free article spinner">
+    <meta name="keywords" content="journal article,spinbot,SEO,seo optimize,article rewriter,article spinner,free article spinner">
 	 <!--
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      -->

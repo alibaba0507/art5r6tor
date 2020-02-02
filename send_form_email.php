@@ -77,7 +77,18 @@ if(isset($_POST['email'])) {
 $headers = 'From: '.$email_from."\r\n".
 'Reply-To: '.$email_from."\r\n" .
 'X-Mailer: PHP/' . phpversion();
-@mail($email_to, $email_subject, $email_message, $headers);  
+$prefix = mt_rand(100,1000);
+$myFile = 'tempfiles/' .$prefix ."_contactUs.txt";
+while (file_exists("$myFile")) {
+  //  unlink("$myFile");
+  // must be unique
+  $prefix = mt_rand(100,1000);
+  $myFile = 'tempfiles/' .$prefix ."_contactUs.txt";
+}
+$fh = fopen($myFile, 'a');
+fwrite($fh, "\xEF\xBB\xBF".$email_message);
+fclose($fh);
+//@mail($email_to, $email_subject, $email_message, $headers);  
 ?>
 <html>
   <head>

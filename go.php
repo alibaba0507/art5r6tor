@@ -1,4 +1,5 @@
 <?php
+if(!session_id()) session_start();
 // Article Creator Script
 // This script can grab articles from any keyword and rewrite them to unique articles
 // Author: FullContentRSS.com
@@ -14,25 +15,38 @@ error_reporting(1);
 $baseurl =((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
 
 $keyword= filter_var($_POST['keyword'], FILTER_SANITIZE_SPECIAL_CHARS); 
+//debug(">>>>>>>>>>>>>>>>>>>> SEND KEYWORD >>>>>>>>>>>",$keyword);
 $keywords= $_POST['keywords'];
 $urllink = $_POST['urllink'];
 $type= "POST";
 $fields = null;
+$urlsource = $baseurl ."/rssnews.php";
 if ($_POST['feedsource'] == 'google') {
-	$urlsource = $baseurl ."/googlenews.php";//?keyword=" .urlencode($keyword);
+	//$urlsource = $baseurl ."/googlenews.php";//?keyword=" .urlencode($keyword);
+    //$urlsource = $baseurl ."/googlenews.php";//?keyword=" .urlencode($keyword);
     $fields = "keyword=" .urlencode($keyword);
+    $fields .= "&url=" . urlencode('http://news.google.com/news?q=');
+    $fields .= "&end=".urlencode('&output=rss');
+  //  debug(">>>>>>>>>>>>>>>>>>>> SEND ENCODED KEYWORD >>>>>>>>>>>",$keyword);
  }
 if ($_POST['feedsource'] == 'yahoo') {
-	$urlsource = $baseurl ."/yahoonews.php";//?
+	//$urlsource = $baseurl ."/yahoonews.php";//?
     $fields = "keyword=" .urlencode($keyword); 
+    $fields .= "&url=" . urlencode('https://news.yahoo.com/rss/?p=');
+    $fields .= "&end=".urlencode('');
 }
 if ($_POST['feedsource'] == 'bing') {
-	$urlsource = $baseurl ."/bingnews.php";//?
+	//$urlsource = $baseurl ."/bingnews.php";//?
     $fields = "keyword=" .urlencode($keyword);
+    $fields .= "&url=" . urlencode('http://www.bing.com/news/search?q=');
+    $fields .= "&end=".urlencode('&format=RSS');
+    ///debug(">>>>>>>>>>>>>>>>>>>> SEND ENCODED KEYWORD >>>>>>>>>>>",$fields);
 }
 if ($_POST['feedsource'] == 'yahooanswers'){
-	  $urlsource = $baseurl ."/yahooanswers.php";//?
+	 // $urlsource = $baseurl ."/yahooanswers.php";//?
       $fields = "keyword=" .urlencode($keyword);
+     $fields .= "&url=" . urlencode('http://answers.yahoo.com/search/search_result?p=');
+     $fields .= "&end=".urlencode('&submit-go=Search+Y!+Answers');
 }
 if ($_POST['feedsource'] == 'user_urls')
 	{
@@ -86,7 +100,7 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
         $count = 0;
 	    $maxitems = ($_POST['feedsource'] == 'user_urls')?sizeof($feed->channel->item): $numbers;
         //debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED URL [" .$urlsource ."]>>>>",$feed);
-        debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED MAX CNT [" .$maxitems ."]>>>>" , $feed->channel);
+        //debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED MAX CNT [" .$maxitems ."]>>>>" , $feed);
         
         //******************* LOOP FOR ARTICLES **********************//
        // debug("############################## CAHNELS ITEMS  ##########################\n",$feed);
@@ -111,7 +125,7 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
         <div class="tab-content">
           <div id="menu1<?php echo $count;?>" class="tab-pane active">
             <div class="needs-rewrite<?php echo $count;?>" style="overflow-y: scroll; height:400px;">
-            <?php shell_exec('arp '.$ip.' | awk \'{print $4}\'');?>
+            <?php //shell_exec('arp '.$ip.' | awk \'{print $4}\'');?>
                 <?php
                    // this tab is original content
                    // debug(">>>>>>>>>>>>>> SUBJECT [" .$subject ."]>>>>>>>>\n");
@@ -136,8 +150,13 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
                     <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin</button>  
                     <?php
                    // echo '<br>';
-                    echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/plain\",\"".$myFile."\");'>Download  article as TXT</button>";
-                    echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/html\",\"".$myFile."\");'>Download  article as HTML</button>";
+                   if ($_SESSION['user'] == 'alibaba0507')
+                   {
+                        echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadToSite(".$newbody.");'>Download  article as HTML to this Site</button>";
+                   }else{
+                        echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/plain\",\"".$myFile."\");'>Download  article as TXT</button>";
+                        echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/html\",\"".$myFile."\");'>Download  article as HTML</button>";
+                   }
                     ?>
                  </div>
                   <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,this.class)" onclick="document.getElementById('PopUp').style.display = 'none'">

@@ -1,9 +1,0 @@
-RewriteEngine On
-RewriteBase /
-RewriteCond %{HTTP_HOST} ^www.theprofitwebmaster.org$ 
-RewriteRule ^(.*)$ http://articlecreator.theprofitwebmaster.org/$1 [R=301,L] 
-RewriteCond %{HTTP_HOST} ^theprofitwebmaster.org$ 
-RewriteRule ^(.*)$ http://articlecreator.theprofitwebmaster.org/$1 [R=301,L]
-RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost [NC] 
-RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost.*$ [NC] 
-RewriteRule \.(inc|idx|dat)$ - [F]

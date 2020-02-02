@@ -3,11 +3,11 @@ define('RSS2', 1);
 define('JSON', 2);
 define('JSONP', 3);
 define('ATOM', 4);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+//echo dirname(__FILE__).'/../utils/utils.php';
+//require_once(dirname(__FILE__).'/../utils/utils.php'); // for debug call  debug($msg,$obj)
  /**
  * Univarsel Feed Writer class
  *
@@ -95,7 +95,7 @@ error_reporting(E_ALL);
 	* @access   public
 	* @return   void
 	*/ 
-	public function genarateFeed($forceDescription = null)
+	public function genarateFeed()
 	{
 		if ($this->version == RSS2) {
 			header('Content-type: text/xml; charset=UTF-8');
@@ -110,10 +110,15 @@ error_reporting(E_ALL);
 			$this->json = new stdClass();
 		}
        // file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- BEFORE PRINT HEAD \n", FILE_APPEND); 
+        debug(">>>>>>>>>>>>>>>>>> GENERATE HEADER >>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		$this->printHead();
+         debug(">>>>>>>>>>>>>>>>>> GENERATE CHANELS >>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		$this->printChannels();
-		$this->printItems($forceDescription);
+         debug(">>>>>>>>>>>>>>>>>> GENERATE ITEMS >>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		$this->printItems();
+         debug(">>>>>>>>>>>>>>>>>> GENERATE TITLE >>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		$this->printTale();
+         debug(">>>>>>>>>>>>>>>>>> GENERATE HEADER >>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		if ($this->version == JSON || $this->version == JSONP) {
 			echo json_encode($this->json);
 		}
@@ -250,7 +255,8 @@ error_reporting(E_ALL);
 			if ($this->xsl) $out .= '<?xml-stylesheet type="text/xsl" href="'.htmlspecialchars($this->xsl).'"?>' . PHP_EOL;
 			$out .= '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">' . PHP_EOL;
           //  file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- HEAD ".$this->dump_str($out)." \n", FILE_APPEND); 
-			echo $out;
+			debug(" >>>>>>>>>>>\n",$out);
+            echo $out;
 		}
 		elseif ($this->version == JSON || $this->version == JSONP)
 		{
@@ -393,7 +399,7 @@ error_reporting(E_ALL);
 	* @access   private
 	* @return   void
 	*/
-	private function printItems($forceDescription = null)
+	private function printItems()
 	{    
         $out = "";
       //  debug("------------- item >>> ");
@@ -418,17 +424,10 @@ error_reporting(E_ALL);
 			}
             if (strlen(trim($item_id)) > 0)
             {
-              //  debug("------------- item >>> ", $item_id);
-              // if ($forceDescription)
-              //  $out .= ($this->startItem() . $item_id.$forceDescription .$this->endItem());
-             // else
+              
                   $out .= ($this->startItem() . $item_id .$this->endItem());
-               //debug("------------- item >>> -------------------------- \n", ($this->startItem() . $item_id .$this->endItem()));
-			}
-            /*else if ($forceDescription)
-            {
-                  $out .= ($this->startItem() .$forceDescription .$this->endItem());
-            }*/
+        	}
+         
             if ($this->version == JSON || $this->version == JSONP) {
 				if (count($this->items) > 1) {
 					$this->json->rss['channel']->item[] = $json_item;

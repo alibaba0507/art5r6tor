@@ -1,10 +1,47 @@
->>>>>>>>>> INCLUDE >>>[only_spin.php]>>>>>>>>>>>>>
- 
->>>>>>>>>> INCLUDE >>>['only_spin.php']>>>>>>>>>>>>>
- 
->>>>>>>>>> INCLUDE >>>['only_spin.php']>>>>>>>>>>>>>
- 
->>>>>>>>>> INCLUDE (III)>>>['only_spin.php']>>>>>>>>>>>>>
- 
->>>>>>>>>> INCLUDE >>>[C:/xampp/htdocs'/only_spin.php']>>>>>>>>>>>>>
- 
+>>>>>>>>>>>>>>> BEFORE ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>> 
+** Loading class ContentExtractor (content-extractor/ContentExtractor.php) 
+** Loading class SiteConfig (content-extractor/SiteConfig.php) 
+** Loading class FeedWriter (feedwriter/FeedWriter.php) 
+** Loading class FeedItem (feedwriter/FeedItem.php) 
+Could not find Content-Type header in HTTP response 
+No character encoding found, so treating as UTF-8 
+>>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>'<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title></title>
+<link>http://www.ajaxray.com/blog</link>
+<description>User Selected Spin Content</description>
+<item>
+<title>User Item Custom </title>
+<description>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/REC-html40/loose.dtd&quot;&gt;
+&lt;html&gt;&lt;body&gt;&lt;p&gt;Five Ways to Improve your Site\'s Ranking (SEO)
+Follow these suggestions to improve your search engine optimization (SEO) and watch your website rise the ranks to the top of search-engine results.
+
+1. Publish Relevant Content
+Laptop.Quality content is the number one driver of your search engine rankings and there is no substitute for great content. Quality content created specifically for your intended user increases site traffic, which improves your site\'s authority and relevance. Fine-tune your web writing skills.
+
+Keywords
+Identify and target a specific keyword phrase for each page on your website. Think about how your reader might search for that specific page with search terms like:
+
+masters in engineering management
+what is biomedical engineering?
+title IX resources
+northern lights
+how to apply for scholarships?
+application deadline
+Multiple Keyword Phrases
+It is very difficult for a webpage to achieve search engine rankings for multiple keyword phrases&amp;acirc;&amp;#128;&amp;#148;unless those phrases are very similar. A single page may be able to rank for both &quot;biomedical engineering jobs&quot; and &quot;biomedical engineering careers&quot;. Ranking for &quot;student affairs&quot; and &quot;dean of students&quot; or &quot;gender discrimination&quot; and &quot;violence reporting procedures&quot; with a single page is unlikely.
+
+If you want to rank for multiple keywords phrases with your website, you will need to make a separate webpage for each keyword phrase you are targeting.
+
+Placing Keywords
+Once your keyword phrase is chosen for a given page, consider these questions:
+
+Can I use part or all of the keyword phrase in the page URL (by using keywords in folders)?
+Can I use part or all of the keyword phrase in the page title?
+Can I use part or all of the keyword phrase in page headings and subheadings?
+Answering yes to these questions can improve your search engine ranking. Be natural and user-friendly, though. For instance, you do not want the word &quot;engineering&quot; to show up three or more times in the URL or have the phrase Northern Lights repeated in the page title and every heading. Readability and usability still trump search engine optimization.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description>
+</item>
+</channel></rss>
+' 

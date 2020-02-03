@@ -1,0 +1,27 @@
+ 
+** Loading class ContentExtractor (content-extractor/ContentExtractor.php) 
+** Loading class SiteConfig (content-extractor/SiteConfig.php) 
+** Loading class FeedWriter (feedwriter/FeedWriter.php) 
+** Loading class FeedItem (feedwriter/FeedItem.php) 
+Could not find Content-Type header in HTTP response 
+No character encoding found, so treating as UTF-8 
+>>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>'<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title></title>
+<link>http://www.ajaxray.com/blog</link>
+<description>User Selected Spin Content</description>
+<item>
+<title>User Item Custom </title>
+<description>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/REC-html40/loose.dtd&quot;&gt;
+&lt;html&gt;&lt;body&gt;&lt;div class=&quot;entry-content&quot; style=&quot;height: auto !important;&quot;&gt;
+			&lt;p&gt;To delete a file by using PHP is very easy. Deleting a file means completely erase a file from a directory so that the file is no longer exist. PHP has an &lt;a href=&quot;https://www.geeksforgeeks.org/php-unlink-function/&quot;&gt;unlink() function&lt;/a&gt; that allows to delete a file. The PHP unlink() function takes two parameters &lt;em&gt;$filename&lt;/em&gt; and &lt;em&gt;$context&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;unlink( $filename, $context );&lt;/pre&gt;
+&lt;p&gt;Below programs illustrate the above approach:&lt;/p&gt;&lt;br&gt;
+   
+	&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
+</description>
+</item>
+</channel></rss>
+' 

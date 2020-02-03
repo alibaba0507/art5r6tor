@@ -4,10 +4,17 @@
 //error_reporting(E_ALL);
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
-//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
+require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
+debug("",null,true);
+// TODO:
+// Must clean HTML from script and non script head so on ...
+
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
-//debug(">>>>>>>>>>>>>>>>>>>>>>>> CALL ONLY SPIN 1 >>>>>>>>>>>>>>>>>>>>>");
+//debug(">>>>>>>>>>>>>>>>>>>>>>>> CALL ONLY SPIN 1 >>>>>>>>>>>>>>>>>>>>>");\
+//$myFile = 'tempfiles/generatedfile_tmp.txt';
+//if(file_exists("$myFile")) unlink("$myFile");
+//$fh = fopen($myFile, 'a');
 function autoload($class_name) {
 	static $dir = null;
 	if ($dir === null) $dir = dirname(__FILE__).'/libraries/';
@@ -152,6 +159,8 @@ foreach ($items as $key => $item) {
 if (!$debug_mode) {
   //  debug(">>>>>>>>>>>>>>>>> SPIN ITEM OUTPUT 22222 >>>>>>>>>>>>>>>>>>");
      $rss=$output->genarateFeed();
+     fwrite($fh, "\xEF\xBB\xBF".$rss);
+     fclose($fh);
 }
 
 
@@ -442,7 +451,7 @@ function dump_str($obj)
 {
  return var_export($obj,true);
 }
-
+/*
 function debug($msg) {
 	global $debug_mode;
 	if ($debug_mode) {
@@ -451,6 +460,9 @@ function debug($msg) {
 		flush();
 	}
 }
+*/
+
+
 
 
 ?>

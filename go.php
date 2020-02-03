@@ -54,15 +54,22 @@ if ($_POST['feedsource'] == 'user_urls')
       $fields = "keyword=" .urlencode($_POST['custom_urls']);
       $fields = array ('keyword' => (urlencode($_POST['custom_urls'])));
 }
-if ($_POST['feedsource'] == 'only_spin')
+/*if ($_POST['feedsource'] == 'only_spin')
 {
  // $urlsource = $baseurl ."/only_spin.php";
  // $fields = "spin=".($_POST['only_spin_txt']);
-  $urlsource = /*$baseurl .*/'/only_spin.php';
+  $urlsource = /*$baseurl .* /'/only_spin.php';
   $fields = "spin=".($_POST['only_spin_txt']);
   $fields = array ('spin' => ($_POST['only_spin_txt']));
+  //if ((validatetoken($getkey) == 1 or (($_POST['rewrite'] == 'original') and ($numbers == 3)) )) {
+   $rss = '';
+   include 'only_spin.php';
+    $feed = createFeed($rss);
+  //}
+  
  // debug(">>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
 }
+*/
  // this in future need to be change
 // we will introduce file based token generator and will be associated 
 // with email , there will be two type of tokens 
@@ -99,7 +106,18 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
     {
         $gettitle = $keyword ." :: Article Creator";
         echo("<title>$gettitle</title>");
-        $feed = processFeed("'".($urlsource)."'",$type,$fields);
+        if ($_POST['feedsource'] == 'only_spin')
+        {
+             debug(">>>>>>>>>>>>>>> BEFORE ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
+            $fields = array ('spin' => ($_POST['only_spin_txt']));         
+            $rss = '';
+            include 'only_spin.php';
+            debug(">>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>",$rss);
+            $feed = createFeed($rss);
+                   
+           
+        }
+        //$feed = processFeed(($urlsource),$type,$fields);
         //debug(">>>>>>>>>>>> go.php AFTER FEED process >>>>>>>>>>>>>>>>>\n",$feed);
        // debug(">>>>>>>>>>>> go.php AFTER FEED process Size channel (". sizeof($feed->channel) .") >>>>>>>>>>>>>>>>>\n");
        // debug(">>>>>>>>>>>> go.php AFTER FEED process Size channel I(". sizeof($feed['channel']) .") >>>>>>>>>>>>>>>>>\n");

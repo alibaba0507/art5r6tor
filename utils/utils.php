@@ -6,13 +6,25 @@
  *@parms $msg - string message to be attached
  *@params $obj - object to be printed could be anyting (class,json,array ...)
  */
-function debug($msg,$obj = null)
+function debug($msg,$obj = null,$delete = false)
 {
+    if ($delete)
+        unlink( 'tempfiles/log_app.log' );
     $out = "";
     if ($obj){$out = var_export($obj,true);}
-    file_put_contents('./log_'.date("j.n.Y").'.log', $msg.$out." \n", FILE_APPEND);
+    //file_put_contents('./log_'.date("j.n.Y").'.log', $msg.$out." \n", FILE_APPEND);
+    file_put_contents('tempfiles/log_app.log', $msg.$out." \n", FILE_APPEND);
 }		
 
+function createFeed($rss)
+{
+     $indx = stripos($rss,"<rss version=\"2.0\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:media=\"http://search.yahoo.com/mrss/\">");
+    $rss  = substr($rss,$indx);
+   // debug(">>>>>>>>>>>> PROCESS FILES CURL >>>>>>>>>>>>>>>>>",$returned);
+    $feed = simplexml_load_string($rss);
+   //  debug(">>>>>>>>>>>> PROCESS FILES CURL >>>>>>>>>>>>>>>>>",($feed));
+    return $feed;
+}
 function processFeed($filename,$type = null,$fields = null)
 {
     //debug(">>>>>>>>>>>> PROCESS FILES CURL ".$type .">>>>> " .$urlsource ."   >>>>>>>>>",$fields);
@@ -30,21 +42,23 @@ function processFeed($filename,$type = null,$fields = null)
     $returned = curl_exec($ch);
     curl_close($ch);
     */
-    $filename = $_SERVER['DOCUMENT_ROOT'].$filename;
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://".$_SERVER['SERVER_NAME'].
+    dirname($_SERVER['PHP_SELF']); 
+   $filename = $actual_link.$filename;
    debug(">>>>>>>>>> INCLUDE >>>[".strval ($filename) ."]>>>>>>>>>>>>>\n");
    $rss = '';
    //$fn = "'".strval ($urlsource)."'";
    //debug(">>>>>>>>>> INCLUDE >>>[".$fn ."]>>>>>>>>>>>>>\n");
    //include ($fn);//'only_spin.php';//$urlsource;
-    if (is_file($filename)) {
-        ob_start();
+   // if (is_file($filename)) {
+       // ob_start();
         include $filename;
-        $b = ob_get_clean();
-        debug(">>>>>>>>>> INCLUDE (III)>>>[".$filename ."]>>>>>>>>>>>>>\n",$b);
-    }
+       // $b = ob_get_clean();
+        //debug(">>>>>>>>>> INCLUDE (III)>>>[".$filename ."]>>>>>>>>>>>>>\n",$b);
+    //}
    $returned = $rss;
    //$returned = json_decode($returned,true);
-  // debug(">>>>>>>>>>>> BEFORE PROCESS FILES CURL >>>>>>>>>>>>>>>>>",($returned));
+   debug(">>>>>>>>>>>> BEFORE PROCESS FILES CURL >>>>>>>>>>>>>>>>>",($returned));
    
    //return ($returned->rss);
     // Clean the document for parsing

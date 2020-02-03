@@ -3,6 +3,7 @@ define('RSS2', 1);
 define('JSON', 2);
 define('JSONP', 3);
 define('ATOM', 4);
+define('RSS2_OBJ',5);
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -57,6 +58,10 @@ define('ATOM', 4);
 	public function setFormat($format) {
 		$this->version = $format;
 	}
+    public function getFormat()
+    {
+        return $this->version;
+    }
 
 	// Start # public functions ---------------------------------------------
 	
@@ -110,17 +115,22 @@ define('ATOM', 4);
 			$this->json = new stdClass();
 		}
        // file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- BEFORE PRINT HEAD \n", FILE_APPEND); 
-        debug(">>>>>>>>>>>>>>>>>> GENERATE HEADER >>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		$this->printHead();
-         debug(">>>>>>>>>>>>>>>>>> GENERATE CHANELS >>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		$this->printChannels();
-         debug(">>>>>>>>>>>>>>>>>> GENERATE ITEMS >>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		$this->printItems();
-         debug(">>>>>>>>>>>>>>>>>> GENERATE TITLE >>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		$this->printTale();
-         debug(">>>>>>>>>>>>>>>>>> GENERATE HEADER >>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		if ($this->version == JSON || $this->version == JSONP) {
-			echo json_encode($this->json);
+       // debug(">>>>>>>>>>>>>>>>>> GENERATE HEADER >>>>>>>>>>>>>>>>>>>>>>>>>>>");
+       $out = "";
+       
+           $out .= $this->printHead();
+       //  debug(">>>>>>>>>>>>>>>>>> GENERATE CHANELS >>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		 $out .= $this->printChannels();
+       //  debug(">>>>>>>>>>>>>>>>>> GENERATE CHANNELS >>>>>>>>>>>>>>>>>>>>>>>>>>>",$out);
+		 $out .=  $this->printItems();
+       // debug(">>>>>>>>>>>>>>>>>> GENERATE ITMEMS >>>>>>>>>>>>>>>>>>>>>>>>>>>",$out);
+		 $out .= $this->printTale();
+     //    debug(">>>>>>>>>>>>>>>>>> GENERATE TITLE >>>>>>>>>>>>>>>>>>>>>>>>>>>",$out);
+		if  ($this->version == RSS2_OBJ)
+            return $out;
+        if ($this->version == JSON || $this->version == JSONP) {
+			//echo json_encode($this->json);
+            return ($this->json);
 		}
 	}
 	
@@ -249,14 +259,17 @@ define('ATOM', 4);
 	*/
 	private function printHead()
 	{
-		if ($this->version == RSS2)
+		if ($this->version == RSS2 || $this->version == RSS2_OBJ)
 		{
 			$out  = '<?xml version="1.0" encoding="utf-8"?>'."\n";
 			if ($this->xsl) $out .= '<?xml-stylesheet type="text/xsl" href="'.htmlspecialchars($this->xsl).'"?>' . PHP_EOL;
 			$out .= '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">' . PHP_EOL;
           //  file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- HEAD ".$this->dump_str($out)." \n", FILE_APPEND); 
-			debug(" >>>>>>>>>>>\n",$out);
-            echo $out;
+			//debug(" >>>>>>>>>>>\n",$out);
+            if ($this->version == RSS2_OBJ)
+                return $out;
+            else
+                echo $out;
 		}
 		elseif ($this->version == JSON || $this->version == JSONP)
 		{
@@ -272,10 +285,13 @@ define('ATOM', 4);
 	*/
 	private function printTale()
 	{
-		if ($this->version == RSS2)
+		if ($this->version == RSS2 || $this->version == RSS2_OBJ)
 		{
 		//	echo '</channel>'.PHP_EOL,'</rss>'; 
-        echo '</channel></rss>'.PHP_EOL; 
+        if ($this->version == RSS2_OBJ)
+            return  '</channel></rss>'.PHP_EOL; 
+        else
+            echo '</channel></rss>'.PHP_EOL; 
          //    file_put_contents('./log_'.date("j.n.Y").'.log',  '</channel></rss>'.PHP_EOL, FILE_APPEND); 
             
 		}    
@@ -293,7 +309,7 @@ define('ATOM', 4);
 	*/
 	private function makeNode($tagName, $tagContent, $attributes = null)
 	{        
-		if ($this->version == RSS2)
+		if ($this->version == RSS2 || $this->version == RSS2_OBJ)
 		{
 			$nodeText = '';
 			$attrText = '';
@@ -363,31 +379,34 @@ define('ATOM', 4);
 	{
 		//Start channel tag
         $out = "";
-		if ($this->version == RSS2) {
+		if ($this->version == RSS2 || $this->version == RSS2_OBJ) {
 			$out .= '<channel>' . PHP_EOL;    
-            echo '<channel>' . PHP_EOL;  
+            //echo '<channel>' . PHP_EOL;  
 			// add hubs
 			foreach ($this->hubs as $hub) {
 				//echo $this->makeNode('link', '', array('rel'=>'hub', 'href'=>$hub, 'xmlns'=>'http://www.w3.org/2005/Atom'));
 			$out .= '<link rel="hub"  href="'.htmlspecialchars($hub).'" xmlns="http://www.w3.org/2005/Atom" />' . PHP_EOL;
-            echo '<link rel="hub"  href="'.htmlspecialchars($hub).'" xmlns="http://www.w3.org/2005/Atom" />' . PHP_EOL;
+            //echo '<link rel="hub"  href="'.htmlspecialchars($hub).'" xmlns="http://www.w3.org/2005/Atom" />' . PHP_EOL;
 			}
 			// add self
 			if (isset($this->self)) {
 				//echo $this->makeNode('link', '', array('rel'=>'self', 'href'=>$this->self, 'xmlns'=>'http://www.w3.org/2005/Atom'));
 				$out .= '<link rel="self" href="'.htmlspecialchars($this->self).'" xmlns="http://www.w3.org/2005/Atom" />' . PHP_EOL;
-                echo '<link rel="self" href="'.htmlspecialchars($this->self).'" xmlns="http://www.w3.org/2005/Atom" />' . PHP_EOL;
+                //echo '<link rel="self" href="'.htmlspecialchars($this->self).'" xmlns="http://www.w3.org/2005/Atom" />' . PHP_EOL;
 			}
 			//Print Items of channel
 			foreach ($this->channels as $key => $value) 
 			{
 				$node = $this->makeNode($key, $value);
                 $out .= $node;
-                echo $node;
+                //echo $node;
 			}
             
              // file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- HEAD ".$this->dump_str($out)." \n", FILE_APPEND); 
-           // echo $out;
+          if ($this->version == RSS2_OBJ)
+             return $out;
+          else
+           echo $out;
         } elseif ($this->version == JSON || $this->version == JSONP) {
 			$this->json->rss['channel'] = (object)$this->json_keys($this->channels);
 		}
@@ -407,7 +426,7 @@ define('ATOM', 4);
 		{
             $item_id = "";
 			$thisItems = $item->getElements();
-		//	 debug("------------- item >>> ", $thisItems);
+			// debug("------------- item >>> ", $thisItems);
 			//$out .= $this->startItem();
 			
 			if ($this->version == JSON || $this->version == JSONP) {
@@ -416,8 +435,11 @@ define('ATOM', 4);
 			
 			foreach ($thisItems as $feedItem ) 
 			{
-				if ($this->version == RSS2) {
+               //  debug("------------- item >>> ", $feedItem);
+				if ($this->version == RSS2 || $this->version == RSS2_OBJ) {
+                 //   debug("------------- ADD item >>> ");
 					$item_id .= $this->makeNode($feedItem['name'], $feedItem['content'], $feedItem['attributes']);
+                 //   debug("------------- ADD item AS >>>>>> \n",$item_id);
 				} elseif ($this->version == JSON || $this->version == JSONP) {
 					$json_item[strtr($feedItem['name'], ':', '_')] = $this->makeNode($feedItem['name'], $feedItem['content'], $feedItem['attributes']);
 				}
@@ -437,8 +459,14 @@ define('ATOM', 4);
 			}
 		}
          // file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- BEFORE PRINT ITEMS ".$this->dump_str($out)." \n", FILE_APPEND); 
-       
-        echo $out;
+       if ($this->version == RSS2_OBJ)
+       {    
+        //   debug("------------- item >>> ", $out);
+         return $out;
+       }else
+       {   
+         echo $out;
+       }
 	}
 	
 	/**
@@ -449,7 +477,7 @@ define('ATOM', 4);
 	*/
 	private function startItem()
 	{
-		if ($this->version == RSS2)
+		if ($this->version == RSS2 || $this->version == RSS2_OBJ)
 		{
 			return '<item>' . PHP_EOL; 
 		}    
@@ -464,7 +492,7 @@ define('ATOM', 4);
 	*/
 	private function endItem()
 	{
-		if ($this->version == RSS2)
+		if ($this->version == RSS2 || $this->version == RSS2_OBJ)
 		{
 			return '</item>' . PHP_EOL; 
 		}    

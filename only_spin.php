@@ -65,7 +65,8 @@ SiteConfig::use_apc($options->apc);
 $extractor->fingerprints = $options->fingerprints;
 $extractor->allowedParsers = $options->allowed_parsers;
 
-$txt = ( $_POST['spin']);
+$txt =$fields['spin']; //$_POST['spin']);
+//debug(">>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>\n",$txt);
 //Clean all the script if any
 
 $doc = new DOMDocument();
@@ -125,12 +126,14 @@ $item_cls = new DummySingleItem($txt);
 $feed->set_item($item_cls);
 
 //debug(">>>>>>>>>>>>>>>>> SPIN ITEM >>>>>>>>>>>>>>>>>>",$item_cls);
-$output = new FeedWriter();
+$output = new FeedWriter(RSS2_OBJ);
 //debug(">>>>>>>>>>>>>>>>> SPIN ITEM 1 >>>>>>>>>>>>>>>>>>");
 $output->setTitle($feed->get_title());
 //debug(">>>>>>>>>>>>>>>>> SPIN ITEM 1 >>>>>>>>>>>>>>>>>>");
 $output->setDescription($feed->get_description());
 //debug(">>>>>>>>>>>>>>>>> AFTER FEED WRITER LOAS >>>>>>>>>>>>>>>>>>");
+$format = $output->getFormat();
+//debug(">>>>>>>>>>>>>>>>> FEED Format type >>>>>>>>>>>>>>>>>> \n",$format);
 $items = $feed->get_items(0, $max);	
 foreach ($items as $key => $item) {
     $newitem = $output->createNewItem();
@@ -148,7 +151,7 @@ foreach ($items as $key => $item) {
 //debug(">>>>>>>>>>>>>>>>> SPIN ITEM OUTPUT >>>>>>>>>>>>>>>>>>");
 if (!$debug_mode) {
   //  debug(">>>>>>>>>>>>>>>>> SPIN ITEM OUTPUT 22222 >>>>>>>>>>>>>>>>>>");
-     $output->genarateFeed($txt);
+     $rss=$output->genarateFeed();
 }
 
 
@@ -448,5 +451,6 @@ function debug($msg) {
 		flush();
 	}
 }
+
 
 ?>

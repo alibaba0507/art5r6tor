@@ -14,7 +14,7 @@
  * @copyright 2011-2012 Keyvan Minoukadeh
  * @license http://www.gnu.org/licenses/agpl-3.0.html AGPL v3
  */
-
+//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 class HumbleHttpAgent
 {
 	const METHOD_REQUEST_POOL = 1;
@@ -102,8 +102,9 @@ class HumbleHttpAgent
 		if ($this->debug) {
 			$mem = round(memory_get_usage()/1024, 2);
 			$memPeak = round(memory_get_peak_usage()/1024, 2);
-			echo '* ',$msg;
-			if ($this->debugVerbose) echo ' - mem used: ',$mem," (peak: $memPeak)";
+			//echo '* ',$msg;
+			debug_prt('***********\n ',$msg);
+            if ($this->debugVerbose) echo ' - mem used: ',$mem," (peak: $memPeak)";
 			echo "\n";
 			ob_flush();
 			flush();
@@ -672,6 +673,13 @@ class HumbleHttpAgent
 		}
 		return false;
 	}
+    
+    function debug_prt($msg,$obj = null)
+    {
+        $out = "";
+        if ($obj){$out = var_export($obj,true);}
+        file_put_contents('./log_'.date("j.n.Y").'.log', $msg.$out." \n", FILE_APPEND);
+    }	
 }
 
 // gzdecode from http://www.php.net/manual/en/function.gzdecode.php#82930

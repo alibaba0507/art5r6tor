@@ -7,7 +7,7 @@ ini_set("display_errors", 1);
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
 // IF Enable this , please Dissable debug method at the end of this file
-//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
+require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
 function autoload($class_name) {
@@ -451,6 +451,8 @@ foreach ($items as $key => $item) {
 			$readability = $extractor->readability;
 			$content_block = ($extract_result) ? $extractor->getContent() : null;			
 			$title = ($extract_result) ? $extractor->getTitle() : '';
+            debug('Attempting to extract title ---------------- ',$title);
+            debug('Attempting to extract content ---------------- ',$content_block);
 			// Deal with multi-page articles
 			//die('Next: '.$extractor->getNextPageUrl());
 			$is_multi_page = (!$is_single_page && $extract_result && $extractor->getNextPageUrl());
@@ -702,6 +704,7 @@ if (!$debug_mode) {
 		echo $output;
 	} else {
 		//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED yahoo news -------------  \n", FILE_APPEND); 
+       // debug("###########################  >>>>> ",$output);
         $output->genarateFeed();
         
 	}
@@ -995,7 +998,7 @@ function dump_str($obj)
 {
  return var_export($obj,true);
 }
-
+/*
 function debug($msg) {
 	global $debug_mode;
 	if ($debug_mode) {
@@ -1004,4 +1007,5 @@ function debug($msg) {
 		flush();
 	}
 }
+*/
 

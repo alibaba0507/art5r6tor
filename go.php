@@ -50,13 +50,17 @@ if ($_POST['feedsource'] == 'yahooanswers'){
 }
 if ($_POST['feedsource'] == 'user_urls')
 	{
-	  $urlsource = $baseurl ."/custom_urls.php";//?
+	  $urlsource = /*$baseurl .*/"./custom_urls.php";//?
       $fields = "keyword=" .urlencode($_POST['custom_urls']);
+      $fields = array ('keyword' => (urlencode($_POST['custom_urls'])));
 }
 if ($_POST['feedsource'] == 'only_spin')
 {
-  $urlsource = $baseurl ."/only_spin.php";
+ // $urlsource = $baseurl ."/only_spin.php";
+ // $fields = "spin=".($_POST['only_spin_txt']);
+  $urlsource = /*$baseurl .*/'/only_spin.php';
   $fields = "spin=".($_POST['only_spin_txt']);
+  $fields = array ('spin' => ($_POST['only_spin_txt']));
  // debug(">>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
 }
  // this in future need to be change
@@ -95,17 +99,23 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
     {
         $gettitle = $keyword ." :: Article Creator";
         echo("<title>$gettitle</title>");
-        $feed = processFeed($urlsource,$type,$fields);
-        
+        $feed = processFeed("'".($urlsource)."'",$type,$fields);
+        //debug(">>>>>>>>>>>> go.php AFTER FEED process >>>>>>>>>>>>>>>>>\n",$feed);
+       // debug(">>>>>>>>>>>> go.php AFTER FEED process Size channel (". sizeof($feed->channel) .") >>>>>>>>>>>>>>>>>\n");
+       // debug(">>>>>>>>>>>> go.php AFTER FEED process Size channel I(". sizeof($feed['channel']) .") >>>>>>>>>>>>>>>>>\n");
+       // debug(">>>>>>>>>>>> go.php AFTER FEED process Size channel Items (". sizeof($feed['channel']->item) .") >>>>>>>>>>>>>>>>>\n");
+       
         $count = 0;
 	    $maxitems = ($_POST['feedsource'] == 'user_urls')?sizeof($feed->channel->item): $numbers;
-        //debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED URL [" .$urlsource ."]>>>>",$feed);
+       // debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED URL [" .$urlsource ."]>>>>",$feed);
         //debug(" >>>>>>>>>>>>>>>>>>>>>>>>>>>> FEED MAX CNT [" .$maxitems ."]>>>>" , $feed);
         
         //******************* LOOP FOR ARTICLES **********************//
        // debug("############################## CAHNELS ITEMS  ##########################\n",$feed);
-        foreach ($feed->channel->item as $item) 
+        foreach ($feed->channel->item as $item)
+        //foreach ($feed['channel']->item as $item)         
         {
+            // debug("############################## FOREACH ITEMS  ##########################\n",$item);
             if ($count > $maxitems) break;
             $title = $item->title;
             $title = str_replace("<b>", "", $title);

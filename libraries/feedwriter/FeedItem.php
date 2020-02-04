@@ -112,7 +112,7 @@
 			$tag    = 'updated';
 			$value  = date(DATE_ATOM, $date);
 		}        
-		elseif($this->version == RSS2) 
+		elseif($this->version == RSS2 || $this->version == RSS2_OBJ || $this->version == RSS2_OBJ) 
 		{
 			$tag    = 'pubDate';
 			$value  = date(DATE_RSS, $date);
@@ -135,7 +135,7 @@
 	*/
 	public function setLink($link) 
 	{
-		if($this->version == RSS2 || $this->version == RSS1)
+		if($this->version == RSS2 || $this->version == RSS1 || $this->version == RSS2_OBJ)
 		{
 			$this->addElement('link', $link);
 		}

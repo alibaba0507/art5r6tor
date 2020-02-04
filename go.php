@@ -48,13 +48,14 @@ if ($_POST['feedsource'] == 'yahooanswers'){
      $fields .= "&url=" . urlencode('http://answers.yahoo.com/search/search_result?p=');
      $fields .= "&end=".urlencode('&submit-go=Search+Y!+Answers');
 }
+/*
 if ($_POST['feedsource'] == 'user_urls')
 	{
-	  $urlsource = /*$baseurl .*/"./custom_urls.php";//?
+	  $urlsource = /*$baseurl .* /"./custom_urls.php";//?
       $fields = "keyword=" .urlencode($_POST['custom_urls']);
       $fields = array ('keyword' => (urlencode($_POST['custom_urls'])));
 }
-/*if ($_POST['feedsource'] == 'only_spin')
+if ($_POST['feedsource'] == 'only_spin')
 {
  // $urlsource = $baseurl ."/only_spin.php";
  // $fields = "spin=".($_POST['only_spin_txt']);
@@ -108,15 +109,22 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
         echo("<title>$gettitle</title>");
         if ($_POST['feedsource'] == 'only_spin')
         {
-             debug(">>>>>>>>>>>>>>> BEFORE ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
+            // debug(">>>>>>>>>>>>>>> BEFORE ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
             $fields = array ('spin' => urlencode($_POST['only_spin_txt'])); 
             //debug(">>>>>>>>>>>>>>> BEFORE ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>",$fields);            
             $rss = '';
             include 'only_spin.php';
-            debug(">>>>>>>>>>>>>>> ONLY SPIN AFTER SPIN PHP  >>>>>>>>>>>>>>>>>>>>>",$rss);
+          //  debug(">>>>>>>>>>>>>>> ONLY SPIN AFTER SPIN PHP  >>>>>>>>>>>>>>>>>>>>>",$rss);
             $feed = createFeed($rss);
                    
            
+        }else if ($_POST['feedsource'] == 'user_urls')
+        {
+            $fields = array ('keyword' => (urlencode($_POST['custom_urls'])));
+            $rss = '';
+            include 'custom_urls.php';
+          //  debug(">>>>>>>>>>>>>>> ONLY SPIN AFTER SPIN PHP  >>>>>>>>>>>>>>>>>>>>>",$rss);
+            $feed = createFeed($rss);
         }
         //$feed = processFeed(($urlsource),$type,$fields);
         //debug(">>>>>>>>>>>> go.php AFTER FEED process >>>>>>>>>>>>>>>>>\n",$feed);

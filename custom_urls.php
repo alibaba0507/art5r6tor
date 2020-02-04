@@ -1,8 +1,8 @@
 <?php
 
-error_reporting(E_ALL ^ E_NOTICE);
-ini_set("display_errors", 1);
-@set_time_limit(120);
+//error_reporting(E_ALL ^ E_NOTICE);
+//ini_set("display_errors", 1);
+//@set_time_limit(120);
 
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
@@ -319,7 +319,8 @@ $feed = new DummySingleItemFeed();
 ////////////////////////////////////////////////////////////////
 /// Add DummyItem with passed url link , need it for extracton
 ///////////////////////////////////////////////////////////////
-$list_urls = explode("\n",$_POST['keyword']);//$_GET['keyword'].split("\n");
+//$list_urls = explode("\n",$_POST['keyword']);//$_GET['keyword'].split("\n");
+$list_urls = explode("\n",urldecode($fields['keyword']));//$_GET['keyword'].split("\n");
 debug(">>>>>>>>>>>>>>>>>>> CUSTOM >>>>>>>>>>>>",$list_urls);
 for ($i = 0;$i < sizeof($list_urls);$i++)
 {
@@ -335,7 +336,8 @@ for ($i = 0;$i < sizeof($list_urls);$i++)
 // Create full-text feed
 ////////////////////////////////////////////
  
-$output = new FeedWriter();
+//$output = new FeedWriter();
+$output = new FeedWriter(RSS2_OBJ);
 $output->setTitle($feed->get_title());
 $output->setDescription($feed->get_description());
 $output->setXsl('css/feed.xsl'); // Chrome uses this, most browsers ignore it
@@ -705,7 +707,8 @@ if (!$debug_mode) {
 	} else {
 		//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED yahoo news -------------  \n", FILE_APPEND); 
        // debug("###########################  >>>>> ",$output);
-        $output->genarateFeed();
+        $rss=$output->genarateFeed();
+        debug("###########################  >>>>> ",$rss);
         
 	}
 	if ($callback) echo ');';

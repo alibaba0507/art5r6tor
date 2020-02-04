@@ -42,13 +42,13 @@ if ($_POST['feedsource'] == 'bing') {
     $fields .= "&end=".urlencode('&format=RSS');
     ///debug(">>>>>>>>>>>>>>>>>>>> SEND ENCODED KEYWORD >>>>>>>>>>>",$fields);
 }
+/*
 if ($_POST['feedsource'] == 'yahooanswers'){
 	 // $urlsource = $baseurl ."/yahooanswers.php";//?
       $fields = "keyword=" .urlencode($keyword);
      $fields .= "&url=" . urlencode('http://answers.yahoo.com/search/search_result?p=');
      $fields .= "&end=".urlencode('&submit-go=Search+Y!+Answers');
 }
-/*
 if ($_POST['feedsource'] == 'user_urls')
 	{
 	  $urlsource = /*$baseurl .* /"./custom_urls.php";//?
@@ -125,6 +125,14 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
             include 'custom_urls.php';
           //  debug(">>>>>>>>>>>>>>> ONLY SPIN AFTER SPIN PHP  >>>>>>>>>>>>>>>>>>>>>",$rss);
             $feed = createFeed($rss);
+        }else if ($_POST['feedsource'] == 'yahooanswers'){
+             // $urlsource = $baseurl ."/yahooanswers.php";//?
+             $fields = array ('keyword' => (($keyword)),
+                              'url' =>  ('http://answers.yahoo.com/search/search_result?p='),
+                               'end' => ('&submit-go=Search+Y!+Answers') );
+             $rss = '';
+             include 'rssnews.php';
+             $feed = createFeed($rss);
         }
         //$feed = processFeed(($urlsource),$type,$fields);
         //debug(">>>>>>>>>>>> go.php AFTER FEED process >>>>>>>>>>>>>>>>>\n",$feed);

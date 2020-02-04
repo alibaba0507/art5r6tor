@@ -135,7 +135,7 @@
 	*/
 	public function setLink($link) 
 	{
-		if($this->version == RSS2 || $this->version == RSS1 || $this->version == RSS2_OBJ)
+		if($this->version == RSS2 /*|| $this->version == RSS1*/ || $this->version == RSS2_OBJ)
 		{
 			$this->addElement('link', $link);
 		}

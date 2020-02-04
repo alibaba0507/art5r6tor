@@ -30,7 +30,7 @@ ini_set("display_errors", 1);
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
 // IF Enable this , please Dissable debug method at the end of this file
-//require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
+require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 // Autoloading of classes allows us to include files only when they're
 // needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
 function autoload($class_name) {
@@ -84,7 +84,7 @@ require dirname(__FILE__).'/config.php';
 // Note: Using Disallow in a robots.txt file will be more effective (search engines will check
 // that before even requesting googlefullrss.php).
 ////////////////////////////////
-header('X-Robots-Tag: noindex, nofollow');
+//header('X-Robots-Tag: noindex, nofollow');
 
 ////////////////////////////////
 // Check if service is enabled
@@ -139,10 +139,11 @@ $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
 	$end = "&format=RSS";
     //$url = "http://www.bing.com/news/search?q=" .$_POST['keyword'] .$end;
     // all POST must be urlencode
-    $url = ($_POST['url'])?($_POST['url']).rawurlencode($_POST['keyword']).$_POST['end']:($_GET['url']).rawurlencode($_GET['keyword']).$_GET['end'];
+   // $url = ($_POST['url'])?($_POST['url']).rawurlencode($_POST['keyword']).$_POST['end']:($_GET['url']).rawurlencode($_GET['keyword']).$_GET['end'];
+   $url = ($fields['url']).rawurlencode($fields['keyword']).$fields['end'];
     $url = filter_var($url, FILTER_SANITIZE_URL);
     debug(">>>>>>>>>>>>>>>>>>>>>>> URL>>>>>>>>>>>>[".$url."]>>>\n");
-    $test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
+    /*$test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
     // deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
     if ($test === false) {
         $test = filter_var(strtr($url, '-', '_'), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
@@ -152,7 +153,7 @@ $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
         unset($test);
     } else {
         die('Invalid URL supplied');
-    }    
+    } */   
     /*
     if ($_POST['url'])
     {
@@ -240,7 +241,11 @@ if (!url_allowed($url)) die('URL blocked');
 // Max entries
 // see config.php to find these values
 ///////////////////////////////////////////////
-if (isset($_GET['max'])) {
+
+if (isset($numbers))
+{
+    $max  =(int)$numbers;
+}else if (isset($_GET['max'])) {
 	$max = (int)$_GET['max'];
 	if ($valid_key) {
 		$max = min($max, $options->max_entries_with_key);
@@ -388,9 +393,9 @@ if ($options->caching) {
 //////////////////////////////////
 // Set Expires header
 //////////////////////////////////
-if (!$debug_mode) {
-	header('Expires: ' . gmdate('D, d M Y H:i:s', time()+(60*10)) . ' GMT');
-}
+//if (!$debug_mode) {
+//	header('Expires: ' . gmdate('D, d M Y H:i:s', time()+(60*10)) . ' GMT');
+//}
 
 //////////////////////////////////
 // Set up HTTP agent
@@ -485,7 +490,7 @@ if ($html_only || !$result) {
 ////////////////////////////////////////////
 // Create full-text feed
 ////////////////////////////////////////////
-$output = new FeedWriter();
+$output = new FeedWriter(RSS2_OBJ);
 $output->setTitle($feed->get_title());
 $output->setDescription($feed->get_description());
 $output->setXsl('css/feed.xsl'); // Chrome uses this, most browsers ignore it
@@ -847,7 +852,7 @@ if (!$debug_mode) {
 		}
 		echo $output;
 	} else {
-		$output->genarateFeed();
+		$rss = $output->genarateFeed();
 	}
 	if ($callback) echo ');';
 }
@@ -1135,6 +1140,7 @@ function get_cache() {
 	return $cache;
 }
 
+/*
 function debug($msg) {
 	global $debug_mode;
 	if ($debug_mode) {
@@ -1143,3 +1149,4 @@ function debug($msg) {
 		flush();
 	}
 }
+*/

@@ -386,7 +386,7 @@ $item_count = 0;
 
 //debug(">>>>>>>>>>>>>>>> DummySingleItemFeed afet FETCH >>>>>>>>>>>> \n",$feed);
 foreach ($items as $key => $item) {
-	//debug('--------');
+	 debug('--------',$item);
 	//debug('Processing feed item '.($item_count+1));
 	$do_content_extraction = true;
 	$extract_result = false;

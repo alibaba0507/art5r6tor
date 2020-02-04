@@ -5,7 +5,13 @@ error_reporting(E_ALL);
 // set include path
 set_include_path(realpath(dirname(__FILE__).'/libraries').PATH_SEPARATOR.get_include_path());
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
-//debug(">>>>>> ONLY SPIN PHP >>>>>>>>\n");
+debug("",null,true);
+// Autoloading of classes allows us to include files only when they're
+// needed. If we've got a cached copy, for example, only Zend_Cache is loaded.
+//debug(">>>>>>>>>>>>>>>>>>>>>>>> CALL ONLY SPIN 1 >>>>>>>>>>>>>>>>>>>>>");\
+//$myFile = 'tempfiles/generatedfile_tmp.txt';
+//if(file_exists("$myFile")) unlink("$myFile");
+//$fh = fopen($myFile, 'a');
 function autoload($class_name) {
 	static $dir = null;
 	if ($dir === null) $dir = dirname(__FILE__).'/libraries/';
@@ -48,51 +54,6 @@ require dirname(__FILE__).'/libraries/simplepie/SimplePie/Core.php';
 // Load config file
 ////////////////////////////////
 require dirname(__FILE__).'/config.php';
-
-///////////////////////////////////
-/// Get PASS PARAMETERS
-//////////////////////////////////
-$txt = urldecode($fields['spin']); //$_POST['spin']);
-//debug(">>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>\n",$txt);
-$txt = closeHTMLtags($txt);
-//debug(">>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>\n",$txt);
-///////////////////////////////////////////////////
-//// Disable wornings for DOMDocument class
-/////////////////////////////////////////////////
-libxml_use_internal_errors(true);
-// Must clean HTML from script and non script head so on ...
-$doc = new DOMDocument();
-//////// Tydy support not provided /////////////
-/////// Check on the server /////////////////
-/*$tidy_config = array( 
-                     'clean' => true, 
-                     'output-xhtml' => true, 
-                     'show-body-only' => true, 
-                     'wrap' => 0, 
-
-                     ); 
-
-$tidy = tidy_parse_string( $txt, $tidy_config, 'UTF8'); 
-$tidy->cleanRepair(); 
-$doc->loadHTML(( (string) $tidy));
-*/
-// load the HTML string we want to strip
-$doc->loadHTML($txt);
-//get_inner_html
-// get all the script tags
-$script_tags = $doc->getElementsByTagName('script');
-
-$length = $script_tags->length;
-
-// for each tag, remove it from the DOM
-for ($i = 0; $i < $length; $i++) {
-  $script_tags->item($i)->parentNode->removeChild($script_tags->item($i));
-}
-
-// get the HTML string back
-$no_script_html_string = $doc->saveHTML();
-$txt = $no_script_html_string;
-debug(">>>>>>>>>>>> CLEAN SCRIPT TXT >>>>>>>>>>>>>>\n",$txt);
 ////////////////////////////////
 // Debug mode?
 // See the config file for debug options.
@@ -108,6 +69,30 @@ SiteConfig::use_apc($options->apc);
 $extractor->fingerprints = $options->fingerprints;
 $extractor->allowedParsers = $options->allowed_parsers;
 
+$txt = urldecode($fields['spin']); //$_POST['spin']);
+$txt = closeHTMLtags($txt);
+debug(">>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>\n",$txt);
+// Must clean HTML from script and non script head so on ...
+$doc = new DOMDocument();
+
+// load the HTML string we want to strip
+$doc->loadHTML($txt);
+get_inner_html
+// get all the script tags
+$script_tags = $doc->getElementsByTagName('script');
+
+$length = $script_tags->length;
+
+// for each tag, remove it from the DOM
+for ($i = 0; $i < $length; $i++) {
+  $script_tags->item($i)->parentNode->removeChild($script_tags->item($i));
+}
+
+// get the HTML string back
+$no_script_html_string = $doc->saveHTML();
+$txt = $no_script_html_string;
+debug(">>>>>>>>>>>> CLEAN SCRIPT TXT >>>>>>>>>>>>>>\n",$txt);
+//debug(" >>>>>>>>>>>>>>>>>>>>> ONLY SPIN >>>>>>>>>>>>>>>>>>>", $_POST['spin']);
 ///////////////////////////////////////////
 /// Create Dummy Feed 
 ////////////////////////////////////////////
@@ -161,7 +146,7 @@ foreach ($items as $key => $item) {
    // debug("################ SPIN ITEM 1 #############",$html);
     // remove strange things
     $html = str_replace('</[>', '', $html);
-    $html = convert_to_utf8($html/*, $response['headers']*/);
+    $html = convert_to_utf8($html, $response['headers']);
 			// check site config for single page URL - fetch it if found
     $newitem->setDescription($html);
     $output->addItem($newitem);
@@ -171,13 +156,9 @@ foreach ($items as $key => $item) {
 if (!$debug_mode) {
   //  debug(">>>>>>>>>>>>>>>>> SPIN ITEM OUTPUT 22222 >>>>>>>>>>>>>>>>>>");
      $rss=$output->genarateFeed();
-     debug(">>>>>>>> OUT >>>>>>>>\n",$rss);
-     //fwrite($fh, "\xEF\xBB\xBF".$rss);
-     //fclose($fh);
+     fwrite($fh, "\xEF\xBB\xBF".$rss);
+     fclose($fh);
 }
-
-
-debug(">>>>>> ONLY SPIN PHP (END) >>>>>>>>\n");
 
 
 ///////////////////////////////
@@ -477,4 +458,8 @@ function debug($msg) {
 	}
 }
 */
+
+
+
+
 ?>

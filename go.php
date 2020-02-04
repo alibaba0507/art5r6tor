@@ -9,7 +9,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once(dirname(__FILE__).'/config.php');
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
-
+debug("","",true);
 error_reporting(1);
 
 $baseurl =((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
@@ -109,10 +109,11 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
         if ($_POST['feedsource'] == 'only_spin')
         {
              debug(">>>>>>>>>>>>>>> BEFORE ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>");
-            $fields = array ('spin' => ($_POST['only_spin_txt']));         
+            $fields = array ('spin' => urlencode($_POST['only_spin_txt'])); 
+            //debug(">>>>>>>>>>>>>>> BEFORE ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>",$fields);            
             $rss = '';
             include 'only_spin.php';
-            debug(">>>>>>>>>>>>>>> ONLY SPIN BEFORE  >>>>>>>>>>>>>>>>>>>>>",$rss);
+            debug(">>>>>>>>>>>>>>> ONLY SPIN AFTER SPIN PHP  >>>>>>>>>>>>>>>>>>>>>",$rss);
             $feed = createFeed($rss);
                    
            

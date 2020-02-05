@@ -1,7 +1,7 @@
 APC is disabled or not available on server 
->>>>>>>>>>>>>>>>>>>>>>> URL>>>>>>>>>>>>[http://answers.yahoo.com/search/search_result?p=forex%20patterns&submit-go=Search+Y!+Answers]>>>
+>>>>>>>>>>>>>>>>>>>>>>> URL>>>>>>>>>>>>[https://news.yahoo.com/rss/?p=forex%20patterns]>>>
  
-Supplied URL: http://answers.yahoo.com/search/search_result?p=forex%20patterns&submit-go=Search+Y!+Answers 
+Supplied URL: https://news.yahoo.com/rss/?p=forex%20patterns 
 ** Loading class HumbleHttpAgent (humble-http-agent/HumbleHttpAgent.php) 
 ** Loading class CookieJar (humble-http-agent/CookieJar.php) 
 ** Loading class ContentExtractor (content-extractor/ContentExtractor.php) 
@@ -9,18 +9,30 @@ Supplied URL: http://answers.yahoo.com/search/search_result?p=forex%20patterns&s
 -------- 
 Attempting to process URL as feed 
 ** Loading class SimplePie_HumbleHttpAgent (humble-http-agent/SimplePie_HumbleHttpAgent.php) 
--------- 
-Constructing a single-item feed from URL 
 ** Loading class FeedWriter (feedwriter/FeedWriter.php) 
 -------- 
 Fetching feed items 
 -------- 
 Processing feed item 1 
-Item URL: http://answers.yahoo.com/search/search_result?p=forex%20patterns&submit-go=Search+Y!+Answers 
+Item URL: https://news.yahoo.com/trump-gallup-poll-approval-49-all-time-high-174002781.html 
 ** Loading class FeedItem (feedwriter/FeedItem.php) 
-Character encoding: UTF-8 
+Character encoding: utf-8 
 Looking for site config files to see if single page link exists 
 -------- 
 Attempting to extract content 
 ** Loading class Readability (readability/Readability.php) 
+-------- 
+Processing feed item 2 
+Item URL: https://news.yahoo.com/plane-had-turn-around-fly-021509555.html 
+Character encoding: utf-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
+-------- 
+Processing feed item 3 
+Item URL: https://news.yahoo.com/susan-collins-campaign-being-helped-162756834.html 
+Character encoding: utf-8 
+Looking for site config files to see if single page link exists 
+-------- 
+Attempting to extract content 
 Done! 

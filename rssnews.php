@@ -143,17 +143,21 @@ $options->smart_cache = $options->smart_cache && function_exists('apc_inc');
    $url = ($fields['url']).rawurlencode($fields['keyword']).$fields['end'];
     $url = filter_var($url, FILTER_SANITIZE_URL);
     debug(">>>>>>>>>>>>>>>>>>>>>>> URL>>>>>>>>>>>>[".$url."]>>>\n");
-    /*$test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
-    // deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
-    if ($test === false) {
-        $test = filter_var(strtr($url, '-', '_'), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
-    }
-    if ($test !== false && $test !== null && preg_match('!^https?://!', $url)) {
-        // all okay
-        unset($test);
-    } else {
-        die('Invalid URL supplied');
-    } */   
+    
+    if (phpversion() === '5.2.13' || phpversion() === '5.3.2')
+     {
+         $test = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
+        // deal with bug http://bugs.php.net/51192 (present in PHP 5.2.13 and PHP 5.3.2)
+        if ($test === false) {
+            $test = filter_var(strtr($url, '-', '_'), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED);
+        }
+        if ($test !== false && $test !== null && preg_match('!^https?://!', $url)) {
+            // all okay
+            unset($test);
+        } else {
+            die('Invalid URL supplied');
+        }    
+     }
     /*
     if ($_POST['url'])
     {

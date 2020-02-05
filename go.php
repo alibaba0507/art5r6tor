@@ -21,6 +21,7 @@ $urllink = $_POST['urllink'];
 $type= "POST";
 $fields = null;
 $urlsource = $baseurl ."/rssnews.php";
+/*
 if ($_POST['feedsource'] == 'google') {
 	//$urlsource = $baseurl ."/googlenews.php";//?keyword=" .urlencode($keyword);
     //$urlsource = $baseurl ."/googlenews.php";//?keyword=" .urlencode($keyword);
@@ -42,7 +43,7 @@ if ($_POST['feedsource'] == 'bing') {
     $fields .= "&end=".urlencode('&format=RSS');
     ///debug(">>>>>>>>>>>>>>>>>>>> SEND ENCODED KEYWORD >>>>>>>>>>>",$fields);
 }
-/*
+
 if ($_POST['feedsource'] == 'yahooanswers'){
 	 // $urlsource = $baseurl ."/yahooanswers.php";//?
       $fields = "keyword=" .urlencode($keyword);
@@ -133,7 +134,32 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
              $rss = '';
              include 'rssnews.php';
              $feed = createFeed($rss);
+        }else if ($_POST['feedsource'] == 'bing') {
+            //$urlsource = $baseurl ."/bingnews.php";//?
+            $fields = array ('keyword' => (($keyword)),
+                              'url' =>  ('http://www.bing.com/news/search?q='),
+                               'end' => ('&format=RSS') );
+             $rss = '';
+             include 'rssnews.php';
+             $feed = createFeed($rss);
+            ///debug(">>>>>>>>>>>>>>>>>>>> SEND ENCODED KEYWORD >>>>>>>>>>>",$fields);
+        }else if ($_POST['feedsource'] == 'google') {
+             $fields = array ('keyword' => (($keyword)),
+                              'url' =>  ('http://news.google.com/news?q='),
+                               'end' => ('&output=rss') );
+             $rss = '';
+             include 'rssnews.php';
+             $feed = createFeed($rss);
+          //  debug(">>>>>>>>>>>>>>>>>>>> SEND ENCODED KEYWORD >>>>>>>>>>>",$keyword);
+         }else if ($_POST['feedsource'] == 'yahoo') {
+            $fields = array ('keyword' => (($keyword)),
+                              'url' =>  ('https://news.yahoo.com/rss/?p='),
+                               'end' => ('') );
+             $rss = '';
+             include 'rssnews.php';
+             $feed = createFeed($rss);
         }
+
         //$feed = processFeed(($urlsource),$type,$fields);
         //debug(">>>>>>>>>>>> go.php AFTER FEED process >>>>>>>>>>>>>>>>>\n",$feed);
        // debug(">>>>>>>>>>>> go.php AFTER FEED process Size channel (". sizeof($feed->channel) .") >>>>>>>>>>>>>>>>>\n");
@@ -180,6 +206,7 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
                 <input type="hidden" id="headline<?php echo $count; ?>" value="<?php echo $subject;?>">
             </div>
            </div><!------ END <div id="menu1 ----->
+          
            <div id="menu2<?php echo $count;?>" class="tab-pane">
            <?php
                if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
@@ -237,6 +264,7 @@ $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
         
        
         </div><!----- END  div class="tab-wrapper" ------>
+         <br><br>
         
      <?php  
             $count++;

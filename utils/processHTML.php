@@ -26,8 +26,8 @@
         $html = $response['body'];
         // remove strange things
         $html = str_replace('</[>', '', $html);
-        debug(">>>>> BEFORE convert_to_utf8 (BODY)>>> ",$html);
-        debug(">>>>> BEFORE convert_to_utf8 (HEADER)>>> ",$response['headers']);
+       // debug(">>>>> BEFORE convert_to_utf8 (BODY)>>> ",$html);
+       // debug(">>>>> BEFORE convert_to_utf8 (HEADER)>>> ",$response['headers']);
         $html = convert_to_utf8($html, $response['headers']);
         // check site config for single page URL - fetch it if found
         $is_single_page = false;
@@ -48,7 +48,7 @@
         $content_block = ($extract_result) ? $extractor->getContent() : null;			
         $title = ($extract_result) ? $extractor->getTitle() : '';
         debug('Attempting to extract title ---------------- ',$title);
-        debug('Attempting to extract content ---------------- ',$content_block);
+       // debug('Attempting to extract content ---------------- ',$content_block);
         // Deal with multi-page articles
         //die('Next: '.$extractor->getNextPageUrl());
         $is_multi_page = (!$is_single_page && $extract_result && $extractor->getNextPageUrl());

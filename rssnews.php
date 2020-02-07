@@ -197,8 +197,8 @@ if (!$html_only) {
 	}
 	// from now on, we'll identify ourselves as a browser
 	//$http->userAgentDefault = HumbleHttpAgent::UA_BROWSER;
-     debug("------------ SimplePie errors ----------------\n",$feed);
-     debug("------------ SimplePie errors (END) --------------------------------------\n",$feed);
+    debug("------------ SimplePie errors ----------------\n",$feed->error);
+     debug("------------ SimplePie errors (END) --------------------------------------\n");
 }
 
 
@@ -311,11 +311,11 @@ function my_callback(&$request, $id) {
     include dirname(__FILE__).'/utils/processHTML.php';
     //$requests[(int)$id];
     //debug("",null,true);
-    debug(">>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>\n",$output);
+    debug(">>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>\n");
     //var_dump($response['headers']);
 }
-debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (request)>>>>>>>>>>>\n",$requests);
-debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n",$options_req);
+debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (request)>>>>>>>>>>>\n");
+debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n");
 // Send the request!
 $responses = Requests::request_multiple($requests, $options_req);
 
@@ -365,7 +365,7 @@ $responses = Requests::request_multiple($requests, $options_req);
 		//file_put_contents('./log_'.date("j.n.Y").'.log', "---------------- END OF FEED yahoo news -------------  \n", FILE_APPEND); 
        // debug("###########################  >>>>> ",$output);
         $rss=$output->genarateFeed();
-        debug("###########################  >>>>> ",$rss);
+        debug("###########################  >>>>> ");
         
 	}
 	if (isset($callback)) echo ');';

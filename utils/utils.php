@@ -177,7 +177,10 @@ function debug($msg,$obj = null,$delete = false) {
     $out = "";
     if ($obj){$out = var_export(serialize($obj),true);}
     //file_put_contents('./log_'.date("j.n.Y").'.log', $msg.$out." \n", FILE_APPEND);
-    file_put_contents($logFile, $msg.$out." \n", FILE_APPEND);
+    if ($options->print_screen == true)
+        echo  $msg.$out." \n";
+    else
+        file_put_contents($logFile, $msg.$out." \n", FILE_APPEND);
 }
 
 

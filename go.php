@@ -201,7 +201,7 @@ if ($_POST['feedsource'] == '') {
     <!-- div id="myModal" class="modal fade" role="dialog" -->
     <div id="dialog" style="display: none; position: absolute; left: 100px; top: 50px; text-align: justify; font-size: 12px; width: 128px; height: 128px;"  >
  
-        <div class="center"> <img alt="" src="images/loader.gif"> </div>
+        <div class="center"> <img alt="" src="<?= $home ?>/images/loader.gif"> </div>
     </div>
     
     <!--------------- Popup drop-down box with syntax words ------>

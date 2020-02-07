@@ -1,18 +1,19 @@
 <?php
 ////////////////////////////////
+// Load config file
+////////////////////////////////
+require_once( dirname(__FILE__).'/config/config.php');
+
+////////////////////////////////
 // Autoload libraries and also
 // debug print
 ////////////////////////////////
 require_once(dirname(__FILE__).'/utils/autoload.php'); // for debug call  debug($msg,$obj)
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
-require dirname(__FILE__).'/libraries/simplepie/SimplePieAutoloader.php';
+require_once( dirname(__FILE__).'/libraries/simplepie/SimplePieAutoloader.php');
 // always include Simplepie_Core as it defines constants which other SimplePie components
 // assume will always be available.
-require dirname(__FILE__).'/libraries/simplepie/SimplePie/Core.php';
-////////////////////////////////
-// Load config file
-////////////////////////////////
-require dirname(__FILE__).'/config/config.php';
+require_once( dirname(__FILE__).'/libraries/simplepie/SimplePie/Core.php');
 
 ///////////////////////////////////////////////
 // Detect language
@@ -26,7 +27,11 @@ if ($options->detect_language === 'user') {
 } else {
 	$detect_language = $options->detect_language;
 }
-
+///////////////////////////////////////////////////////
+/// Debug will work only if 
+//  $options->debug = true; in config.php is set 
+//////////////////////////////////////////////////////
+debug("",null,true);
 if ($detect_language >= 2) {
 	$language_codes = array('albanian' => 'sq','arabic' => 'ar','azeri' => 'az','bengali' => 'bn','bulgarian' => 'bg',
 	'cebuano' => 'ceb', // ISO 639-2
@@ -305,10 +310,12 @@ function my_callback(&$request, $id) {
     $isDummyFeed = false;
     include dirname(__FILE__).'/utils/processHTML.php';
     //$requests[(int)$id];
-    debug("",null,true);
+    //debug("",null,true);
     debug(">>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>\n",$output);
     //var_dump($response['headers']);
 }
+debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (request)>>>>>>>>>>>\n",$requests);
+debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n",$options_req);
 // Send the request!
 $responses = Requests::request_multiple($requests, $options_req);
 

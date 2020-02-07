@@ -1,5 +1,10 @@
 <?php
 ////////////////////////////////
+// Load config file
+////////////////////////////////
+require dirname(__FILE__).'/config/config.php';
+
+////////////////////////////////
 // Autoload libraries and also
 // debug print
 ////////////////////////////////
@@ -9,10 +14,6 @@ require dirname(__FILE__).'/libraries/simplepie/SimplePieAutoloader.php';
 // always include Simplepie_Core as it defines constants which other SimplePie components
 // assume will always be available.
 require dirname(__FILE__).'/libraries/simplepie/SimplePie/Core.php';
-////////////////////////////////
-// Load config file
-////////////////////////////////
-require dirname(__FILE__).'/config/config.php';
 
 ///////////////////////////////////////////////
 // Detect language
@@ -119,6 +120,10 @@ $debug_mode = false;
 /////////////////////////////////////
 /// Delete log content
 ////////////////////////////////////
+///////////////////////////////////////////////////////
+/// Debug will work only if 
+//  $options->debug = true; in config.php is set 
+//////////////////////////////////////////////////////
 debug("",null,true);
 //////////////////////////////////
 // Set up Content Extractor
@@ -243,7 +248,7 @@ $options_req = array(
 // Setup a callback
 function my_callback(&$request, $id) {
 	//var_dump($id, $request);
-    global $requests, $output,$extractor,$item,$options,$links,$valid_key,$xss_filter,$detect_language,$language_codes;
+    global $requests, $output,$extractor,$item,$options,$links,$valid_key,$xss_filter,$detect_language,$language_codes,$feed;
     $item = $requests[(int)$id]['item'];
     $newitem = $output->createNewItem();
     $newitem->setTitle(htmlspecialchars_decode( $item->get_title()/*$requests[(int)$id]['title']*/));
@@ -262,10 +267,13 @@ function my_callback(&$request, $id) {
     debug(">>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>\n",$output);
     //var_dump($response['headers']);
 }
+debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (request)>>>>>>>>>>>\n",$requests);
+debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n",$options_req);
 // Send the request!
 $responses = Requests::request_multiple($requests, $options_req);
 
-
+debug(">>>>>>>>>>>>>>>> AFTE CALLBACK (responses)>>>>>>>>>>>\n",$responses);
+//debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n",$options_req);
 // Note: the response from the above call will be an associative array matching
 // $requests with the response data, however we've already handled it in
 // my_callback() anyway!

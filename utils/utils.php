@@ -1,4 +1,9 @@
 <?php
+////////////////////////////////
+// Load config file
+////////////////////////////////
+//$dir = dirname(dirname(__FILE__));
+//require_once($dir.'/config/config.php');
 
 //*********************** Functions ************************************//
 function startsWith($haystack, $needle) 
@@ -155,6 +160,10 @@ function processFeed($filename,$type = null,$fields = null)
  *@params $obj - object to be printed could be anyting (class,json,array ...)
  */
 function debug($msg,$obj = null,$delete = false) {
+    $dir = dirname(dirname(__FILE__));
+    include $dir.'/config/config.php';
+    if ($options->debug == false)
+        return;
     $logFile = dirname(dirname(__FILE__)).'/tempfiles/log_app.log';
 	if ($delete === true)
     {

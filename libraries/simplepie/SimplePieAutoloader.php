@@ -69,12 +69,14 @@ class SimplePie_Autoloader
 	 */
 	public function autoload($class)
 	{
+        //echo '>>>>>> SimplePie AutoLoad <<<<'.$class.' <br>';
 		// see if this request should be handled by this autoloader
 		if (strpos($class, 'SimplePie') !== 0) {
 			return;
 		}
 
 		$filename = $this->path . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
+       // echo '>>>>>> SimplePie AutoLoad <<<<'.$filename.' <br>';
 		include $filename;
 	}
 }

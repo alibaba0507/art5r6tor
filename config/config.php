@@ -15,7 +15,7 @@ $options->protocol=$_SERVER['PROTOCOL'] = isset($_SERVER['HTTPS']) && !empty($_S
 $options->host = $options->protocol .'://'.$_SERVER['HTTP_HOST'];
 $options->base_html_dir = '';//'prod/articlecreator';
 $options->baseurl =((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['PHP_SELF']));
-$options->base_include_dir = $_SERVER['DOCUMENT_ROOT'].'';//'/prod/articlecreator';
+$options->base_include_dir = $_SERVER['DOCUMENT_ROOT'].'/';//'/prod/articlecreator';
 // Enable service
 // ----------------------
 // Set this to false if you want to disable the service.

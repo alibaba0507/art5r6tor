@@ -12,7 +12,7 @@
 // echo $fn;
 $dir = dirname(dirname(__FILE__));
 require_once($dir.'/config/config.php');
-$base_url = $options->host.'/'.$options->base_html_dir;
+$base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');//'/'.$options->base_html_dir;
 $home = $base_url; 
 $news =  $base_url.'/html/news.php';
 $contactus = $base_url.'/html/contactUs.php';

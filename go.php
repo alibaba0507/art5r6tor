@@ -3,7 +3,7 @@
 $dir = (dirname(__FILE__));
 require_once($dir.'/config/config.php');
 include $dir.'/utils/utils.php';
-$base_url = $options->host.'/'.$options->base_html_dir;
+$base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');//'/'.$options->base_html_dir;
 $home = $base_url; 
 $home_inc =$options->base_include_dir;
 $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);

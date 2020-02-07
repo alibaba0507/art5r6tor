@@ -2,7 +2,7 @@
 ////////////////////////////////
 // Load config file
 ////////////////////////////////
-/require dirname(__FILE__).'/config/config.php';
+require dirname(__FILE__).'/config/config.php';
 
 ////////////////////////////////
 // Autoload libraries and also

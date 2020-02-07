@@ -9,7 +9,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
 
-  require_once ('utils.php');
+ // require_once ('utils.php');
   include 'letter_index.php';
   $myIndxFile = "th_en_US_new.idx";
   $lines = file($myIndxFile);//file in to an array

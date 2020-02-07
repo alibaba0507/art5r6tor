@@ -1,38 +1,120 @@
-APC is disabled or not available on server 
->>>>>>>>>>>>>>>>>>>>>>> URL>>>>>>>>>>>>[https://news.yahoo.com/rss/?p=forex%20patterns]>>>
- 
-Supplied URL: https://news.yahoo.com/rss/?p=forex%20patterns 
-** Loading class HumbleHttpAgent (humble-http-agent/HumbleHttpAgent.php) 
-** Loading class CookieJar (humble-http-agent/CookieJar.php) 
-** Loading class ContentExtractor (content-extractor/ContentExtractor.php) 
-** Loading class SiteConfig (content-extractor/SiteConfig.php) 
--------- 
-Attempting to process URL as feed 
-** Loading class SimplePie_HumbleHttpAgent (humble-http-agent/SimplePie_HumbleHttpAgent.php) 
-** Loading class FeedWriter (feedwriter/FeedWriter.php) 
--------- 
-Fetching feed items 
--------- 
-Processing feed item 1 
-Item URL: https://news.yahoo.com/trump-gallup-poll-approval-49-all-time-high-174002781.html 
-** Loading class FeedItem (feedwriter/FeedItem.php) 
-Character encoding: utf-8 
-Looking for site config files to see if single page link exists 
--------- 
-Attempting to extract content 
-** Loading class Readability (readability/Readability.php) 
--------- 
-Processing feed item 2 
-Item URL: https://news.yahoo.com/plane-had-turn-around-fly-021509555.html 
-Character encoding: utf-8 
-Looking for site config files to see if single page link exists 
--------- 
-Attempting to extract content 
--------- 
-Processing feed item 3 
-Item URL: https://news.yahoo.com/susan-collins-campaign-being-helped-162756834.html 
-Character encoding: utf-8 
-Looking for site config files to see if single page link exists 
--------- 
-Attempting to extract content 
-Done! 
+>>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>
+'O:10:"FeedWriter":9:{s:16:"' . "\0" . 'FeedWriter' . "\0" . 'self";N;s:16:"' . "\0" . 'FeedWriter' . "\0" . 'hubs";a:0:{}s:20:"' . "\0" . 'FeedWriter' . "\0" . 'channels";a:4:{s:5:"title";s:25:"forex patterns - BingNews";s:4:"link";s:65:"http://www.bing.com/news/search?q=forex%20patterns&amp;format=RSS";s:11:"description";s:25:"<div>Search results</div>";s:5:"image";a:3:{s:5:"title";s:25:"forex patterns - BingNews";s:4:"link";s:65:"http://www.bing.com/news/search?q=forex%20patterns&amp;format=RSS";s:3:"url";s:31:"http://www.bing.com/rsslogo.gif";}}s:17:"' . "\0" . 'FeedWriter' . "\0" . 'items";a:1:{i:0;O:8:"FeedItem":2:{s:18:"' . "\0" . 'FeedItem' . "\0" . 'elements";a:7:{s:5:"title";a:3:{s:4:"name";s:5:"title";s:7:"content";s:47:"AUD/USD Forex Signal: Sideways Pattern Emerging";s:10:"attributes";N;}s:4:"guid";a:3:{s:4:"name";s:4:"guid";s:7:"content";s:267:"http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=E494CBE3766F45619E5AB7B51F8A6DAA&amp;url=https%3A%2F%2Fwww.dailyforex.com%2Fforex-technical-analysis%2F2020%2F02%2Faudusd-forex-signal-february-6-2020%2F132756&amp;c=14363428590137779365&amp;mkt=en-za";s:10:"attributes";a:1:{s:11:"isPermaLink";s:4:"true";}}s:11:"description";a:3:{s:4:"name";s:11:"description";s:7:"content";s:3832:"
+<p><em><strong>AUD/USD: Long-term low near 0.6677?</strong></em></p>
+<p><u><a href="http://www.bing.com/forex-technical-analysis/2020/02/audusd-forex-signal-february-5-2020/132667">Yesterday’s signals</a></u> were not triggered, as none of the key levels identified were reached yet.</p>
+<h2><u>Today’s AUD/USD Signals</u></h2>
+<p>Risk 0.75%.</p>
+<p>Trades may only be entered between 8am New York time Thursday and 5pm Tokyo time Friday.</p>
+<h2><em>Short Trade Ideas</em></h2>
+<ul readability="3">
+<li readability="2">
+<p><strong>Short entry following bearish price action on the H1 time frame immediately upon the next touch of 0.6781, 0.6799, or 0.6817. </strong></p>
+</li>
+<li readability="-1">
+<p>Put the stop loss 1 pip above the local swing high.</p>
+</li>
+<li readability="-1">
+<p>Adjust the stop loss to break even once the trade is 20 pips in profit.</p>
+</li>
+<li readability="0">
+<p>Remove 50% of the position as profit when the trade is 20 pips in profit and leave the remainder of the position to ride.</p>
+</li>
+</ul>
+<h2><em>Long Trade Ideas</em></h2>
+<ul readability="2">
+<li readability="0">
+<p><strong>Long entry following bullish price action on the H1 time frame immediately upon the next touch of 0.6725 or 0.6706. </strong></p>
+</li>
+<li readability="-1">
+<p>Put the stop loss 1 pip below the local swing low.</p>
+</li>
+<li readability="-1">
+<p>Adjust the stop loss to break even once the trade is 20 pips in profit.</p>
+</li>
+<li readability="0">
+<p>Remove 50% of the position as profit when the trade is 20 pips in profit and leave the remainder of the position to ride.</p>
+</li>
+</ul>
+<p>The best method to identify a classic “price action reversal” is for an hourly candle to close, such as a pin bar, a doji, an outside or even just an engulfing candle with a higher close. You can exploit these levels or zones by watching the <u><a href="http://www.fxacademy.com/learn/trading-with-price-action">price action</a></u> that occurs at the given levels.</p>
+<div class="advbox advboxstyle" readability="5.46"><strong>Advertisement</strong>
+<div class="btnwrapper" readability="6.2674418604651">
+<p>Great trade opportunities are waiting - don\'t wait to profit from this pair!</p>
+<a class="btn-base btn-cta btn-2" href="http://www.bing.com/dr/trdnowbtn/fxtm"><span>TRADE NOW</span> </a></div>
+</div>
+
+<h2><u>AUD/USD Analysis</u></h2>
+<p>I wrote yesterday that I thought the chances were increasing that we have seen a major long-term low, so long-term long trades could still be interesting here. However, I also noted that we had major data releases scheduled for both currencies later, so direction was hard to predict. I thought we may now see some sideways action for a while.</p>
+<p>This was a good call as the price topped rising and has declined in recent hours, but none of the key levels have been hit, so really we are starting to see more of a sideways technical pattern emerging, with bulls and bears now looking more evenly balanced.</p>
+<p><strong>The really interesting technical item here is the long-term multi-year support which has now produced a triple bottom. We may be seeing a long-term low meaning this pair could be an interesting long-term buy, so watch very carefully how the price reacts now at support levels: strong bounces at support could be great buying opportunities.</strong><a href="http://www.bing.com/files/audusd_06022020.jpg" target="_blank"><img alt="AUDUSD" class="LazyLoading img-responsive center" src="http://www.bing.com/images/placeholder.svg" data-src="/files/audusd_06022020.jpg" title="AUDUSD"/></a>Concerning the AUD, the Governor of the RBA will be testifying before Parliament at 10:30pm London time, followed by the RBA’s Monetary Policy Statement release at 12:30am. There is nothing of high importance due today regarding the USD.</p>
+
+";s:10:"attributes";N;}s:7:"pubDate";a:3:{s:4:"name";s:7:"pubDate";s:7:"content";s:31:"Thu, 06 Feb 2020 03:58:00 +0100";s:10:"attributes";N;}s:11:"dc:language";a:3:{s:4:"name";s:11:"dc:language";s:7:"content";s:5:"en-GB";s:10:"attributes";N;}s:9:"dc:format";a:3:{s:4:"name";s:9:"dc:format";s:7:"content";s:9:"text/html";s:10:"attributes";N;}s:13:"dc:identifier";a:3:{s:4:"name";s:13:"dc:identifier";s:7:"content";s:245:"http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=E494CBE3766F45619E5AB7B51F8A6DAA&url=https:%2F%2Fwww.dailyforex.com%2Fforex-technical-analysis%2F2020%2F02%2Faudusd-forex-signal-february-6-2020%2F132756&c=14363428590137779365&mkt=en-za";s:10:"attributes";N;}}s:17:"' . "\0" . 'FeedItem' . "\0" . 'version";i:5;}}s:16:"' . "\0" . 'FeedWriter' . "\0" . 'data";a:0:{}s:25:"' . "\0" . 'FeedWriter' . "\0" . 'CDATAEncoding";a:5:{i:0;s:11:"description";i:1;s:15:"content:encoded";i:2;s:7:"content";i:3;s:8:"subtitle";i:4;s:7:"summary";}s:15:"' . "\0" . 'FeedWriter' . "\0" . 'xsl";s:12:"css/feed.xsl";s:16:"' . "\0" . 'FeedWriter' . "\0" . 'json";N;s:19:"' . "\0" . 'FeedWriter' . "\0" . 'version";i:5;}' 
+###########################  >>>>> 's:6150:"<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="css/feed.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title>forex patterns - BingNews</title>
+<link>http://www.bing.com/news/search?q=forex%20patterns&amp;amp;format=RSS</link>
+<description>&lt;div&gt;Search results&lt;/div&gt;</description>
+<image><title>forex patterns - BingNews</title>
+<link>http://www.bing.com/news/search?q=forex%20patterns&amp;amp;format=RSS</link>
+<url>http://www.bing.com/rsslogo.gif</url>
+</image>
+<item>
+<title>AUD/USD Forex Signal: Sideways Pattern Emerging</title>
+<guid isPermaLink="true" >http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;amp;aid=&amp;amp;tid=E494CBE3766F45619E5AB7B51F8A6DAA&amp;amp;url=https%3A%2F%2Fwww.dailyforex.com%2Fforex-technical-analysis%2F2020%2F02%2Faudusd-forex-signal-february-6-2020%2F132756&amp;amp;c=14363428590137779365&amp;amp;mkt=en-za</guid>
+<description>
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;AUD/USD: Long-term low near 0.6677?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;&lt;a href=&quot;http://www.bing.com/forex-technical-analysis/2020/02/audusd-forex-signal-february-5-2020/132667&quot;&gt;Yesterday’s signals&lt;/a&gt;&lt;/u&gt; were not triggered, as none of the key levels identified were reached yet.&lt;/p&gt;
+&lt;h2&gt;&lt;u&gt;Today’s AUD/USD Signals&lt;/u&gt;&lt;/h2&gt;
+&lt;p&gt;Risk 0.75%.&lt;/p&gt;
+&lt;p&gt;Trades may only be entered between 8am New York time Thursday and 5pm Tokyo time Friday.&lt;/p&gt;
+&lt;h2&gt;&lt;em&gt;Short Trade Ideas&lt;/em&gt;&lt;/h2&gt;
+&lt;ul readability=&quot;3&quot;&gt;
+&lt;li readability=&quot;2&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Short entry following bearish price action on the H1 time frame immediately upon the next touch of 0.6781, 0.6799, or 0.6817. &lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li readability=&quot;-1&quot;&gt;
+&lt;p&gt;Put the stop loss 1 pip above the local swing high.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li readability=&quot;-1&quot;&gt;
+&lt;p&gt;Adjust the stop loss to break even once the trade is 20 pips in profit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li readability=&quot;0&quot;&gt;
+&lt;p&gt;Remove 50% of the position as profit when the trade is 20 pips in profit and leave the remainder of the position to ride.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;em&gt;Long Trade Ideas&lt;/em&gt;&lt;/h2&gt;
+&lt;ul readability=&quot;2&quot;&gt;
+&lt;li readability=&quot;0&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Long entry following bullish price action on the H1 time frame immediately upon the next touch of 0.6725 or 0.6706. &lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li readability=&quot;-1&quot;&gt;
+&lt;p&gt;Put the stop loss 1 pip below the local swing low.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li readability=&quot;-1&quot;&gt;
+&lt;p&gt;Adjust the stop loss to break even once the trade is 20 pips in profit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li readability=&quot;0&quot;&gt;
+&lt;p&gt;Remove 50% of the position as profit when the trade is 20 pips in profit and leave the remainder of the position to ride.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The best method to identify a classic “price action reversal” is for an hourly candle to close, such as a pin bar, a doji, an outside or even just an engulfing candle with a higher close. You can exploit these levels or zones by watching the &lt;u&gt;&lt;a href=&quot;http://www.fxacademy.com/learn/trading-with-price-action&quot;&gt;price action&lt;/a&gt;&lt;/u&gt; that occurs at the given levels.&lt;/p&gt;
+&lt;div class=&quot;advbox advboxstyle&quot; readability=&quot;5.46&quot;&gt;&lt;strong&gt;Advertisement&lt;/strong&gt;
+&lt;div class=&quot;btnwrapper&quot; readability=&quot;6.2674418604651&quot;&gt;
+&lt;p&gt;Great trade opportunities are waiting - don\'t wait to profit from this pair!&lt;/p&gt;
+&lt;a class=&quot;btn-base btn-cta btn-2&quot; href=&quot;http://www.bing.com/dr/trdnowbtn/fxtm&quot;&gt;&lt;span&gt;TRADE NOW&lt;/span&gt; &lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;&lt;u&gt;AUD/USD Analysis&lt;/u&gt;&lt;/h2&gt;
+&lt;p&gt;I wrote yesterday that I thought the chances were increasing that we have seen a major long-term low, so long-term long trades could still be interesting here. However, I also noted that we had major data releases scheduled for both currencies later, so direction was hard to predict. I thought we may now see some sideways action for a while.&lt;/p&gt;
+&lt;p&gt;This was a good call as the price topped rising and has declined in recent hours, but none of the key levels have been hit, so really we are starting to see more of a sideways technical pattern emerging, with bulls and bears now looking more evenly balanced.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The really interesting technical item here is the long-term multi-year support which has now produced a triple bottom. We may be seeing a long-term low meaning this pair could be an interesting long-term buy, so watch very carefully how the price reacts now at support levels: strong bounces at support could be great buying opportunities.&lt;/strong&gt;&lt;a href=&quot;http://www.bing.com/files/audusd_06022020.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;AUDUSD&quot; class=&quot;LazyLoading img-responsive center&quot; src=&quot;http://www.bing.com/images/placeholder.svg&quot; data-src=&quot;/files/audusd_06022020.jpg&quot; title=&quot;AUDUSD&quot;/&gt;&lt;/a&gt;Concerning the AUD, the Governor of the RBA will be testifying before Parliament at 10:30pm London time, followed by the RBA’s Monetary Policy Statement release at 12:30am. There is nothing of high importance due today regarding the USD.&lt;/p&gt;
+
+</description>
+<pubDate>Thu, 06 Feb 2020 03:58:00 +0100</pubDate>
+<dc:language>en-GB</dc:language>
+<dc:format>text/html</dc:format>
+<dc:identifier>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=E494CBE3766F45619E5AB7B51F8A6DAA&amp;url=https:%2F%2Fwww.dailyforex.com%2Fforex-technical-analysis%2F2020%2F02%2Faudusd-forex-signal-february-6-2020%2F132756&amp;c=14363428590137779365&amp;mkt=en-za</dc:identifier>
+</item>
+</channel></rss>
+";' 

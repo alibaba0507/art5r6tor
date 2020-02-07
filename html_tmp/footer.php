@@ -1,4 +1,0 @@
-<center>
-<a href="http://articlecreator.theprofitwebmaster.org/">Free Unique Article Creator</a> Powered by Full RSS <!--Powered by. <a href="http://fullcontentrss.com" target="_blank">Full RSS</a --> | <a href="mailto:info@articlecreator.theprofitwebmaster.org" target="_top">Contact Us</a>
-<br/>
-<span style="display:inline-block;width:160px;height:30px;text-align:center;border:#000 1px dotted;font-family:Arial,Helvetica,sans-serif;font-size:11px;background-color:#FFFFFF;"><strong style="display:block;padding:0px;margin:0px;">Submit Express</strong><a href="http://www.submitexpress.com/localseo.html" title="Local SEO" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;">Local SEO</a> & <a href="http://www.submitexpress.com/cpc.html" title="PPC Advertising" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;">PPC Advertising</a></span></center>

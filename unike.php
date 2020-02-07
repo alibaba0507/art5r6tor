@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
-require_once ('utils.php');
+//require_once ('utils.php');
 // use this for debuging only 
 //ini_set('display_errors', 'On');
 //error_reporting(E_ALL);

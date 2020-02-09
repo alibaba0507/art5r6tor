@@ -10,21 +10,44 @@ require dirname(__FILE__).'/config/config.php';
 ////////////////////////////////
 require_once(dirname(__FILE__).'/utils/autoload.php'); // for debug call  debug($msg,$obj)
 require_once(dirname(__FILE__).'/utils/utils.php'); // for debug call  debug($msg,$obj)
-
+/////////////////////////////////////
+// Should we do XSS filtering?
+/////////////////////////////////////
+if ($options->xss_filter === 'user') {
+	//$xss_filter = isset($_GET['xss']);
+    $xss_filter = isset($fields['xss']);
+} else {
+	$xss_filter = $options->xss_filter;
+}
+//if (!$xss_filter && isset($_GET['xss'])) {
+if (!$xss_filter && isset($fields['xss'])) {
+	die('XSS filtering is disabled in config');
+}
 ///////////////////////////////////////////////////////
 /// Debug will work only if 
 //  $options->debug = true; in config.php is set 
 //////////////////////////////////////////////////////
 debug("",null,true);
+///////////////////////////////////////////////
+// Link handling
+///////////////////////////////////////////////
+//if (isset($_GET['links']) && in_array($_GET['links'], array('preserve', 'footnotes', 'remove'))) {
+if (isset($fields['links']) && in_array($fields['links'], array('preserve', 'footnotes', 'remove'))) {
+	$links = $fields['links'];
+} else {
+	$links = 'preserve';
+}
 ///////////////////////////////////
 /// Get PASS PARAMETERS
 //////////////////////////////////
 $txt = urldecode($fields['spin']); //$_POST['spin']);
-debug(">>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>\n",$txt);
+debug(">>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>\n");
 $txt = closeHTMLtags($txt);
-$txt = removeHTMLTag($txt,'script');
-debug(">>>>>>>>>>>> CLEAN SCRIPT TXT >>>>>>>>>>>>>>\n",$txt);
+//$txt = removeHTMLTag($txt,'script');
+debug(">>>>>>>>>>>> CLEAN SCRIPT TXT >>>>>>>>>>>>>>\n");
 //debug(">>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>\n",$txt);
+
+
 ///////////////////////////////////////////////////
 //// Disable wornings for DOMDocument class
 /////////////////////////////////////////////////
@@ -45,6 +68,64 @@ SiteConfig::$debug = $debug_mode;
 SiteConfig::use_apc($options->apc);
 $extractor->fingerprints = $options->fingerprints;
 $extractor->allowedParsers = $options->allowed_parsers;
+$effective_url = null;
+$extract_result = $extractor->process($txt, $effective_url);
+$readability = $extractor->readability;
+$content_block = ($extract_result) ? $extractor->getContent() : null;			
+$title = ($extract_result) ? $extractor->getTitle() : '';
+debug(">>>>>>>>>>>> Extractor title ".$title .">>>>>>>>>>>>>>\n");   
+  
+if ($extract_result) {
+    $readability->clean($content_block, 'select');
+    if ($effective_url != null && $options->rewrite_relative_urls) makeAbsolute($effective_url, $content_block);
+    // footnotes
+    if (($links == 'footnotes') && (strpos($effective_url, 'wikipedia.org') === false)) {
+        $readability->addFootnotes($content_block);
+    }
+    // remove nesting: <div><div><div><p>test</p></div></div></div> = <p>test</p>
+    while ($content_block->childNodes->length == 1 && $content_block->firstChild->nodeType === XML_ELEMENT_NODE) {
+        // only follow these tag names
+        if (!in_array(strtolower($content_block->tagName), array('div', 'article', 'section', 'header', 'footer'))) break;
+        //$html = $content_block->firstChild->innerHTML; // FTR 2.9.5
+        $content_block = $content_block->firstChild;
+    }
+    // convert content block to HTML string
+    // Need to preserve things like body: //img[@id='feature']
+    if (in_array(strtolower($content_block->tagName), array('div', 'article', 'section', 'header', 'footer'))) {
+        $html_parse = $content_block->innerHTML;
+    } else {
+        $html_parse = $content_block->ownerDocument->saveXML($content_block); // essentially outerHTML
+    }
+    unset($content_block);
+    // post-processing cleanup
+    $html_parse = preg_replace('!<p>[\s\h\v]*</p>!u', '', $html_parse);
+    if ($links == 'remove') {
+        $html_parse = preg_replace('!</?a[^>]*>!', '', $html_parse);
+    }
+    // get text sample for language detection
+    $text_sample = strip_tags(substr($html_parse, 0, 500));
+    $html_parse = make_substitutions($options->message_to_prepend).$html_parse;
+    $html_parse .= make_substitutions($options->message_to_append);
+    $txt = $html_parse;
+    unset($html_parse);
+    debug(">>>>>>>>>>>> Extractor Content ---- >>>>>>>>>>>>>>\n",make_substitutions($options->message_to_prepend)); 
+     debug("  ---------------------------------------------------------------------  --------------- \n");
+     debug(">>>>>>>>>>>> Extractor Content ---- >>>>>>>>>>>>>>\n",make_substitutions($options->message_to_append)); 
+      debug("  ---------------------------------------------------------------------  --------------- \n");
+      // filter xss?
+		if ($xss_filter) {
+			debug('Filtering HTML to remove XSS');
+			$html = htmLawed::hl($html, array('safe'=>1, 'deny_attribute'=>'style', 'comment'=>1, 'cdata'=>1));
+		}
+    //debug(">>>>>>>>>>>> Extractor Content >>>>>>>>>>>>>>\n",$txt); 
+    $txt = urldecode($txt);
+    $txt = removeHTMLTag($txt,'script');
+     debug("  ---------------------------------------------------------------------  --------------- \n");
+}else
+{
+    $txt = removeHTMLTag($txt,'script');
+}
+
 
 ///////////////////////////////////////////
 /// Create Dummy Feed 

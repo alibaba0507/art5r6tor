@@ -291,11 +291,11 @@ Requests::register_autoloader();
 $options_req = array(
 	'complete' => 'my_callback',
 );
-
+$exclude_on_fail = $options->exclude_items_on_fail;
 // Setup a callback
 function my_callback(&$request, $id) {
 	//var_dump($id, $request);
-    global $requests, $output,$extractor,$item,$options,$links,$valid_key,$xss_filter,$detect_language,$language_codes,$feed;
+    global $requests, $output,$extractor,$item,$options,$links,$valid_key,$xss_filter,$detect_language,$language_codes,$feed,$exclude_on_fail;
     $item = $requests[(int)$id]['item'];
     $newitem = $output->createNewItem();
     $newitem->setTitle(htmlspecialchars_decode( $item->get_title()/*$requests[(int)$id]['title']*/));

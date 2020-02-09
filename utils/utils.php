@@ -89,6 +89,7 @@ function removeHTMLTag($html_txt,$tagName)
 
     // for each tag, remove it from the DOM
     for ($i = 0; $i < $length; $i++) {
+      debug(">>>>>>>>>>> removeHTMLTag >>>>>>\n",$script_tags->item($i));
       $script_tags->item($i)->parentNode->removeChild($script_tags->item($i));
     }
 

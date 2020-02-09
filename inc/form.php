@@ -9,9 +9,9 @@ $home_inc =$options->base_include_dir;
 	<fieldset>
 			<div class="control-group">
 			<label class="control-label" for="keyword">Enter your keyword</label>
-	  <div class="controls" data-tip='Use plus sign "+" if your keyword more than one word. 
-	                Example: forex, diabetes, online+trading, real+estate.'>
-	  <input type="text"  id="keyword" name="keyword" style="width: 250px;" title="KEYWORD" data-content='Enter your keyword here. Use plus sign "+" if your keyword more than one word. Example: forex, diabetes, online+trading, real+estate.' required />
+	  <div class="controls" data-tip='Enter search separate words with space. 
+	                Example: forex, diabetes, online trading, real estate.'>
+	  <input type="text"  id="keyword" name="keyword" style="width: 250px;" title="KEYWORD" data-content='Enter your keyword here. Use plus sign spave if your keyword more than one word. Example: forex, diabetes, online trading, real estate.' required />
 	  <div style=font-size:80%;>
 		<font color="grey">(TIP)Search specific site for keywords Example:web+profit+site:about.com</font></div>
 	  </div>
@@ -20,22 +20,22 @@ $home_inc =$options->base_include_dir;
 		<fieldset>
 		<div class="control-group">
 	<label class="control-label" for="feedsource">Source</label>
-	<div class="controls">
+	<div class="controls" data-tip='Select One of 6 Source'>
 	<select name="feedsource" id="feedsource" class="input-medium" title="Content Source" data-content="By default, links within the content are preserved. Change this field if you'd like links removed.">
-		<option value="bing">Bing News Search</option>
-		<option value="google">Google News Search</option>
-		<option value="yahoo">Yahoo News Search</option>
+		<option value="bing" title='Search Bing Engine for Selected KeyWord'>Bing News Search</option>
+		<option value="google" title='Search Google Engine for Selected KeyWord'>Google News Search</option>
+		<option value="yahoo" title='Search Yahoo Engine for Selected KeyWord'>Yahoo News Search</option>
 		
-		<option value="yahooanswers">Yahoo Answers Search</option>
-        <option value="user_urls">Custom URLs</option>
-        <option value="only_spin">Only Spin</option>
+		<option value="yahooanswers" title='Search yahooanswers Engine for Selected KeyWord'>Yahoo Answers Search</option>
+        <option value="user_urls" title='Enter URL Into Text Area, one per line.(Tip)Use google to search and after that just copy Url from google search result and Paste into Text Area'>Custom URLs</option>
+        <option value="only_spin" title="Copy and Paste Text or HTML Text into Text Area and Will Extract the Article Content.(Tip)Use Google Search and Open desired url on separate tab , right click for the browser menu and select 'View Page as Source', copy everything Ctr+A and Paste Into Text Area , will extract the Article Only">Only Spin</option>
 		
 	</select>
 	</div>
 	</div>
 	</fieldset>
     <div id="showurls" style="display:none">
-     <div class="control-group">
+     <div class="control-group" >
          <label class="control-label" for="accesskey">Enter Custom URLs</label>
          <div class="controls" >
             <textarea name="custom_urls" id="custom_urls" style=" width: 388px; height:180px" ></textarea>
@@ -44,7 +44,8 @@ $home_inc =$options->base_include_dir;
             <div style=font-size:80%;>
             <font color="grey">Enter Articles urls <code>One per line</code> to be extracted , spin modified <br>
                         If this option slelected <code>Number of Articles</code> will be ignored
-                        <br> Use this option if search engines blocking this ip</font></div>
+                        <br> Use this option if search engines blocking this ip.<br>
+                        Search Google and right click on one of google search result url, select <code>'Copy Link Address'</code>, Paste the result here"</font></div>
           </div>
      </div>
     </div>
@@ -56,7 +57,7 @@ $home_inc =$options->base_include_dir;
          
              <br />
             <div style=font-size:80%;>
-            <font color="grey">Enter or Copy and Paste any text including HTML.</font></div>
+            <font color="grey">Copy and Paste Text or HTML Text into Text Area and Will Extract the <code>Article Content</code>.(Tip)Use Google Search and Open desired url on separate tab , right click for the browser menu and select 'View Page as Source', copy everything Ctr+A and Paste Into Text Area , <code>will extract the Article Only</code></font></div>
           </div>
      </div>
     </div>

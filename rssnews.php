@@ -303,12 +303,22 @@ function my_callback(&$request, $id) {
 	// e.g. prospectmagazine.co.uk returns 403
 	//if ($permalink && ($response = $http->get($permalink, true)) && $response['status_code'] < 300) {
     // $headers = $request->headers;
-	$response['headers'] = 'Content-Type:'.$request->headers['Content-Type'].'\n';
-    $response['body'] = $request->body;
-    $response['effective_url'] = $requests[$id]['url'];
-    $response['referer'] = $request->headers['Referer'];
-    $isDummyFeed = false;
-    include dirname(__FILE__).'/utils/processHTML.php';
+    if (isset($request) && isset($request->body))
+    {
+        if (isset($request->headers) && isset($request->headers['Content-Type']))
+        {
+            $response['headers'] = 'Content-Type:'.$request->headers['Content-Type'].'\n';
+        }
+        /*else
+        {
+             $response['headers'] = ""
+        }*/
+        $response['body'] = $request->body;
+        $response['effective_url'] = $requests[$id]['url'];
+        $response['referer'] = $request->headers['Referer'];
+        $isDummyFeed = false;
+        include dirname(__FILE__).'/utils/processHTML.php';
+    }
     //$requests[(int)$id];
     //debug("",null,true);
     debug(">>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>\n");

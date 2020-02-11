@@ -7,6 +7,21 @@ $base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$optio
 $home = $base_url; 
 $home_inc =$options->base_include_dir;
 $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
+if (isset($_POST['g-recaptcha-response'])) {
+    $captcha = $_POST['g-recaptcha-response'];
+	 $secret   = '6Lc50tcUAAAAAPYfAThZTskwcIZ0V_aHqoCqEvPN';
+    $response = file_get_contents(
+        "https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
+    );
+    // use json_decode to extract json response
+    $response = json_decode($response);
+
+    if ($response->success === false) {
+        //Do something with error
+		header( "Location: /" );
+		exit ;
+    }
+}
 if ($_POST['feedsource'] == '') {
     echo "<center><h1>You don't have permission to access this page!</h1></center><br><br><br>";
     include ($home_inc."/inc/footer.php");

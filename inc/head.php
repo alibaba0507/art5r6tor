@@ -80,9 +80,13 @@
 
 <script src="https://www.google.com/recaptcha/api.js?render=6Lc50tcUAAAAACvpYNpL5bbUve6DjaX8S2LCMG1E"></script>
 <script>
-grecaptcha.ready(function() {
-    grecaptcha.execute('6Lc50tcUAAAAACvpYNpL5bbUve6DjaX8S2LCMG1E', {action: 'homepage'}).then(function(token) {
-       ...
+  grecaptcha.ready(function() {
+    // do request for recaptcha token
+    // response is promise with passed token
+        grecaptcha.execute('6Lc50tcUAAAAACvpYNpL5bbUve6DjaX8S2LCMG1E', {action:'validate_captcha'})
+                  .then(function(token) {
+            // add token value to form
+            document.getElementById('g-recaptcha-response').value = token;
+        });
     });
-});
 </script>

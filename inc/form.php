@@ -6,6 +6,7 @@ $home_inc =$options->base_include_dir;
 ?>
 
  <form method="post" action="<?=$home?>/go.php" id="form" class="form-horizontal">
+   <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"
 	<fieldset>
 			<div class="control-group">
 			<label class="control-label" for="keyword">Enter your keyword</label>
@@ -180,4 +181,5 @@ $home_inc =$options->base_include_dir;
 	    
     </div>
 	</form>
+	
 	

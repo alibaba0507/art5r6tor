@@ -19,7 +19,7 @@ $home_inc =$options->base_include_dir;
   <div class="table-responsive">
 	  <table class="table" border="1" style =“clear:both”>
 		  <tr><td >
-		<img class="static" src="../images/img2.png" height="75%" width="45%"><img class="active" src="../images/captured_1_mod_v2.gif" >
+		<img class="static" src="../images/img2.png" height="60%" width="35%"><img class="active" src="../images/captured_1_mod_v2.gif" >
 		<br><br>
 		<p><strong> Using Search Engines to extract Articles </strong></p>
 		<!-- partial -->
@@ -27,7 +27,7 @@ $home_inc =$options->base_include_dir;
 		</tr><tr>
 		<td >
 
-		<img class="static" src="../images/img1.png"  height="75%" width="45%"><img class="active" src="../images/captured_5_v2.gif" >
+		<img class="static" src="../images/img1.png"  height="60%" width="37%"><img class="active" src="../images/captured_5_v2.gif" >
 		<!-- partial -->
 		<p><strong> Custom URL Article extraction. One Can do browser search (Google , Bing ...e.t.c.) <br>
      	 After that copy link from search engine and Paste into Custom URL Box, One per line <br>
@@ -36,7 +36,7 @@ $home_inc =$options->base_include_dir;
 		<tr>
 		<td>
 		<br><br>
-		<img class="static" src="../images/img3.png" height="50%" width="50%" ><img class="active" src="../images/captured_6_v2_source.gif" >
+		<img class="static" src="../images/img3.png" height="40%" width="43.8%" ><img class="active" src="../images/captured_6_v2_source.gif" >
 		<p><strong> Source Code Article extraction. One Can do browser search (Google , Bing ...e.t.c.) or  <br>
      	 any web site use web broeser right click menu \'View Page Source\' , copy the source and paste into Text Bos <br>
 		 also you can insert any text Html or not <br>

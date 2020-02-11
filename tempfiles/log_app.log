@@ -1,27 +1,208 @@
->>>>>>>>>>>>>>>>>>>>>>> URL>>>>>>>>>>>>[http://www.bing.com/news/search?q=forex%20candlestick%20patterns&format=RSS]>>>
+>>>>>>>>>>>> LOAD TXT >>>>>>>>>>>>>>
+ 
+>>>>>>>>>>>> CLEAN SCRIPT TXT >>>>>>>>>>>>>>
  
 ** Loading class ContentExtractor (content-extractor/ContentExtractor.php) 
 ** Loading class SiteConfig (content-extractor/SiteConfig.php) 
--------- 
-Attempting to process URL as feed 
------------- SimplePie errors ----------------
+** Loading class Readability (readability/Readability.php) 
+>>>>>>>>>>>> Extractor title 12 SEO Tools to Optimize Your Website for Success - DreamHost>>>>>>>>>>>>>>
  
------------- SimplePie errors (END) --------------------------------------
+>>>>>>>>>>>> Extractor Content ---- >>>>>>>>>>>>>>
+ 
+  ---------------------------------------------------------------------  --------------- 
+ 
+>>>>>>>>>>>> Extractor Content ---- >>>>>>>>>>>>>>
+ 
+  ---------------------------------------------------------------------  --------------- 
+ 
+  ---------------------------------------------------------------------  --------------- 
  
 ** Loading class FeedWriter (feedwriter/FeedWriter.php) 
-** Loading class Requests (http-request2/Requests.php) 
->>>>>>>>>>>>>>>> BEFORE CALLBACK (request)>>>>>>>>>>>
- 
->>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>
- 
 ** Loading class FeedItem (feedwriter/FeedItem.php) 
 Could not find Content-Type header in HTTP response 
-Character encoding: utf-8 
-Looking for site config files to see if single page link exists 
--------- 
-Attempting to extract content 
-** Loading class Readability (readability/Readability.php) 
-Attempting to extract title ---------------- 's:46:"Japanese Candlestick Patterns - Webinar Sep 10";' 
->>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>
+No character encoding found, so treating as UTF-8 
+>>>>>>>> OUT >>>>>>>>
+'s:42311:"<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title></title>
+<link>http://www.ajaxray.com/blog</link>
+<description>User Selected Spin Content</description>
+<item>
+<title>User Item Custom </title>
+<description>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/REC-html40/loose.dtd&quot;&gt;
+&lt;html&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/boost-seo-wordpress-website/&quot;&gt;&lt;span&gt;Search Engine Optimization (SEO)&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is one of the hardest parts of running a website. The way Google and other search engines rank your website changes constantly. This means you need to keep up with the latest SEO developments if you want to outpace the competition.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;The good news is that there are plenty of excellent tools you can use to tackle on-site SEO and get the data you need to improve your SEO ranking. If you know what they are and what they can do for you, you&amp;acirc;&amp;#128;&amp;#153;ll be well equipped for success.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;In this article, we&amp;acirc;&amp;#128;&amp;#153;ll introduce you to 12 of our favorite SEO tools. Each can help improve your rankings on all the popular search engines, including Google and Bing. Let&amp;acirc;&amp;#128;&amp;#153;s jump right in!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;div class=&quot;cta-block cta-block--wide cta-block--wide--single&quot; readability=&quot;5.9264705882353&quot;&gt;&lt;div class=&quot;cta-block--wide__txt&quot; readability=&quot;7.2941176470588&quot;&gt;&lt;h2&gt;Optimize Your Site with DreamPress&lt;/h2&gt;&lt;p&gt;DreamPress\' automatic updates and strong security defenses take server management off your hands so you can focus on SEO.&lt;/p&gt;&lt;/div&gt;&lt;img class=&quot;aligncenter size-full wp-image-21740&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/01/CTA-dreampress.png&quot; alt=&quot;&quot; width=&quot;200&quot; height=&quot;201&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/01/CTA-dreampress.png 200w, https://www.dreamhost.com/blog/wp-content/uploads/2019/01/CTA-dreampress-150x150.png 150w, https://www.dreamhost.com/blog/wp-content/uploads/2019/01/CTA-dreampress-100x101.png 100w&quot; sizes=&quot;(max-width: 200px) 100vw, 200px&quot;&gt;&lt;/div&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;1. Google Search Console&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23515&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-4.jpg&quot; alt=&quot;Google Search Console. &quot; width=&quot;900&quot; height=&quot;453&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-4.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-4-300x151.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-4-768x387.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-4-600x302.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-4-750x378.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-4-100x50.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.google.com/webmasters/tools/home?hl=en&quot;&gt;&lt;span&gt;Google Search Console&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is a collection of services you can use to figure out how the search engine views your website. This service provides you with a wide array of tools to use, covering many different aspects of SEO.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;For example, Google Search Console enables you to check out any crawling errors that have occurred on your website so you can correct them right away. It can also point out when your site is &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/what-is-malware/&quot;&gt;&lt;span&gt;affected by malware&lt;/span&gt;&lt;/a&gt;&lt;span&gt;, what keywords people are using to find your site, the backlinks you&amp;acirc;&amp;#128;&amp;#153;ve received, and more.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;The many features this service offers makes it a near necessity if you&amp;acirc;&amp;#128;&amp;#153;re concerned about your &lt;/span&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Search_engine_results_page&quot;&gt;&lt;span&gt;Search Engine Results Page (SERP)&lt;/span&gt;&lt;/a&gt;&lt;span&gt; rankings. There&amp;acirc;&amp;#128;&amp;#153;s a clear focus on Google results here, but don&amp;acirc;&amp;#128;&amp;#153;t worry. If you can rank well on Google, the chances are high that you&amp;acirc;&amp;#128;&amp;#153;ll also do OK in other search engines.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;As far as actually using the service goes, Google Search Console is very simple to understand. It&amp;acirc;&amp;#128;&amp;#153;s also easy to &lt;/span&gt;&lt;a href=&quot;https://support.google.com/webmasters/answer/34592?hl=en&quot;&gt;&lt;span&gt;add your website and get started&lt;/span&gt;&lt;/a&gt;&lt;span&gt;, so there are no excuses to avoid it.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Monitor how Google perceives your website.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Keep track of what keywords visitors are using to reach you.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Stay on top of any crawl, &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/how-to-write-meta-descriptions/&quot;&gt;&lt;span&gt;meta tag&lt;/span&gt;&lt;/a&gt;&lt;span&gt;, or sitemap errors.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Update your &lt;/span&gt;&lt;a href=&quot;https://help.dreamhost.com/hc/en-us/articles/216105077-How-can-I-control-bots-spiders-and-crawlers-&quot;&gt;&lt;span&gt;robots.txt file&lt;/span&gt;&lt;/a&gt;&lt;span&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Monitor your site&amp;acirc;&amp;#128;&amp;#153;s backlinks.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Get alerts if your site is infected with malware.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Price:&lt;/b&gt;&lt;span&gt; Free!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;h4 class=&quot;single-related&quot;&gt;Related: &lt;a href=&quot;https://www.dreamhost.com/blog/boost-seo-wordpress-website/&quot;&gt;13 Simple Ways to Boost SEO on Your WordPress Website&lt;/a&gt;&lt;/h4&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;2. SEMrush&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23516&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-10.jpg&quot; alt=&quot;SEMrush All-in-one Marketing Toolkit search bar. &quot; width=&quot;900&quot; height=&quot;215&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-10.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-10-300x72.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-10-768x183.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-10-600x143.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-10-750x179.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-10-100x24.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.semrush.com/&quot;&gt;&lt;span&gt;SEMrush&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is a keyword research tool that enables you to get data about how many people are looking for specific terms. On top of that, it also provides you with information on similar keywords, related ads, product listings, and a lot more.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Along with being an excellent keyword tool, SEMrush can also offer information about your competitors&amp;acirc;&amp;#128;&amp;#153; strategies. For example, it can tell you how much traffic they&amp;acirc;&amp;#128;&amp;#153;re getting, how much of that comes from paid ads, and what their backlinks are.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;If you&amp;acirc;&amp;#128;&amp;#153;re the kind of person who loves &lt;a href=&quot;https://www.dreamhost.com/blog/how-to-do-keyword-research-wordpress-blog/&quot;&gt;doing keyword research&lt;/a&gt;, you need a tool like SEMrush in your arsenal. With it, you&amp;acirc;&amp;#128;&amp;#153;ll be able to figure out exactly what keywords will give you the best results for your efforts, and check which terms your competitors are ranking for.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;This service even enables you to peek into your competitor&amp;acirc;&amp;#128;&amp;#153;s text and media ads, which can save you a lot of money when it comes to testing. Keep in mind, however, that all this data means the learning curve with this service can be a bit steep.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Research the value of specific queries.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Check out what keywords your competitors are ranking for and how much traffic they&amp;acirc;&amp;#128;&amp;#153;re getting.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Find information about other website&amp;acirc;&amp;#128;&amp;#153;s backlinks.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Look into your competitor&amp;acirc;&amp;#128;&amp;#153;s text and media ads.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: You can get up to 10 results for free per day or sign up for a premium account, &lt;/span&gt;&lt;a href=&quot;https://www.semrush.com/prices/&quot;&gt;&lt;span&gt;starting at $99.95 per month&lt;/span&gt;&lt;/a&gt;&lt;span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;3. BuzzStream&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23517&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-8.jpg&quot; alt=&quot;BuzzStream website. &quot; width=&quot;900&quot; height=&quot;307&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-8.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-8-300x102.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-8-768x262.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-8-600x205.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-8-750x256.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-8-100x34.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.buzzstream.com/&quot;&gt;&lt;span&gt;BuzzStream&lt;/span&gt;&lt;/a&gt;&lt;span&gt; offers you a collection of tools to help with domain research, email marketing, and project management. It&amp;acirc;&amp;#128;&amp;#153;s a very all-in-one type of platform, and the sheer number of options it provides can be intimidating. With that in mind, let&amp;acirc;&amp;#128;&amp;#153;s focus on how it can help you tackle your SEO needs.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;When it comes to research, BuzzStream can help you collate lists of results for the keywords you look into. Then it provides you information about each of those websites, including overall rankings, related social media accounts, domain age and authority, and more.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;In practice, you can use these features to help you do a thorough SEO audit, researching who your competitors are and the content they&amp;acirc;&amp;#128;&amp;#153;re publishing. Moreover, it can even help you create lists of their authors and what each one is up to so you can keep an even closer eye on their strategies.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Research your competitors based on any keywords you want to target.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Collect data about domain age and authority for specific websites.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Find out what your competitors&amp;acirc;&amp;#128;&amp;#153; rankings are in the SERPs.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Locate the social media accounts for your competitions&amp;acirc;&amp;#128;&amp;#153; sites.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Create lists of authors who write for competing websites and follow what they&amp;acirc;&amp;#128;&amp;#153;re doing.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: BuzzStream plans &lt;/span&gt;&lt;a href=&quot;http://www.buzzstream.com/plans-pricing&quot;&gt;&lt;span&gt;start at $24 per month&lt;/span&gt;&lt;/a&gt;&lt;span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;4. Moz Pro&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23518&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-13.jpg&quot; alt=&quot;Moz Pro homepage.&quot; width=&quot;900&quot; height=&quot;315&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-13.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-13-300x105.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-13-768x269.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-13-600x210.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-13-750x263.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-13-100x35.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://moz.com/products/pro&quot;&gt;&lt;span&gt;Moz Pro&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is a suite of tools created to help you tackle SEO using a data-driven approach. To give you a quick overview, Moz Pro is somewhat similar to SEMrush, in that it enables you to research both specific long-tail keywords and other domains. You can use this information to avoid keywords with little potential and to improve on what your competitors are doing.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;When you look into a keyword using Moz Pro, it will show you a difficulty score that illustrates how challenging it will likely be to rank for that term. You also get an overview of how many people are searching for that phrase, and you can even create lists of keywords for easy comparison. These are all features you&amp;acirc;&amp;#128;&amp;#153;d expect from a reliable keyword research tool, but Moz Pro stands out thanks to a very intuitive interface.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;As for what&amp;acirc;&amp;#128;&amp;#153;s so unique about Moz Pro, the platform offers a Chrome extension you can use to get information on any domain you visit. Moreover, it can provide suggestions about on-page optimization and alert you about crawling errors, much like Google Search Console.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Research how competitive a keyword is, as well as its search volume.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Get suggestions on related keywords.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Investigate your competitors, including which keywords they&amp;acirc;&amp;#128;&amp;#153;re targeting.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Use a Chrome extension to look into other domains without going to the Moz website.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Compare multiple keywords using custom lists.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Get on-page optimization suggestions and error alerts.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: A 30-day free trial is available for the Pro plan, while regular pricing &lt;/span&gt;&lt;a href=&quot;https://moz.com/products/pro/pricing&quot;&gt;&lt;span&gt;starts at $99 per month&lt;/span&gt;&lt;/a&gt;&lt;span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;5. Linkody&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23519&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-3.jpg&quot; alt=&quot;Linkody website. &quot; width=&quot;900&quot; height=&quot;333&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-3.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-3-300x111.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-3-768x284.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-3-600x222.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-3-750x278.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-3-100x37.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.linkody.com/&quot;&gt;&lt;span&gt;Linkody&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is all about backlinks. This tool allows you to find out who&amp;acirc;&amp;#128;&amp;#153;s linking to your website, learn what keywords they&amp;acirc;&amp;#128;&amp;#153;re using, and even &amp;acirc;&amp;#128;&amp;#156;disavow&amp;acirc;&amp;#128;&amp;#157; links you don&amp;acirc;&amp;#128;&amp;#153;t like. That last feature can be handy if you think someone is linking to your website as spam since you don&amp;acirc;&amp;#128;&amp;#153;t want search engines thinking you&amp;acirc;&amp;#128;&amp;#153;re trying to game the system.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;While the main attraction here is the backlink reports, Linkody also offers a few notable extras. For example, it provides you with the option to generate reports that you can send to clients, monitor your site&amp;acirc;&amp;#128;&amp;#153;s social shares, and connect to &lt;/span&gt;&lt;a href=&quot;https://help.dreamhost.com/hc/en-us/articles/216474217-Google-Analytics&quot;&gt;&lt;span&gt;Google Analytics&lt;/span&gt;&lt;/a&gt;&lt;span&gt;. Overall, it&amp;acirc;&amp;#128;&amp;#153;s a pretty niche tool, but quite useful if you need some help with link building. More importantly, it&amp;acirc;&amp;#128;&amp;#153;s a lot cheaper than the massive do-it-all services we&amp;acirc;&amp;#128;&amp;#153;ve talked about so far.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Analyze your website&amp;acirc;&amp;#128;&amp;#153;s backlinks.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Disavow bad links that might affect your SEO.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Generate backlink reports for your clients.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Connect to Google Analytics to gain access to more data.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Monitor your site&amp;acirc;&amp;#128;&amp;#153;s social shares.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: Linkody plans &lt;/span&gt;&lt;a href=&quot;https://www.linkody.com/en/plans&quot;&gt;&lt;span&gt;start at $14.90 per month&lt;/span&gt;&lt;/a&gt;&lt;span&gt; for up to two domains, but you can also try it free for 30 days without a credit card.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;6. Ontolo&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23520&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-7.jpg&quot; alt=&quot;Ontolo home page. &quot; width=&quot;900&quot; height=&quot;485&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-7.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-7-300x162.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-7-768x414.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-7-600x323.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-7-750x404.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-7-100x54.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://ontolo.com/&quot;&gt;&lt;span&gt;Ontolo&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is a research tool you can use to find marketing and SEO opportunities. It can help you find backlinking and guest posting opportunities, which is not something you&amp;acirc;&amp;#128;&amp;#153;d expect an automated tool to do so well.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;The idea behind Ontolo is that it helps you find ways to grow your traffic beyond keyword research. If you want your website to become more authoritative, backlinks are essential, but finding the right opportunities can be daunting.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Ontolo helps you locate those opportunities so all you have to do is pitch them (which sadly, can&amp;acirc;&amp;#128;&amp;#153;t be automated). It can pull prospects from over 80 sources so, chances are, you&amp;acirc;&amp;#128;&amp;#153;ll find excellent options regardless of what keywords you&amp;acirc;&amp;#128;&amp;#153;re trying to rank for.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Look for guest posting and backlink opportunities.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Collect data from over 80 sources to find the best prospects.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Carry out research using simple-to-understand reports.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Export your prospects to share them with others.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: Ontolo plans &lt;/span&gt;&lt;a href=&quot;https://ontolo.com/#sign-up&quot;&gt;&lt;span&gt;start at $97 per month&lt;/span&gt;&lt;/a&gt;&lt;span&gt;, and come with a 30-day money-back guarantee.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;7. HubSpot&amp;acirc;&amp;#128;&amp;#153;s Website Grader&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23521&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-9.jpg&quot; alt=&quot;HubSpot&amp;acirc;&amp;#128;&amp;#153;s Website Grader tool.&quot; width=&quot;900&quot; height=&quot;366&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-9.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-9-300x122.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-9-768x312.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-9-600x244.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-9-750x305.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-9-100x41.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://website.grader.com/&quot;&gt;&lt;span&gt;HubSpot&amp;acirc;&amp;#128;&amp;#153;s Website Grader&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is a lot more straightforward than the other tools we&amp;acirc;&amp;#128;&amp;#153;ve featured so far. To use it, all you have to do is enter a domain and wait for HubSpot to generate a report. When you get that report back, you&amp;acirc;&amp;#128;&amp;#153;ll find separate scores for your site&amp;acirc;&amp;#128;&amp;#153;s performance, &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/optimize-your-website-for-mobile/&quot;&gt;&lt;span&gt;mobile-friendliness&lt;/span&gt;&lt;/a&gt;&lt;span&gt;, SEO, and security.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;It&amp;acirc;&amp;#128;&amp;#153;s important to keep in mind that performance, mobile-friendliness, and solid security practices &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/google-declares-mobile-%C3%82%C2%ADfriendly-a-must-for-seo/&quot;&gt;&lt;span&gt;directly impact your SEO&lt;/span&gt;&lt;/a&gt;&lt;span&gt;. In a way, your entire report is one giant analysis of how your site is faring from an SEO perspective. Better yet, this tool breaks down each part of the report and provides you with tips on how to improve every element.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;HubSpot&amp;acirc;&amp;#128;&amp;#153;s Website Grader is incredibly simple to use, and it can help you improve your website quickly. Plus, it won&amp;acirc;&amp;#128;&amp;#153;t cost you a thing, so this one definitely deserves your attention.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Analyze your website&amp;acirc;&amp;#128;&amp;#153;s performance, mobile-friendliness, security, and SEO.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Receive separate scores for each aspect of your site.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Get recommendations for how to improve each score.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: Free!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;h4 class=&quot;single-related&quot;&gt;Related: &lt;a href=&quot;https://www.dreamhost.com/blog/seo-best-practices-for-domains/&quot;&gt;The Top 11 SEO Best Practices for Domains&lt;/a&gt;&lt;/h4&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;8. Google AdWords Keyword Planner&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23522&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-5.jpg&quot; alt=&quot;Google AdWords Keyword Planner. &quot; width=&quot;900&quot; height=&quot;450&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-5.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-5-300x150.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-5-768x384.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-5-600x300.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-5-750x375.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-5-100x50.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://adwords.google.com/home/tools/keyword-planner/&quot;&gt;&lt;span&gt;Google AdWords Keyword Planner&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is one of the most comprehensive keyword research tools you can use. With it, you can look up keywords and get traffic estimates about them. More importantly, it can help you figure out how competitive keywords are, based on their &lt;/span&gt;&lt;a href=&quot;https://adwords.google.com/&quot;&gt;&lt;span&gt;AdWords &lt;/span&gt;&lt;/a&gt;&lt;span&gt;price.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;To avoid overwhelming you with information, this tool lets you filter keywords out based on &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/ppc-guide/&quot;&gt;&lt;span&gt;Cost-per-Click (CPC)&lt;/span&gt;&lt;/a&gt;&lt;span&gt; or search volume. This way, you can get reports based only on the estimates you want to aim for.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Overall, the Keyword Planner offers a lot of the same functionality we&amp;acirc;&amp;#128;&amp;#153;ve seen from other research tools on this list. The difference is that this one is part of the Google ecosystem, and you can get amazingly detailed reports for free.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Find out the search volume for any keyword you want.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Determine a keyword&amp;acirc;&amp;#128;&amp;#153;s competitiveness from its CPC.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Get detailed reports for specific keywords.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: Free!&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;9. WooRank&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23523&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-11.jpg&quot; alt=&quot;WooRank website scoring tool. &quot; width=&quot;900&quot; height=&quot;293&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-11.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-11-300x98.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-11-768x250.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-11-600x195.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-11-750x244.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-11-100x33.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.woorank.com/&quot;&gt;&lt;span&gt;WooRank&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is similar to HubSpot&amp;acirc;&amp;#128;&amp;#153;s Website Grader, in that you give it a link and it provides you with a full report card. In this case, it gives you a single score for your entire website. After that, it launches into a list of everything you can do to improve its SEO and mobile-friendliness.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;The main selling point, in this case, is that WooRank also provides you with tips to improve your site&amp;acirc;&amp;#128;&amp;#153;s usability and performance. From our experience, its recommendations are solid. To top it all off, you also get an analysis of how well you&amp;acirc;&amp;#128;&amp;#153;re doing from a backlink perspective.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Overall, this is an excellent tool if you want a quick rundown of what you&amp;acirc;&amp;#128;&amp;#153;re doing right and wrong on your website, including when it comes to SEO.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Analyze your website&amp;acirc;&amp;#128;&amp;#153;s overall status, including SEO, usability, performance, and backlinks.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Receive tips on how to improve your website and tackle SEO tasks.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Analyze your domain&amp;acirc;&amp;#128;&amp;#153;s authority.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: Free, with premium options &lt;/span&gt;&lt;a href=&quot;https://www.woorank.com/en/p/pricing&quot;&gt;&lt;span&gt;starting at $49.99 per month&lt;/span&gt;&lt;/a&gt;&lt;span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;10. Varvy SEO Tool&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23524&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-6.jpg&quot; alt=&quot;Varvy SEO tool. &quot; width=&quot;900&quot; height=&quot;294&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-6.jpg 900w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-6-300x98.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-6-768x251.jpg 768w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-6-600x196.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-6-750x245.jpg 750w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-6-100x33.jpg 100w&quot; sizes=&quot;(max-width: 900px) 100vw, 900px&quot;&gt;
+&lt;p&gt;&lt;span&gt;Our next pick is another tool of the &amp;acirc;&amp;#128;&amp;#156;Enter a URL and get a report&amp;acirc;&amp;#128;&amp;#157; variety. However, this one is different from those we&amp;acirc;&amp;#128;&amp;#153;ve introduced so far. What &lt;/span&gt;&lt;a href=&quot;https://varvy.com/&quot;&gt;&lt;span&gt;Varvy SEO Tool&lt;/span&gt;&lt;/a&gt;&lt;span&gt; does is check to see if your website is following all of &lt;/span&gt;&lt;a href=&quot;https://support.google.com/webmasters/answer/7451184?hl=en&quot;&gt;&lt;span&gt;Google&amp;acirc;&amp;#128;&amp;#153;s SEO guidelines&lt;/span&gt;&lt;/a&gt;&lt;span&gt;. It can produce a full report in seconds.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;What&amp;acirc;&amp;#128;&amp;#153;s more, that report is very extensive. It checks for a lot of things, including page speed issues, mobile-friendliness, on-page SEO, and more. However, the best part is that Varvy SEO Tool really takes the time to explain why each setting is vital.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;If you&amp;acirc;&amp;#128;&amp;#153;re new to SEO (or &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/optimize-wordpress-website-speed/&quot;&gt;&lt;span&gt;website optimization&lt;/span&gt;&lt;/a&gt;&lt;span&gt; in general), you&amp;acirc;&amp;#128;&amp;#153;ll probably welcome all the information this tool has to offer. It even provides links to further reading for each setting it covers in case you want to learn more about them.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Check to see if your website follows Google&amp;acirc;&amp;#128;&amp;#153;s SEO guidelines.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Receive a quick report, including precise information on how to fix each issue.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: Free!&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;11. Screaming Frog&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23525&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-12.jpg&quot; alt=&quot;Screaming Frog SEO Spider Tool. &quot; width=&quot;630&quot; height=&quot;243&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-12.jpg 630w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-12-300x116.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-12-600x231.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-12-100x39.jpg 100w&quot; sizes=&quot;(max-width: 630px) 100vw, 630px&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.screamingfrog.co.uk/&quot;&gt;&lt;span&gt;Screaming Frog&lt;/span&gt;&lt;/a&gt;&lt;span&gt; offers an SEO Spider Tool, which is a sophisticated crawler that can accomplish a host of optimization tasks. This includes finding and fixing broken links and redirects. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;If you operate an online store, Screaming Frog has some especially helpful options. For example, you can use the crawler to extract data from HTML pages on your site using CSS Path. This means you can &lt;/span&gt;&lt;a href=&quot;https://www.w3schools.com/xml/xpath_intro.asp&quot;&gt;&lt;span&gt;use XPath&lt;/span&gt;&lt;/a&gt;&lt;span&gt; or regex to gather data about prices, SKUs, and more. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;You can even use this tool to generate XML sitemaps and connect it up to Google Analytics. What&amp;acirc;&amp;#128;&amp;#153;s more, Screaming Frog has a pretty robust free version, so you can try out the main functionality before you decide to leap in.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features: &lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Analyze titles and metadata. &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Crawl your site to find and fix broken links.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Discover and resolve duplicate content and pages. &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: You can access the free version with limited features and URLs or get the full version for $183 per year.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;div class=&quot;cta-block cta-block--wide cta-block--wide--single&quot; readability=&quot;5.4642857142857&quot;&gt;&lt;div class=&quot;cta-block--wide__txt&quot; readability=&quot;6.375&quot;&gt;&lt;h2&gt;Be Awesome on the Internet&lt;/h2&gt;&lt;p&gt;Join our monthly newsletter for tips and tricks to build your dream website!&lt;/p&gt;&lt;/div&gt;&lt;img class=&quot;aligncenter size-full wp-image-21731&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/01/CTA-guy-with-laptop.png&quot; alt=&quot;&quot; width=&quot;200&quot; height=&quot;200&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/01/CTA-guy-with-laptop.png 200w, https://www.dreamhost.com/blog/wp-content/uploads/2019/01/CTA-guy-with-laptop-150x150.png 150w, https://www.dreamhost.com/blog/wp-content/uploads/2019/01/CTA-guy-with-laptop-100x100.png 100w&quot; sizes=&quot;(max-width: 200px) 100vw, 200px&quot;&gt;&lt;/div&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;12. Yoast SEO&lt;/b&gt;&lt;/h2&gt;
+&lt;img class=&quot;aligncenter size-full wp-image-23526&quot; src=&quot;https://dhblog.dream.press/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-1.jpg&quot; alt=&quot;Yoast SEO tool. &quot; width=&quot;630&quot; height=&quot;345&quot; srcset=&quot;https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-1.jpg 630w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-1-300x164.jpg 300w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-1-600x329.jpg 600w, https://www.dreamhost.com/blog/wp-content/uploads/2019/04/DreamHost-seo-tools-1-100x55.jpg 100w&quot; sizes=&quot;(max-width: 630px) 100vw, 630px&quot;&gt;
+&lt;p&gt;&lt;span&gt;Last but definitely not least, &lt;/span&gt;&lt;a href=&quot;https://yoast.com&quot;&gt;&lt;span&gt;Yoast SEO&lt;/span&gt;&lt;/a&gt;&lt;span&gt; is often touted as the number-one WordPress SEO plugin. Its features cover the full spectrum when it comes to SEO. You can conduct readability checks, for example, and set canonical URLs to avoid confusing Google with duplicate content. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Other functionality on offer includes keyword optimization, and the ability to preview pages in Google, Facebook, and Twitter. With the upgraded version of the plugin, you will also get some content assistance, since Yoast will offer you internal linking suggestions as you write pages and posts. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Yoast SEO has &lt;/span&gt;&lt;a href=&quot;https://kb.yoast.com/&quot;&gt;&lt;span&gt;a robust knowledge database&lt;/span&gt;&lt;/a&gt;&lt;span&gt; to help you get started. Plus, with the premium version, you&amp;acirc;&amp;#128;&amp;#153;ll have access to one year of 24/7 help from an expert support team. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Key Features: &lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Optimize your content for specific keywords.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Provide search engines with the metadata they need to understand your content.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Avoid duplicate content.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Handle critical SEO tasks automatically, such as creating a sitemap and optimizing permalinks.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;Price&lt;/strong&gt;: You can download a limited free version or get the premium version for $89 per year. &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;b&gt;The Search for Optimization Tools&lt;/b&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span&gt;SEO is just one part of the puzzle when it comes to running a website. However, it&amp;acirc;&amp;#128;&amp;#153;s a piece you have to pay special attention to if you want your website to get the traffic it deserves. After all, search engines don&amp;acirc;&amp;#128;&amp;#153;t care how much effort you put into your blog posts and content if they aren&amp;acirc;&amp;#128;&amp;#153;t optimized.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;There are dozens of services you can use to improve your search engine rankings, but some of our favorites include &lt;/span&gt;&lt;a href=&quot;https://www.google.com/webmasters/tools/home?hl=en&quot;&gt;&lt;span&gt;Google Search Console&lt;/span&gt;&lt;/a&gt;&lt;span&gt;, &lt;/span&gt;&lt;a href=&quot;https://moz.com/products/pro&quot;&gt;&lt;span&gt;Moz Pro&lt;/span&gt;&lt;/a&gt;&lt;span&gt;, and &lt;/span&gt;&lt;a href=&quot;https://www.semrush.com/&quot;&gt;&lt;span&gt;SEMrush&lt;/span&gt;&lt;/a&gt;&lt;span&gt;. The first packs a lot of tools you can use to discover how search engines view your website, whereas the latter two enable you to conduct professional-level keyword research.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Are you ready to optimize your website? Consider &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/blog/getting-started-with-dreampress/&quot;&gt;&lt;span&gt;DreamPress, our managed WordPress hosting solution&lt;/span&gt;&lt;/a&gt;&lt;span&gt;. With automatic updates and strong security defenses, DreamPress takes server management off your hands so you can focus on what really matters: improving your rankings to get more traffic. &lt;/span&gt;&lt;a href=&quot;https://www.dreamhost.com/wordpress/managed-wp-hosting/&quot;&gt;&lt;span&gt;Learn more about plan options today.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+							&lt;/body&gt;&lt;/html&gt;
+</description>
+</item>
+</channel></rss>
+";' 
+>>>>>> ONLY SPIN PHP (END) >>>>>>>>
  
-###########################  >>>>>  

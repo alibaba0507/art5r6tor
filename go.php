@@ -92,6 +92,8 @@ if ($_POST['feedsource'] == '') {
          //******************* LOOP FOR ARTICLES **********************//
        // debug("############################## CAHNELS ITEMS  ##########################\n",$feed);
        $count = 0;
+       if (!isset($feed) or !isset($feed->channel) or !isset($feed->channel->item))
+           return;
         foreach ($feed->channel->item as $item)
         //foreach ($feed['channel']->item as $item)         
         {

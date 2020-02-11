@@ -326,6 +326,8 @@ function my_callback(&$request, $id) {
 }
 debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (request)>>>>>>>>>>>\n");
 debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n");
+if (!isset($requests))
+    return;
 // Send the request!
 $responses = Requests::request_multiple($requests, $options_req);
 

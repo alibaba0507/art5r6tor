@@ -27,7 +27,7 @@ $about = $base_url.'/html/about.php';
       <a  href="<?= $home ?>">Home</a>
       
       </li>
-      <li><a href="<?=$news ?>">News</a></li>
+      <li><a href="<?=$news ?>">How it wors</a></li>
       <li>
      
       <a href="<?=$contactus ?>">Contact</a>

@@ -77,3 +77,12 @@
   ga('send', 'pageview');
 
 </script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6Lc50tcUAAAAACvpYNpL5bbUve6DjaX8S2LCMG1E"></script>
+<script>
+grecaptcha.ready(function() {
+    grecaptcha.execute('6Lc50tcUAAAAACvpYNpL5bbUve6DjaX8S2LCMG1E', {action: 'homepage'}).then(function(token) {
+       ...
+    });
+});
+</script>

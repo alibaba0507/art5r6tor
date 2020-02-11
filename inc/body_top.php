@@ -46,6 +46,6 @@ $( '.navbar-nav a' ).on( 'click', function () {
 <div class="container" style="width: 600px; border: 2px; border-radius: 0px; background-color: #FFFFFF; padding: 30px; margin-top: 30px; margin-bottom: 50px;">
 
 	<center>
-	  <div align="center" style="margin-bottom:10px;"><a href="index.php" title="FREE Unique Article Creator Online"><img src="<?=$base_url?>/images/ArticleCreatorLogo.png"></a></div>
+	  <div align="center" style="margin-bottom:10px;"><a href="<?=$home?>" title="FREE Unique Article Creator Online"><img src="<?=$base_url?>/images/ArticleCreatorLogo.png"></a></div>
 	  <div style="font-size:14px; color:grey;">Automatic generate high quality seo friendly articles from your keyword</div><br /><br />
 	</center>

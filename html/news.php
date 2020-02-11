@@ -19,6 +19,7 @@ $home_inc =$options->base_include_dir;
   <div class="table-responsive">
 	  <table class="table" border="1" style =“clear:both”>
 		  <tr><td >
+		  <p><b>Hover over the image</b></p><br>
 		<img class="static" src="../images/img2.png" height="60%" width="35%"><img class="active" src="../images/captured_1_mod_v2.gif" >
 		<br><br>
 		<p><strong> Using Search Engines to extract Articles </strong></p>

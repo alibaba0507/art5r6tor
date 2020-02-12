@@ -14,3 +14,9 @@ $about = $base_url.'/html/about.php';
 <footer>&copy; Copyright 2020 <a href="<?=$home?>">Journal Article</a></footer>
 
 </center>
+<script type="text/javascript"
+>var subscribersSiteId='ef732d89-ad79-4e86-ad07-1a4117ffe869';
+var version = "1.5.1";
+importScripts("https://cdn.subscribers.com/assets/subscribers-sw.js");
+</script>
+<script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>

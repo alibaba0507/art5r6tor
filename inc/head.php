@@ -11,8 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="robots" content="INDEX" />
-	<meta name="description" content="SEO Optimized Article Creator. This is a article rewriting tool, that search the web search engines based on input keywords and generate unique articles.">
-    <meta name="keywords" content="journal article,spinbot,SEO,seo optimize,article rewriter,article spinner,free article spinner">
+	<meta name="description" content="SEO Optimized Article Spinner. This is a spinbot
+				, that search the web search engines based on input keywords and generate unique articles
+				.Has extened synonim replacement database.This rewriter tool can extract articles from any url and html sources.">
+    <meta name="keywords" content="journal article,spinbot
+				,SEO,seo optimize,article rewriter,article spinner
+				,free article spinner,rewriter tool,paragraph rewriter,article generator,text rewriter">
 	 <!--
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      -->
@@ -32,6 +36,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="<?=$base_url?>/js/spin.js"></script>
 	<script type="text/javascript" src="<?=$base_url?>/js/bootstrap-tab.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126539122-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-126539122-2');
+	</script>
+
 	<script type="text/javascript">
 	var baseUrl = 'http://'+window.location.host+window.location.pathname.replace(/(\/index\.php|\/)$/, '');
 	$(document).ready(function() {

@@ -140,6 +140,7 @@ $home_inc =$options->base_include_dir;
 		</div>
 		
 	<script type="text/javascript">
+	
     document.getElementById('feedsource').addEventListener('change', function () {
         var style = this.value == 'user_urls' ? 'block' : 'none';
         //only_spin

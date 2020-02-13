@@ -2,13 +2,18 @@
      //$server = $_SERVER['DOCUMENT_ROOT'];
      $dir = dirname(dirname(__FILE__));
     require_once($dir.'/config/config.php');
+	require_once($dir.'/utils/utils.php');
+	$logFile = $dir.'/tempfiles/visitors.log';
+	$msg = 'ip['.((array_key_exists('HTTP_CLIENT_IP', $_SERVER))?get_client_ip_server():get_client_ip_env()).'] Browser['.getBrowserType().'] Referer['.getReferer().']';
+	file_put_contents($logFile, $msg." \n", FILE_APPEND);
     $base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');
      $home_inc = $options->base_include_dir ;
      ?>
+	 <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="icon" type="image/gif" href="animated_favicon1.gif">
     <title>FREE Unique Article Creator Online</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="robots" content="INDEX" />
 	<meta name="description" content="SEO Optimized Article Spinner. This is a spinbot
@@ -17,6 +22,10 @@
     <meta name="keywords" content="journal article,spinbot
 				,SEO,seo optimize,article rewriter,article spinner
 				,free article spinner,rewriter tool,paragraph rewriter,article generator,text rewriter">
+    
+	<link href="<?=$base_url?>/css/print.css" rel="stylesheet" type="text/css" media="print" /> <!-- siehe print.css -->
+    <link href="<?=$base_url?>/css/screen.css" rel="stylesheet" type="text/css" media="screen, projection" /> <!-- Hier sollte der Pfad zur CSS-datei eingetragen werden, die für die Bildschirmausgabe zuständig ist. Je nachdem in welchem Verzeichniss sich diese Datei befindet muss der Pfad angepasst werden. -->
+  
 	 <!--
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      -->

@@ -6,6 +6,104 @@
 //require_once($dir.'/config/config.php');
 
 //*********************** Functions ************************************//
+
+function getReferer()
+{
+	return isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+}
+function getBrowserType () {
+if (!empty($_SERVER['HTTP_USER_AGENT'])) 
+{ 
+   $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT']; 
+} 
+else if (!empty($HTTP_SERVER_VARS['HTTP_USER_AGENT'])) 
+{ 
+   $HTTP_USER_AGENT = $HTTP_SERVER_VARS['HTTP_USER_AGENT']; 
+} 
+else if (!isset($HTTP_USER_AGENT)) 
+{ 
+   $HTTP_USER_AGENT = ''; 
+} 
+if (preg_match('/Opera(\| )([0-9].[0-9]{1,2})/', $HTTP_USER_AGENT, $log_version)) 
+{ 
+   $browser_version = $log_version[2]; 
+   $browser_agent = 'opera'; 
+} 
+else if (preg_match('/MSIE ([0-9].[0-9]{1,2})/', $HTTP_USER_AGENT, $log_version)) 
+{ 
+   $browser_version = $log_version[1]; 
+   $browser_agent = 'ie'; 
+} 
+else if (preg_match('/OmniWeb\/([0-9].[0-9]{1,2})/', $HTTP_USER_AGENT, $log_version)) 
+{ 
+   $browser_version = $log_version[1]; 
+   $browser_agent = 'omniweb'; 
+} 
+else if (preg_match('/Netscape([0-9]{1})/', $HTTP_USER_AGENT, $log_version)) 
+{ 
+   $browser_version = $log_version[1]; 
+   $browser_agent = 'netscape'; 
+} 
+else if (preg_match('/Mozilla\/([0-9].[0-9]{1,2})/', $HTTP_USER_AGENT, $log_version)) 
+{ 
+   $browser_version = $log_version[1]; 
+   $browser_agent = 'mozilla'; 
+} 
+else if (preg_match('/Konqueror\/([0-9].[0-9]{1,2})/', $HTTP_USER_AGENT, $log_version)) 
+{ 
+   $browser_version = $log_version[1]; 
+   $browser_agent = 'konqueror'; 
+} 
+else 
+{ 
+   $browser_version = 0; 
+   $browser_agent = 'other'; 
+}
+return $browser_agent;
+}
+
+// Function to get the client ip address
+function get_client_ip_env() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'NA';
+ 
+    return $ipaddress;
+}
+
+// Function to get the client ip address
+function get_client_ip_server() {
+    $ipaddress = '';
+    if ($_SERVER['HTTP_CLIENT_IP'])
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if($_SERVER['HTTP_X_FORWARDED'])
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if($_SERVER['HTTP_FORWARDED_FOR'])
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if($_SERVER['HTTP_FORWARDED'])
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if($_SERVER['REMOTE_ADDR'])
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'NA';
+ 
+    return $ipaddress;
+}
+
 function startsWith($haystack, $needle) 
 {
     // search backwards starting from haystack length characters from the end

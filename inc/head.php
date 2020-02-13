@@ -19,9 +19,7 @@
 	<meta name="description" content="SEO Optimized Article Spinner. This is a spinbot
 				, that search the web search engines based on input keywords and generate unique articles
 				.Has extened synonim replacement database.This rewriter tool can extract articles from any url and html sources.">
-    <meta name="keywords" content="journal article,spinbot
-				,SEO,seo optimize,article rewriter,article spinner
-				,free article spinner,rewriter tool,paragraph rewriter,article generator,text rewriter">
+    <meta name="keywords" content="journal article,spinbot,SEO,seo optimize,article rewriter,article spinner,free article spinner,rewriter tool,paragraph rewriter,article generator,text rewriter">
     
 	<link href="<?=$base_url?>/css/print.css" rel="stylesheet" type="text/css" media="print" /> <!-- siehe print.css -->
     <link href="<?=$base_url?>/css/screen.css" rel="stylesheet" type="text/css" media="screen, projection" /> <!-- Hier sollte der Pfad zur CSS-datei eingetragen werden, die für die Bildschirmausgabe zuständig ist. Je nachdem in welchem Verzeichniss sich diese Datei befindet muss der Pfad angepasst werden. -->

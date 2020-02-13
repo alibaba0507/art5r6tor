@@ -317,7 +317,7 @@ function my_callback(&$request, $id) {
         $response['effective_url'] = $requests[$id]['url'];
         $response['referer'] = $request->headers['Referer'];
         $isDummyFeed = false;
-        include dirname(__FILE__).'/utils/processHTML.php';
+        @include dirname(__FILE__).'/utils/processHTML.php';
     }
     //$requests[(int)$id];
     //debug("",null,true);
@@ -329,7 +329,7 @@ debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n");
 if (!isset($requests))
     return;
 // Send the request!
-$responses = Requests::request_multiple($requests, $options_req);
+$responses = @Requests::request_multiple($requests, $options_req);
 
 // Note: the response from the above call will be an associative array matching
 // $requests with the response data, however we've already handled it in

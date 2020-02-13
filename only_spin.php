@@ -189,7 +189,7 @@ foreach ($items as $key => $item) {
 //debug(">>>>>>>>>>>>>>>>> SPIN ITEM OUTPUT >>>>>>>>>>>>>>>>>>");
 if (!$debug_mode) {
   //  debug(">>>>>>>>>>>>>>>>> SPIN ITEM OUTPUT 22222 >>>>>>>>>>>>>>>>>>");
-     $rss=$output->genarateFeed();
+     $rss=@$output->genarateFeed();
      debug(">>>>>>>> OUT >>>>>>>>\n",$rss);
      //fwrite($fh, "\xEF\xBB\xBF".$rss);
      //fclose($fh);

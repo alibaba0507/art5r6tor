@@ -261,7 +261,7 @@ function my_callback(&$request, $id) {
     $response['effective_url'] = $requests[$id]['url'];
     $response['referer'] = $request->headers['Referer'];
     $isDummyFeed = false;
-    include dirname(__FILE__).'/utils/processHTML.php';
+    @include dirname(__FILE__).'/utils/processHTML.php';
     //$requests[(int)$id];
     debug("",null,true);
     debug(">>>>>>>>>>>>>>>> AFTER CALLBACK >>>>>>>>>>>\n",$output);
@@ -270,7 +270,7 @@ function my_callback(&$request, $id) {
 debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (request)>>>>>>>>>>>\n",$requests);
 debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n",$options_req);
 // Send the request!
-$responses = Requests::request_multiple($requests, $options_req);
+$responses = @Requests::request_multiple($requests, $options_req);
 
 debug(">>>>>>>>>>>>>>>> AFTE CALLBACK (responses)>>>>>>>>>>>\n",$responses);
 //debug(">>>>>>>>>>>>>>>> BEFORE CALLBACK (options)>>>>>>>>>>>\n",$options_req);

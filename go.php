@@ -101,8 +101,8 @@ if ($_POST['feedsource'] == '') {
                 
             }
              $rss = '';
-             include 'rssnews.php';
-             $feed = createFeed($rss);
+             @include 'rssnews.php';
+             $feed = @createFeed($rss);
         }
          //******************* LOOP FOR ARTICLES **********************//
        // debug("############################## CAHNELS ITEMS  ##########################\n",$feed);

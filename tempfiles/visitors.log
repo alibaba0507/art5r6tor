@@ -1,3 +1,5 @@
 ip[::1] Browser[other] Referer[] 
 ip[::1] Browser[other] Referer[] 
 ip[::1] Browser[mozilla] Referer[] 
+ip[::1] Browser[mozilla] Referer[] 
+ip[::1] Browser[mozilla] Referer[http://localhost/prod/articlecreator/] 

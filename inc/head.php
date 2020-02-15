@@ -13,7 +13,8 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="icon" type="image/gif" href="animated_favicon1.gif">
     <title>FREE Unique Article Creator Online</title>
-    
+    <!-- Pinterest -->
+	<meta name="p:domain_verify" content="022946927f9c0cedb61bebdcca1d1288"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="robots" content="INDEX" />
 	<meta name="description" content="SEO Optimized Article Spinner. This is a spinbot

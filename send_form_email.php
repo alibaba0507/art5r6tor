@@ -1,4 +1,8 @@
 <?php
+$dir = (dirname(__FILE__));
+require_once($dir.'/config/config.php');
+$home_inc =$options->base_include_dir;
+$base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');//'/'.$options->base_html_dir;
 if(isset($_POST['email'])) {
  
     // EDIT THE 2 LINES BELOW AS REQUIRED
@@ -92,10 +96,10 @@ fclose($fh);
 ?>
 <html>
   <head>
-   <?php include('./html_tmp/head.php');?>
+   <?php include($home_inc.'/inc/head.php');?>
   </head>
   <body>
-	<?php include('./html_tmp/body_top.php');?>
+	<?php include($home_inc.'/inc/body_top.php');?>
 	<!-- include your own success html here -->
     <div>
  <p>
@@ -103,7 +107,7 @@ Thank you for contacting us. We will be in touch with you very soon.
     <p>
     </div>
  	<!-- ?php include ("./html_tmp/tabs.php"); ? -->
-	<br /><?php include ("./html_tmp/footer.php"); ?>
+	<br /><?php include ($home_inc."/inc/footer.php"); ?>
 
 	</div>
   </body>

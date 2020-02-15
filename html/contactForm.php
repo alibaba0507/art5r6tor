@@ -2,8 +2,9 @@
 $dir = dirname(dirname(__FILE__));
 require_once($dir.'/config/config.php');
 $home_inc =$options->base_include_dir;
+$base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');//'/'.$options->base_html_dir;
 ?>
-<form name="contactform" method="post" action="<?=$home_inc?>/send_form_email.php">
+<form name="contactform" method="post" action="<?=$base_url?>/send_form_email.php">
 <table width="450px">
 <tr>
  <td valign="top">

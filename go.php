@@ -144,8 +144,8 @@ if ($_POST['feedsource'] == '') {
            </div><!------ END <div id="menu1 ----->
            <div id="menu2<?php echo $count;?>" class="tab-pane">
            <?php
-               if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
-                { 
+               //if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
+               // { 
                     $prefix = mt_rand(100,1000);
                     $myFile = "article_".$prefix;//.".txt";
 
@@ -154,8 +154,12 @@ if ($_POST['feedsource'] == '') {
                 ?>
                 <div style="text-align: center;"> 
                     <!-- This is spin button -->
+					<?php?
+					if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
+					{?>
                     <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin</button>  
                     <?php
+					}
                    // echo '<br>';
                   /* if ($_SESSION['user'] == 'alibaba0507')
                    {
@@ -169,11 +173,11 @@ if ($_POST['feedsource'] == '') {
                   <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,this.class)" onclick="document.getElementById('PopUp').style.display = 'none'">
                 <?php 
                  echo "";
-                }else{ ?>
-                <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;">
+                //}else{ ?>
+                <!-- div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;" !-->
                 <?php
-                  echo "";
-                }
+                 // echo "";
+                //}// end if(...) else
                    if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
                     {
                         //echo 'REWRITE UNIQUES .....<br>';

@@ -48,6 +48,10 @@ function updateTextAea()
  //var textArea = document.getElementById("spin_id");
  if (/*finish &&*/ s.trim().length > 0)
  {
+    //sel = window.getSelection();
+	//alert(" SLECTION IS [" + sel + "][" + s  +"]>>>");
+   if (s.charAt(s.length - 1) != ' ')
+	   s += ' ';
    replaceSelectedText(s);
    //textArea.value = spliceString(textArea.value, start, finish, s + " ");
    //start= 0;
@@ -59,12 +63,16 @@ function replaceSelectedText(replacementText) {
     var sel, range;
     if (window.getSelection) {
         sel = window.getSelection();
+		//console.log(" SLECTION IS [" + sel + "][" + replacementText  +"]>>>");
         if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
+            
+			range = sel.getRangeAt(0);
             range.deleteContents();
+			
             range.insertNode(document.createTextNode(replacementText));
         }
     } else if (document.selection && document.selection.createRange) {
+		
         range = document.selection.createRange();
         range.text = replacementText;
     }
@@ -106,6 +114,7 @@ function replaceSelectedText(replacementText) {
             
             if (p.trim().length > 0)
             {
+				p = p.trim() + ' ';
                 $('#selectWord').append($('<option></option>').val(p).html(p));
                 hasWords = true;
             }

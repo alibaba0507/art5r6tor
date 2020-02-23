@@ -56,9 +56,8 @@ if ($_POST['feedsource'] == '') {
     <input type="hidden" id="keyword" value="<?php echo $keyword;?>">
     <input type="hidden" id="keywords" value="<?php echo $keywords;?>">
     <input type="hidden" id="urllink" value="<?php echo $urllink;?>">
-	<?php
-	
-	if ($hasValidUser === true) 
+    <?php
+    if ($hasValidUser === true) 
     {
          if ($_POST['feedsource'] == 'only_spin')
         {
@@ -105,11 +104,12 @@ if ($_POST['feedsource'] == '') {
              @include 'rssnews.php';
              $feed = @createFeed($rss);
         }
-		
-	    $count = 0;
+         //******************* LOOP FOR ARTICLES **********************//
+       // debug("############################## CAHNELS ITEMS  ##########################\n",$feed);
+       $count = 0;
        if (!isset($feed) or !isset($feed->channel) or !isset($feed->channel->item))
            return;
-	    foreach ($feed->channel->item as $item)
+        foreach ($feed->channel->item as $item)
         //foreach ($feed['channel']->item as $item)         
         {
              // debug("############################## FOREACH ITEMS  ##########################\n",$item);
@@ -122,19 +122,15 @@ if ($_POST['feedsource'] == '') {
             $description = $item->description;
             $description = str_replace("<b>", "", $description);
             $body = str_replace("</b>", "", $description);
-			// Generate temp file to save content and transfer to user machine
-			$prefix = mt_rand(100,1000);
-            $myFile = "article_".$prefix;//.".txt";
-			if(file_exists("$myFile")) unlink("$myFile");
-	   ?>
-	    <div class="tab-wrapper">
+        ?>
+        <div class="tab-wrapper">
         <ul class="nav nav-tabs">
             <li class="active " ><a href="#menu1<?php echo $count;?>">Original</a></li>
             <li ><a href="#menu2<?php echo $count;?>">Unique</a></li>
             <!-- li ><a href="#menu3<?php //echo $count;?>">Edit</a></li -->
 		</ul>
-		<div class="tab-content">
-			<div id="menu1<?php echo $count;?>" class="tab-pane active">
+        <div class="tab-content">
+          <div id="menu1<?php echo $count;?>" class="tab-pane active">
             <div class="needs-rewrite<?php echo $count;?>" style="overflow-y: scroll; height:400px;">
             <?php //shell_exec('arp '.$ip.' | awk \'{print $4}\'');?>
                 <?php
@@ -146,23 +142,41 @@ if ($_POST['feedsource'] == '') {
                 <input type="hidden" id="headline<?php echo $count; ?>" value="<?php echo $subject;?>">
             </div>
            </div><!------ END <div id="menu1 ----->
-		   <div id="menu2<?php echo $count;?>" class="tab-pane">
-		   <div style="text-align: center;"> 
-		    <!-- This is spin button -->
-			<?php
-				if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
-				{
-                 echo "<button ng-disabled=\"siteFunctionalityDisabled\"  class=\"btn btn-primary\"  style=\"border: medium groove ; height: 30px; width: 105px; font-size: medium;\" id=\"$count\" onclick=\"rewriteArticle(this.id);\">New Spin</button>";  
-                    
-				}
-				echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/plain\",\"".$myFile."\");'>Download  article as TXT</button>";
-				echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/html\",\"".$myFile."\");'>Download  article as HTML</button>";
-
-             ?>
-		   </div><!-- BUTTONS style="text-align: center;" -->
-		   <br>
-		   <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,this.class)" onclick="document.getElementById('PopUp').style.display = 'none'">
+           <div id="menu2<?php echo $count;?>" class="tab-pane">
            <?php
+              // if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
+               // { 
+                    $prefix = mt_rand(100,1000);
+                    $myFile = "article_".$prefix;//.".txt";
+
+                    if(file_exists("$myFile")) unlink("$myFile");
+
+                ?>
+                <div style="text-align: center;"> 
+                    <!-- This is spin button -->
+					<?php?
+					if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
+					{?>
+                    <button ng-disabled="siteFunctionalityDisabled"  class='btn btn-primary'  style="border: medium groove ; height: 30px; width: 105px; font-size: medium;" id="<?php echo $count;?>" onclick="rewriteArticle(this.id);">New Spin</button>  
+                    <?php
+					}
+                   // echo '<br>';
+                  /* if ($_SESSION['user'] == 'alibaba0507')
+                   {
+                        echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadToSite(".$newbody.");'>Download  article as HTML to this Site</button>";
+                   }else{ */
+                        echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/plain\",\"".$myFile."\");'>Download  article as TXT</button>";
+                        echo "<button ng-disabled='siteFunctionalityDisabled'  class='btn btn-primary'  style='border: medium groove ; height: 30px; width: 225px; font-size: medium;' id='$count' onclick='downloadArticle(this.id,\"text/html\",\"".$myFile."\");'>Download  article as HTML</button>";
+                   //}
+                    ?>
+                 </div>
+                  <div id="divId<?php echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;"  ondblclick="showPosAjax(event,this.class)" onclick="document.getElementById('PopUp').style.display = 'none'">
+                <?php 
+                 echo "";
+               // } // end if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
+			//	else{ ?>
+                <!-- div id="divId<?php //echo $count;?>"class="spin_txt<?php echo $count;?>"  style="overflow-y: scroll; height:400px;" !-->
+                <?php
                   echo "";
               //   }// end if(...) else
                    if ($_POST['rewrite'] == 'unique' or $_POST['feedsource'] == 'only_spin') 
@@ -183,23 +197,26 @@ if ($_POST['feedsource'] == '') {
                     echo "<h3>" .$newsubject ."</h3>";
                     echo $newbody;
                 ?>
-		   </div><!--- Articles Scroll ondblclick="showPosAjax(event,this.class)"----> 
-		   
-		   </div><!------ END <div id="menu2 ----->
-		</div><!--- tab-content ---->
-		</div><!---- tab-wrapper ----->
-	   <?php
-	    $count++;
-	    }// end foreach ($feed->channel->item as $item)
-    }//end if ($hasValidUser === true)  
-    else{
+             </div> <!---- END div id="divId --->
+           </div> <!----- END div id="menu2 ------->
+           
+        </div><!------- END div class="tab-content" ----->
+        
+       
+        </div><!----- END  div class="tab-wrapper" ------>
+         <br><br>
+        
+     <?php  
+            $count++;
+        }// end foreach ($feed->channel->item as $item)
+    }else{
       echo "<center><h1>You don't have permission to this request!</h1></center><br><br><br>
            <div class=\"tab-content\"><center><h3>Please sign up or Login</h3></center></div><br><br><br>";
-    }// end if ($hasValidUser === true) ... else
-	?>
+    }
+    ?>
     <br>
     <?php   include ($home_inc."/inc/footer.php");?>
-    </div><!---- END DIV container from /inc/body_top.php ---->
+    </div><!---- END DIV container ---->
   
   <!------------------ MODAL BOX  ---->
     <!--div class="modal" width="50%" -->

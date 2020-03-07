@@ -1,9 +1,11 @@
     <?php
+	  error_reporting(E_ALL);
+     ini_set('display_errors', 1);
      //$server = $_SERVER['DOCUMENT_ROOT'];
      $dir = dirname(dirname(__FILE__));
     require_once($dir.'/config/config.php');
 	require_once($dir.'/utils/utils.php');
-	require_once '../adm/vendor/autoload.php';
+	require_once ($dir.'/adm/vendor/autoload.php');
 	use hisorange\BrowserDetect\Parser as Browser;
 	$browser = new Browser;
 	$logFile = $dir.'/tempfiles/visitors.log';
@@ -14,7 +16,7 @@
 	 {
 		 $msg = $msg.'[Browser[Human]';
 	 }		 
-	$msg = $msg.'ip['.((array_key_exists('HTTP_CLIENT_IP', $_SERVER))?get_client_ip_server():get_client_ip_env()).'] Browser['.getBrowserType().'] Referer['.getReferer().']';
+	$msg = $msg.'---> ip['.((array_key_exists('HTTP_CLIENT_IP', $_SERVER))?get_client_ip_server():get_client_ip_env()).'] Browser['.getBrowserType().'] Referer[ '.getReferer().' ]';
 	
 	file_put_contents($logFile, $msg." \n", FILE_APPEND);
     $base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');

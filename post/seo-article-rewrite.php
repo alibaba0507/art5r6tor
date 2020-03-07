@@ -17,7 +17,7 @@ require_once(dirname(dirname(__FILE__)).'/config/config.php');
 	<?php include('../inc/body_top.php');?>
 	<!--form method="get" action="gotabs.php" id="form" class="form-horizontal" -->
     <?php 
-	require_once '../adm/vendor/autoload.php';
+	//require_once '../adm/vendor/autoload.php';
 	use hisorange\BrowserDetect\Parser as Browser;
 	$browser = new Browser;
 	/*$result = $browser->detect();

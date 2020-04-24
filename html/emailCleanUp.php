@@ -19,6 +19,7 @@ $home_inc =$options->base_include_dir;
   <textarea  id="email_list" name="email_list"   rows="15" cols="50" class="form-control input-md" >
   </textarea>
   <span class="help-block">Copy and Paste list to clean.One email per line</span>  
+  <span class="help-block">Available fromats are: [emailaddress\n],[emailaddress<b>,other info</b>\n],[emailaddress<b>:other info</b>\n] </span>  
   </div>
 </div>
 

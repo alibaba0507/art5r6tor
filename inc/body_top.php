@@ -15,6 +15,7 @@ require_once($dir.'/config/config.php');
 $base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');//'/'.$options->base_html_dir;
 $home = $base_url; 
 $news =  $base_url.'/html/news.php';
+$emailClener =  $base_url.'/html/emailCleanUp.php';
 $contactus = $base_url.'/html/contactUs.php';
 $about = $base_url.'/html/about.php';
 //echo $home;
@@ -28,6 +29,7 @@ $about = $base_url.'/html/about.php';
       
       </li>
       <li><a href="<?=$news ?>">How it wors</a></li>
+	  <li><a href="<?=$emailClener ?>">Clean Email List</a></li>
       <li>
      
       <a href="<?=$contactus ?>">Contact</a>

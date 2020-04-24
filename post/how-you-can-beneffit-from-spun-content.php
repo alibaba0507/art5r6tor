@@ -37,9 +37,9 @@ require_once(dirname(dirname(__FILE__)).'/config/config.php');
 	// Every wondered if it is a bot who loading Your page?
 	if (strpos(getReferer(),'google.') !== FALSE || strpos(getReferer(),'bing.') !== FALSE)
 	  include('../inc/form.php');
-	else /*if ($browser->isBot())*/ {
+	else /*if ($browser->isBot()*/) {
 		//echo 'No need to wonder anymore!';
-		include('article-spinning.php');
+		include('how-you-can-beneffit-from-spun-content_post.php');
 	}
 	
 	?>   

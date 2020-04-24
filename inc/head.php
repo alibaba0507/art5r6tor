@@ -1,6 +1,6 @@
     <?php
-	  error_reporting(E_ALL);
-     ini_set('display_errors', 1);
+	 // error_reporting(E_ALL);
+   //  ini_set('display_errors', 1);
      //$server = $_SERVER['DOCUMENT_ROOT'];
      $dir = dirname(dirname(__FILE__));
     require_once($dir.'/config/config.php');
@@ -46,6 +46,8 @@
 	<script src="<?=$base_url?>/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?=$base_url?>/js/bootstrap-tooltip.js"></script>
 	<script type="text/javascript" src="<?=$base_url?>/js/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="<?=$base_url?>/js/email_srv.js"></script>
+	<script type="text/javascript" src="<?=$base_url?>/js/validator.js"></script>
     <!--
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     -->

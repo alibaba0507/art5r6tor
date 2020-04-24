@@ -39,7 +39,7 @@ require_once(dirname(dirname(__FILE__)).'/config/config.php');
 	  include('../inc/form.php');
 	else /*if ($browser->isBot())*/ {
 		//echo 'No need to wonder anymore!';
-		include('article-spinning.php');
+		include('How-to-beat-competition-with-article-spinning-using-this-advanced-spinner_post.php');
 	}
 	
 	?>   

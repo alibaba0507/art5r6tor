@@ -19,9 +19,17 @@
 	$msg = $msg.'---> ip['.((array_key_exists('HTTP_CLIENT_IP', $_SERVER))?get_client_ip_server():get_client_ip_env()).'] Browser['.getBrowserType().'] Referer[ '.getReferer().' ]';
 	
 	file_put_contents($logFile, $msg." \n", FILE_APPEND);
-    $base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');
+     $base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');
      $home_inc = $options->base_include_dir ;
-     ?>
+     if (!isset($meta_descr)){
+		 $meta_descr = "SEO Optimized Article Spinner. This is a spinbot
+				, that search the web search engines based on input keywords and generate unique articles
+				.Has extened synonim replacement database.This rewriter tool can extract articles from any url and html sources.";
+     }
+	 if (!isset($meta_keywords)){
+	   $meta_keywords = "journal article,spinbot,SEO,seo optimize,article rewriter,article spinner,free article spinner,rewriter tool,paragraph rewriter,article generator,text rewriter";
+	 }
+	 ?>
 	 <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="icon" type="image/gif" href="animated_favicon1.gif">
@@ -30,20 +38,11 @@
 	<meta name="p:domain_verify" content="022946927f9c0cedb61bebdcca1d1288"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<meta name="robots" content="INDEX" />
-	<? if ($meta_descr){
-		?>
-		<meta name="description" content="<?php echo $meta_descr?>">
-	<?}else{?>
-	<meta name="description" content="SEO Optimized Article Spinner. This is a spinbot
-				, that search the web search engines based on input keywords and generate unique articles
-				.Has extened synonim replacement database.This rewriter tool can extract articles from any url and html sources.">
-    <?}
-	if ($meta_keywords){
-		?>
-		<meta name="keywords" content="<?php echo $meta_keywords;?>">
-    <?}else{?>
-	<meta name="keywords" content="journal article,spinbot,SEO,seo optimize,article rewriter,article spinner,free article spinner,rewriter tool,paragraph rewriter,article generator,text rewriter">
-    <?}?>
+	
+	<meta name="description" content="<?php echo $meta_descr?>">
+    
+	<meta name="keywords" content="<?php echo $meta_keywords?>">
+    
 	<link href="<?=$base_url?>/css/print.css" rel="stylesheet" type="text/css" media="print" /> <!-- siehe print.css -->
     <link href="<?=$base_url?>/css/screen.css" rel="stylesheet" type="text/css" media="screen, projection" /> <!-- Hier sollte der Pfad zur CSS-datei eingetragen werden, die für die Bildschirmausgabe zuständig ist. Je nachdem in welchem Verzeichniss sich diese Datei befindet muss der Pfad angepasst werden. -->
   

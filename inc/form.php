@@ -1,8 +1,12 @@
  <?php
+ set_error_handler(function($errno, $errstr, $errfile, $errline ){
+    throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+});
 $dir = dirname(dirname(__FILE__));
 require_once($dir.'/config/config.php');
 $home = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$options->base_html_dir:'');//'/'.$options->base_html_dir;
 $home_inc =$options->base_include_dir;
+//echo $home;
 ?>
 
  <form method="post" action="<?=$home?>/go.php" id="form" class="form-horizontal">

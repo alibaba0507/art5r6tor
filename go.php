@@ -1,5 +1,7 @@
 <?php
-
+set_error_handler(function($errno, $errstr, $errfile, $errline ){
+    throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+});
 $dir = (dirname(__FILE__));
 require_once($dir.'/config/config.php');
 include $dir.'/utils/utils.php';
@@ -7,6 +9,8 @@ $base_url = $options->host.((strlen(trim($options->base_html_dir))>0)?'/'.$optio
 $home = $base_url; 
 $home_inc =$options->base_include_dir;
 $numbers = filter_var($_POST['numbers'], FILTER_SANITIZE_SPECIAL_CHARS);
+//---------------- DISSABLE THIS IN LOCALHOST -------------------//
+
 if (isset($_POST['g-recaptcha-response'])) {
     $captcha = $_POST['g-recaptcha-response'];
 	 $secret   = '6Lc50tcUAAAAAPYfAThZTskwcIZ0V_aHqoCqEvPN';
@@ -22,6 +26,7 @@ if (isset($_POST['g-recaptcha-response'])) {
 		exit ;
     }
 }
+
 if ($_POST['feedsource'] == '') {
     echo "<center><h1>You don't have permission to access this page!</h1></center><br><br><br>";
     include ($home_inc."/inc/footer.php");
@@ -43,6 +48,9 @@ if ($_POST['feedsource'] == '') {
     //debug(">>>>>>>>>>>>>>>>>>>> SEND KEYWORD >>>>>>>>>>>",$keyword);
     $keywords=filter_var($_POST['keywords'], FILTER_SANITIZE_SPECIAL_CHARS);// $_POST['keywords'];
     $urllink =filter_var($_POST['urllink'], FILTER_SANITIZE_SPECIAL_CHARS);// $_POST['urllink'];
+	
+	//echo ">>>>>>>>>>>>>>>>>>[$keyword]>>>>>>>>>>>>> <br>";
+//	echo ">>>>>>>>>>>>>>>>>>[$home_inc]>>>>>>>>>>>>> <br>";
 ?>
 
 <!DOCTYPE html>
@@ -52,12 +60,13 @@ if ($_POST['feedsource'] == '') {
 	<?php include($home_inc.'/inc/head.php');?>
   </head>
   <body>
+   <?php echo ">>>>>>>>>>>>>>>>>>[$home_inc]>>>>>>>>>>>>> <br>"; ?>
    <?php include($home_inc.'/inc/body_top.php');?>
     <input type="hidden" id="keyword" value="<?php echo $keyword;?>">
     <input type="hidden" id="keywords" value="<?php echo $keywords;?>">
     <input type="hidden" id="urllink" value="<?php echo $urllink;?>">
 	<?php
-	
+	echo ">>>>>>>>>>>>>>>>>>[$home_inc]>>>>>>>>>>>>> <br>";
 	if ($hasValidUser === true) 
     {
          if ($_POST['feedsource'] == 'only_spin')

@@ -17,11 +17,11 @@ require_once(dirname(dirname(__FILE__)).'/config/config.php');
 	<?php include('../inc/body_top.php');?>
 	<!--form method="get" action="gotabs.php" id="form" class="form-horizontal" -->
     <?php 
-	//require_once '../adm/vendor/autoload.php';
-	//use hisorange\BrowserDetect\Parser as Browser;
-	//$browser = new Browser;
-	/*$result = $browser->detect();
-	var_dump($result);
+	require_once '../adm/vendor/autoload.php';
+	use hisorange\BrowserDetect\Parser as Browser;
+	$browser = new Browser;
+	//$result = $browser->detect();
+	/*var_dump($result);
 	if (Browser::isLinux()) {
 		echo 'Linux Browser';
 	}else
@@ -34,12 +34,17 @@ require_once(dirname(dirname(__FILE__)).'/config/config.php');
 	Browser::isTablet();
 	Browser::isDesktop();
     */
-	// Every wondered if it is a bot who loading Your page?
-	if (strpos(getReferer(),'google.') !== FALSE || strpos(getReferer(),'bing.') !== FALSE)
-	  include('../inc/form.php');
-	else /*if ($browser->isBot())*/ {
+	
+
+	//if (strpos(getReferer(),'google.') !== FALSE || strpos(getReferer(),'bing.') !== FALSE)
+	//  include('../inc/form.php');
+	//else 
+    if ($browser->isBot()){
 		//echo 'No need to wonder anymore!';
 		include('How-to-beat-competition-with-article-spinning-using-this-advanced-spinner_post.php');
+	}else
+	{
+		 include('../inc/form.php');
 	}
 	
 	?>   

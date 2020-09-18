@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /spinbot/post
+Allow: /spinbot/index.php
+Disallow: /

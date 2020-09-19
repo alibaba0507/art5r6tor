@@ -18,6 +18,10 @@ $news =  $base_url.'/html/news.php';
 $emailClener =  $base_url.'/html/emailCleanUp.php';
 $contactus = $base_url.'/html/contactUs.php';
 $about = $base_url.'/html/about.php';
+$post = $base_url.'/html/post.php';//$base_url.'/post/google-index-strategy.php';
+//$post1 = //$base_url.'/post/How-to-beat-competition-with-article-spinning-using-this-advanced-spinner.php';
+//$post2 = //$base_url.'/post/do-it-yourself.php';
+//$post3 = //$base_url.'/post/seo-article-rewrite.php';
 //echo $home;
 //echo $about;
 ?>
@@ -30,11 +34,8 @@ $about = $base_url.'/html/about.php';
       </li>
       <li><a href="<?=$news ?>">How it wors</a></li>
 	  <li><a href="<?=$emailClener ?>">Clean Email List</a></li>
-      <li>
-     
-      <a href="<?=$contactus ?>">Contact</a>
-
-      </li>
+      <li><a href="<?=$contactus ?>">Contact</a></li>
+	  <li><a href="<?=$post ?>">Posts</a></li>
       <li style="float:right"><a href="<?= $about ?>">About</a></li>
     </ul>
 

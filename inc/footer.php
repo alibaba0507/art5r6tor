@@ -7,6 +7,13 @@ $news =  $base_url.'/html/news.php';
 $contactus = $base_url.'/html/contactUs.php';
 $about = $base_url.'/html/about.php';
 ?>
+<!-- BEGIN EZMOB TAG -->
+<SCRIPT TYPE="text/javascript">
+var __jscp=function(){for(var b=0,a=window;a!=a.parent;)++b,a=a.parent;if(a=window.parent==window?document.URL:document.referrer){var c=a.indexOf("://");0<=c&&(a=a.substring(c+3));c=a.indexOf("/");0<=c&&(a=a.substring(0,c))}var b={pu:a,"if":b,rn:new Number(Math.floor(99999999*Math.random())+1)},a=[],d;for(d in b)a.push(d+"="+encodeURIComponent(b[d]));return encodeURIComponent(a.join("&"))};
+document.write('<S' + 'CRIPT TYPE="text/javascript" SRC="//cpm.ezmob.com/tag?zone_id=105642&size=320x50&subid=&j=' + __jscp() + '"></S' + 'CRIPT>');
+</SCRIPT>
+<!-- END EZMOB TAG -->
+                                
 <center>
 <a href="<?=$home?>">Free Unique Article Apinner</a> Powered by <code>Article Rewriter TOOL</code> <!--Powered by. <a href="http://fullcontentrss.com" target="_blank">Full RSS</a --> | <a href="<?= $contactus?>" target="_top">Contact Us</a>
 <br/>

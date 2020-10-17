@@ -9,6 +9,7 @@ $post2 = $base_url.'/post/do-it-yourself.php';
 $post3 = $base_url.'/post/seo-article-rewrite.php';
 $post4 = $base_url.'/post/rank-new-content.php';
 $post5 = $base_url.'/post/how-to-paraphrase-a-quote-from-a-website.php';
+$post6 = $base_url.'/post/how-to-rephrase-a-question-into-a-statement.php';
 ?>
 <html>
   <head>
@@ -20,6 +21,7 @@ $post5 = $base_url.'/post/how-to-paraphrase-a-quote-from-a-website.php';
     <div>
  <hr>
  <ul>
+     <li><a href="<?=$post6 ?>">How to rephrase a question into a statement</a></li>
      <li><a href="<?=$post5 ?>">How to paraphrase a quote from a website</a></li>
 	 <li><a href="<?=$post0 ?>">Google Index Strategy</a></li>
 	 <li><a href="<?=$post1 ?>">How to beat competition with article spinning using this advanced spinner</a></li>
